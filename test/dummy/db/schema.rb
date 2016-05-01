@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501022808) do
+ActiveRecord::Schema.define(version: 20160501192026) do
 
   create_table "bp_custom_fields_fields", force: :cascade do |t|
     t.string   "label"
     t.text     "value"
     t.integer  "group_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "field_type",       default: 0
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "field_type"
     t.string   "file"
     t.text     "options"
     t.string   "min"

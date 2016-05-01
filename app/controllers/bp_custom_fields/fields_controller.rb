@@ -3,7 +3,8 @@ require_dependency "bp_custom_fields/application_controller"
 module BpCustomFields
   class FieldsController < ApplicationController
     before_action :find_group
-    def index
+    
+    def manage
       @group.fields.build 
     end
     

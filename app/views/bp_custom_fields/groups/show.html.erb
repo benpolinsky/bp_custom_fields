@@ -15,5 +15,6 @@
   <%= @group.visible %>
 </p>
 
+<%= link_to 'Manage Fields', [:manage, @group, :fields] %>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

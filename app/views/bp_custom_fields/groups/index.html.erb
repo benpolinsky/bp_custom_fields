@@ -18,8 +18,7 @@
         <td><%= group.name %></td>
         <td><%= group.location %></td>
         <td><%= group.visible %></td>
-        <td><%= link_to 'Add Fields', [group, :fields] %></td>
-        <td><%= link_to 'Show', group %></td>
+        <td><%= link_to 'Manage Fields', [:manage, group, :fields] %></td>
         <td><%= link_to 'Edit', edit_group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

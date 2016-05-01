@@ -1,0 +1,13 @@
+<h2>Add Fields for <%= @group.name %></h2>
+<%= form_for @group do |f| %>
+
+<%= f.fields_for :fields do |field| %>
+  <%= render :partial => 'field_fields', locals: {f: field} %>
+  <div class='links'>
+    <%= link_to_add_association 'Add Field', f, :fields %>  
+  </div>
+  
+<% end %>
+
+  <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<% end %>
