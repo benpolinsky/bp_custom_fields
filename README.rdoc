@@ -1,0 +1,5 @@
+# BpCustomFields
+
+- thoughts - hierarchy of fields for repeaters and nested but start simple
+
+- decide whether or not and how to serialize 
