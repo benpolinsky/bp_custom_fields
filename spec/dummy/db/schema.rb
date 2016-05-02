@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502051661) do
+ActiveRecord::Schema.define(version: 20160502045705) do
 
   create_table "bp_custom_fields_field_templates", force: :cascade do |t|
     t.string   "name"
