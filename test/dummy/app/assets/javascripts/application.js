@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require cocoon
+//= require bp_custom_fields/groups
 //= require_tree .

@@ -1,5 +1,10 @@
 module BpCustomFields
-  class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception
+  class ApplicationController < ::ApplicationController
+    layout 'application'
+    before_filter :thi
+    
+    def thi
+      puts 'sdad'
+    end
   end
 end

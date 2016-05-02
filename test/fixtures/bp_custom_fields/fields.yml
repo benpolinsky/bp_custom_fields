@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  label: MyString
-  value: MyText
+  field_template_id: 
   group_id: 
+  value: MyText
 
 two:
-  label: MyString
-  value: MyText
+  field_template_id: 
   group_id: 
+  value: MyText

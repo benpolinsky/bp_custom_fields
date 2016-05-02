@@ -11,5 +11,6 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require bp_custom_fields/forms
  *= require_self
  */

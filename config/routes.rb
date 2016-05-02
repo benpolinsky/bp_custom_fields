@@ -1,10 +1,10 @@
 BpCustomFields::Engine.routes.draw do
-  resources :groups do
-    resources :fields do
+  resources :group_templates do
+    resources :field_templates do
       collection do
         get 'manage'
       end
     end
   end
-  root to: 'groups#index'
+  root to: 'group_templates#index'
 end

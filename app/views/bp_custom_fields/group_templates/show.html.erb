@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @group_template.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @group_template.location %>
+</p>
+
+<p>
+  <strong>Visible:</strong>
+  <%= @group_template.visible %>
+</p>
+
+<%= link_to 'Manage Fields', [:manage, @group_template, :fields] %>
+<%= link_to 'Edit', edit_group_template_path(@group_template) %> |
+<%= link_to 'Back', group_templates_path %>

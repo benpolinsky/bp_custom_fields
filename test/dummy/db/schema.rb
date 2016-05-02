@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501192026) do
+ActiveRecord::Schema.define(version: 20160502024324) do
 
   create_table "bp_custom_fields_fields", force: :cascade do |t|
     t.string   "label"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160501192026) do
     t.text     "default_value"
     t.text     "placeholder_text"
     t.string   "prepend"
+    t.string   "name"
   end
 
   add_index "bp_custom_fields_fields", ["group_id"], name: "index_bp_custom_fields_fields_on_group_id"
@@ -37,6 +38,14 @@ ActiveRecord::Schema.define(version: 20160501192026) do
     t.string   "name"
     t.string   "location"
     t.boolean  "visible"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
