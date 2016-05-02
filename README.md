@@ -1,6 +1,3 @@
-
-# A field needs a file! (to double as value)
-
 # !-- in development, not suitable for anything yet -- !
 TODO:
 

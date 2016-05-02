@@ -1,3 +1,5 @@
+# TODO: BETTER NAME THAN groups (collissions, etc)
+
 module BpCustomFields
   module Fieldable
     def self.included(base)

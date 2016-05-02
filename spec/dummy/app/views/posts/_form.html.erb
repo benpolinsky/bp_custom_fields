@@ -24,6 +24,11 @@
     <%= f.text_area :content %>
   </div>
   
+  <%# We'll call: %>
+  <%# display_custom_fields %> 
+  <% if @post.groups.any? && @post.groups.map(&:fields).any?%>
+    <p>You've got some mutherfucking custom fields.</p>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

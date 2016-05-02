@@ -56,7 +56,7 @@ module BpCustomFields
 
       # Only allow a trusted parameter "white list" through.
       def group_template_params
-        params.require(:group_template).permit(:name, :location, :visible, field_templates_attributes: [:field_type, :required, :min, :max, :prepend, :required, :default_value, :instructions, :label, :placeholder_text, :id, :name])
+        params.require(:group_template).permit(:name, :appears_on, :visible, field_templates_attributes: [:field_type, :required, :min, :max, :prepend, :required, :default_value, :instructions, :label, :placeholder_text, :id, :name])
       end
   end
 end
