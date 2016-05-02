@@ -45,3 +45,13 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 - Color Select
 - Better date/datetime selects
 - Map?  
+
+
+## brainstorming on instructions
+
+1. add to gemfile
+2. bundle
+3. Mount engine in routes (can be automated in install?)
+4. Install Migrations/Rake db (1/2 automated in install)
+4. Add include BpCustomFields::Fieldable to models (could generate rake task)
+5. Add display_custom_fields helper to forms
