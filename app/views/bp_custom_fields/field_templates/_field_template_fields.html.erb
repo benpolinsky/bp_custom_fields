@@ -2,7 +2,7 @@
   <fieldset class='field_type'>
     <div class='field'>
       <%= f.label :field_type, "Field Type: " %>
-      <%= f.select :field_type, options_for_select(BpCustomFields::Field.pretty_field_types.zip(BpCustomFields::Field.field_types.keys), f.object.field_type), {prompt: "Select Field Type"} %>
+      <%= f.select :field_type, options_for_select(BpCustomFields::FieldTemplate.pretty_field_types.zip(BpCustomFields::FieldTemplate.field_types.keys), f.object.field_type), {prompt: "Select Field Type"} %>
     </div>
   </fieldset>
   

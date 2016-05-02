@@ -1,3 +1,4 @@
+# This migration comes from bp_custom_fields (originally 20160426083707)
 class CreateBpCustomFieldsFieldTemplates < ActiveRecord::Migration
   def change
     create_table :bp_custom_fields_field_templates do |t|

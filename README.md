@@ -1,16 +1,16 @@
 # !-- in development, not suitable for anything yet -- !
 
-# Problem of hte moment is templates verse implementation
-# because you need to store each custom field's many values and where they go.
-# in wp, i assume they just get attached to a page or post object
-# but we're doing everything by routes...... Ill have to map it out..
 
-# I think its best to switch to 'the rails way' and make it polymorphic.
-# each model can be "fieldable" and get that added dynamically or added by the user
-# it's a safer way to attach fields, because routes are mutable
-# then its just a way of handling fields that dont get attached to anything...
 
-# perhaps make the location optional
+ I think its best to switch to 'the rails way' and make it polymorphic.
+ each model can be "fieldable" and get that added dynamically or added by the user
+ it's a safer way to attach fields, because routes are mutable
+
+ for settings, pages, options, preferences maybe a different get with custom pages is the way to go
+
+ this makes specific instances of resources possible as well
+
+ perhaps make the location optional
 
 # BpCustomFields
 

@@ -13,14 +13,14 @@
   </thead>
 
   <tbody>
-    <% @group_templates.each do |group| %>
+    <% @group_templates.each do |group_template| %>
       <tr>
-        <td><%= group.name %></td>
-        <td><%= group.location %></td>
-        <td><%= group.visible %></td>
-        <td><%= link_to 'Manage Fields', [:manage, group, :fields] %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= group_template.name %></td>
+        <td><%= group_template.location %></td>
+        <td><%= group_template.visible %></td>
+        <td><%= link_to 'Manage Fields', [:manage, group_template, :field_templates] %></td>
+        <td><%= link_to 'Edit', edit_group_template_path(group_template) %></td>
+        <td><%= link_to 'Destroy', group_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

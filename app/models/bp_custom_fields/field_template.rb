@@ -20,7 +20,7 @@ module BpCustomFields
     end
     
     def id_for_input
-      "custom_field_groups[#{group.id}][#{id}]"
+      "custom_field_group_templates[#{group_template.id}][#{id}]"
     end
   end
 end

@@ -6,7 +6,7 @@ module BpCustomFields
 
     # GET /groups
     def index
-      @group_templates = Group.all
+      @group_templates = GroupTemplate.all
     end
 
     # GET /groups/1
@@ -15,7 +15,7 @@ module BpCustomFields
 
     # GET /groups/new
     def new
-      @group_templates = Group.new
+      @group_template = GroupTemplate.new
     end
 
     # GET /groups/1/edit
@@ -24,10 +24,10 @@ module BpCustomFields
 
     # POST /groups
     def create
-      @group_templates = Group.new(group_template_params)
+      @group_template = GroupTemplate.new(group_template_params)
 
-      if @group_templates.save
-        redirect_to @group_templates, notice: 'Group was successfully created.'
+      if @group_template.save
+        redirect_to @group_template, notice: 'Group was successfully created.'
       else
         render :new
       end
@@ -35,8 +35,8 @@ module BpCustomFields
 
     # PATCH/PUT /groups/1
     def update
-      if @group_templates.update(group_template_params)
-        redirect_to @group_templates, notice: 'Group was successfully updated.'
+      if @group_template.update(group_template_params)
+        redirect_to @group_template, notice: 'Group was successfully updated.'
       else
         render :edit
       end
@@ -44,14 +44,14 @@ module BpCustomFields
 
     # DELETE /groups/1
     def destroy
-      @group_templates.destroy
+      @group_template.destroy
       redirect_to group_templates_url, notice: 'Group was successfully destroyed.'
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_group_template
-        @group_templates = Group.find(params[:id])
+        @group_template = GroupTemplate.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.

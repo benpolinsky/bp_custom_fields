@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502024324) do
+ActiveRecord::Schema.define(version: 20160502051661) do
 
-  create_table "bp_custom_fields_fields", force: :cascade do |t|
+  create_table "bp_custom_fields_field_templates", force: :cascade do |t|
+    t.string   "name"
     t.string   "label"
     t.text     "value"
-    t.integer  "group_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "group_template_id"
     t.integer  "field_type"
     t.string   "file"
     t.text     "options"
@@ -29,17 +28,35 @@ ActiveRecord::Schema.define(version: 20160502024324) do
     t.text     "default_value"
     t.text     "placeholder_text"
     t.string   "prepend"
-    t.string   "name"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
+  add_index "bp_custom_fields_field_templates", ["group_template_id"], name: "index_bp_custom_fields_field_templates_on_group_template_id"
+
+  create_table "bp_custom_fields_fields", force: :cascade do |t|
+    t.integer  "field_template_id"
+    t.integer  "group_id"
+    t.text     "value"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "bp_custom_fields_fields", ["field_template_id"], name: "index_bp_custom_fields_fields_on_field_template_id"
   add_index "bp_custom_fields_fields", ["group_id"], name: "index_bp_custom_fields_fields_on_group_id"
 
-  create_table "bp_custom_fields_groups", force: :cascade do |t|
+  create_table "bp_custom_fields_group_templates", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
     t.boolean  "visible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "bp_custom_fields_groups", force: :cascade do |t|
+    t.integer  "group_template_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "posts", force: :cascade do |t|
