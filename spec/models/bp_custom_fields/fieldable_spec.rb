@@ -17,15 +17,31 @@ module BpCustomFields
         expect(post.groups).to match []
       end
       
-      it "starts with custom field groups if they've been defined for the model by a group template" do
-        
+      it "is initialized with existing custom field groups" do
         template = BpCustomFields::GroupTemplate.create(name: "Badge", appears_on: "Post")
         post = Post.create
         expect(post.groups.first.group_template).to eq template
-
-        # # here's the problem of adding fields to instances that have already been created....
-   #      template_two = BpCustomFields::GroupTemplate.create(name: "Gallery", appears_on: "Post")
-   #      expect(post.groups.map(&:group_template)).to match [template, template_two]
+      end
+      
+      it "adds custom field groups to existing models on create" do
+        # here's the problem of adding fields to instances that have already been created....
+        post = Post.create
+        expect(post.groups.count).to eq 0
+        expect(post.groups.map(&:group_template).size).to eq 0
+        template_two = BpCustomFields::GroupTemplate.create(name: "Gallery", appears_on: "Post")
+        post.reload
+        expect(post.groups.map(&:group_template).size).to eq 1
+        expect(post.groups.map(&:group_template)).to match [template_two]
+      end
+      
+      it "removes the custom field groups from existing models when deleted" do
+        post = Post.create
+        custom_group_template = BpCustomFields::GroupTemplate.create(name: "Gallery", appears_on: "Post")
+        post.reload
+        expect(post.groups.map(&:group_template).size).to eq 1
+        custom_group_template.destroy
+        post.reload
+        expect(post.groups.map(&:group_template).size).to eq 0
       end
     end
   end

@@ -1,18 +1,32 @@
+
+# A field needs a file! (to double as value)
+
 # !-- in development, not suitable for anything yet -- !
+TODO:
 
+- Currently there's a appears_on string on GroupTemplates - make this into an association so it can have_many appearances and conditional logic.  
 
+Apperance
+resource:string
+resource_id:integer
+appears:boolean
 
- I think its best to switch to 'the rails way' and make it polymorphic.
- each model can be "fieldable" and get that added dynamically or added by the user
- it's a safer way to attach fields, because routes are mutable
+Appearance 1 - Appears on All Posts
+resource: "post"
+resource_id: nil
+appears:true 
 
- for settings, pages, options, preferences maybe a different get with custom pages is the way to go
+Appearance 2 - Does not appear on post 23 
+resource: "post"
+resource_id: 23
+appears:false
 
- this makes specific instances of resources possible as well
+Together, we'd have a custom_field_group that appears on all posts except 23.  We can continue to build.
+Each will need a position, so we can evaulate the logic in order. (rearrange the appearances and we'll show all posts, as the second overrules the first)
 
- perhaps make the location optional
 
 # BpCustomFields
+
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 
@@ -22,16 +36,11 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 4. Gives a little more control to web admins who aren't rails developers.
 
 ### 
-- thoughts - hierarchy of fields for repeaters and nested but start simple
-- When do we look for custom fields?
-  - Default: on each request/page
-  - Option to opt in specific actions, controllers, routes
-  
-
-- decide whether or not and how to serialize 
+- thoughts - hierarchy of fields for repeaters and nested but start simple 
 - locations.
 - jSON?
-
+- for settings, pages, options, preferences maybe a different gem with custom pages is the way to go
+- there's also the option of allowing a route/location based custom field in addition as a quick way to create settings pages...
 
 ##### Fields to add
 (basically just look at acf pro)

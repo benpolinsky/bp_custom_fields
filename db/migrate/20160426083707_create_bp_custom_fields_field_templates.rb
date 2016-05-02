@@ -3,10 +3,8 @@ class CreateBpCustomFieldsFieldTemplates < ActiveRecord::Migration
     create_table :bp_custom_fields_field_templates do |t|
       t.string :name
       t.string :label
-      t.text :value
       t.references :group_template, index: true, foreign_key: true
       t.integer :field_type, default: nil
-      t.string :file
       t.text :options
       t.string :min
       t.string :max

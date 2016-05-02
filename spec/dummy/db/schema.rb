@@ -16,10 +16,8 @@ ActiveRecord::Schema.define(version: 20160502174947) do
   create_table "bp_custom_fields_field_templates", force: :cascade do |t|
     t.string   "name"
     t.string   "label"
-    t.text     "value"
     t.integer  "group_template_id"
     t.integer  "field_type"
-    t.string   "file"
     t.text     "options"
     t.string   "min"
     t.string   "max"
@@ -38,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160502174947) do
     t.integer  "field_template_id"
     t.integer  "group_id"
     t.text     "value"
+    t.string   "file"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
