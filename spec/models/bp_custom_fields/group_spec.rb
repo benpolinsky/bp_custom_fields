@@ -72,7 +72,7 @@ module BpCustomFields
       group.create_fields_from_templates
       expect(group.fields.size).to eq 0
       
-      template_with_a_field = BpCustomFields::GroupTemplate.create(name: "Whatever", appears_on: "Doesntexist")
+      template_with_a_field = BpCustomFields::GroupTemplate.create(name: "Whatever", appearances: [Appearance.new(resource: "Doesntexist")])
       template_with_a_field.field_templates.create(name: "firstname", field_type: 0, label: "firstname")
       group_two = BpCustomFields::Group.create(group_template: template_with_a_field)
       expect(group_two.fields.size).to eq 0

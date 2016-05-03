@@ -10,7 +10,9 @@ module BpCustomFields
     end
     
     def add_custom_field_groups
-      found_templates = BpCustomFields::GroupTemplate.where(appears_on: self.class)
+      found_templates = BpCustomFields::GroupTemplate.includes(:appearances).
+      where("bp_custom_fields_appearances.resource = ?", self.class).references(:bp_custom_fields_appearances)
+
       # we need to check if it is a new record, because we don't want to add groups twice
       self.groups << found_templates.map {|t| t.groups.new} if self.new_record?
       self.groups.each(&:create_fields_from_templates)

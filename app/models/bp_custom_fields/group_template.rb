@@ -2,12 +2,13 @@ module BpCustomFields
   class GroupTemplate < ActiveRecord::Base
     has_many :field_templates
     has_many :groups, dependent: :destroy
+    has_many :appearances
     
     accepts_nested_attributes_for :field_templates, reject_if: :all_blank_except_required, allow_destroy: true
     after_create :update_target_models
 
     validates :name, presence: true
-    validates :appears_on, presence: true
+    validates :appearances, presence: true
     
     def all_blank_except_required(attrs)
       attrs.except(:required).values.all?(&:blank?)
@@ -16,7 +17,7 @@ module BpCustomFields
     
     def update_target_models
       begin
-        target_model = appears_on.constantize        
+        target_model = appearances.first.resource.constantize        
         if target_model.all.any?
           target_model.all.each do |tm| 
             tm.groups << self.groups.create

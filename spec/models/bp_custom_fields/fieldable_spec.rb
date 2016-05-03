@@ -18,7 +18,7 @@ module BpCustomFields
       end
       
       it "is initialized with existing custom field groups" do
-        template = BpCustomFields::GroupTemplate.create(name: "Badge", appears_on: "Post")
+        template = BpCustomFields::GroupTemplate.create(name: "Badge", appearances: [Appearance.new(resource: "Post")])
         post = Post.create
         expect(post.groups.first.group_template).to eq template
       end
@@ -28,7 +28,7 @@ module BpCustomFields
         post = Post.create
         expect(post.groups.count).to eq 0
         expect(post.groups.map(&:group_template).size).to eq 0
-        template_two = BpCustomFields::GroupTemplate.create(name: "Gallery", appears_on: "Post")
+        template_two = BpCustomFields::GroupTemplate.create(name: "Gallery", appearances: [Appearance.new(resource: "Post")])
         post.reload
         expect(post.groups.map(&:group_template).size).to eq 1
         expect(post.groups.map(&:group_template)).to match [template_two]
@@ -36,7 +36,7 @@ module BpCustomFields
       
       it "removes the custom field groups from existing models when deleted" do
         post = Post.create
-        custom_group_template = BpCustomFields::GroupTemplate.create(name: "Gallery", appears_on: "Post")
+        custom_group_template = BpCustomFields::GroupTemplate.create(name: "Gallery", appearances: [Appearance.new(resource: "Post")])
         post.reload
         expect(post.groups.map(&:group_template).size).to eq 1
         custom_group_template.destroy
