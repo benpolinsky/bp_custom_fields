@@ -18,6 +18,7 @@ module BpCustomFields
     def new
       @group_template = GroupTemplate.new
       @group_template.appearances.build
+      @group_template.field_templates.build
     end
 
     # GET /groups/1/edit
@@ -31,6 +32,7 @@ module BpCustomFields
       if @group_template.save
         redirect_to edit_group_template_path(@group_template), notice: 'Group was successfully created.'
       else
+        set_all_application_models
         render :new
       end
     end

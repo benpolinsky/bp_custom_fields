@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field name">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -21,12 +21,23 @@
     <%= f.check_box :visible %>
   </div>
   
+<div class='appearance-fields'>  
   <%= f.fields_for :appearances do |a| %>
     <%= render :partial => 'appearance_fields', locals: {f: a} %>
     <div class='links'>
       <%= link_to_add_association 'Add Appearance', f, :appearances %>  
     </div>
   <% end %>
+</div>
+  
+<div class='field_template-fields'>
+  <%= f.fields_for :field_templates do |ft| %>
+    <%= render :partial => 'field_template_fields', locals: {f: ft} %>
+    <div class='links'>
+      <%= link_to_add_association 'Add Field', f, :field_templates %>  
+    </div>
+  <% end %>
+</div>
 
   <div class="actions">
     <%= f.submit "Create Group" %>
