@@ -46,3 +46,5 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 - An Appearance takes the name of a resource/model as a string
 - An Appearance optionally takes an id to target a specific record
 - Appearances are additive by default, but you can subtract from each other by setting appears to false
+
+TODO: Examples!

@@ -15,15 +15,20 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :appears_on %><br>
-    <%= f.text_field :appears_on %>
-  </div>
+
   <div class="field">
     <%= f.label :visible %><br>
     <%= f.check_box :visible %>
   </div>
+  
+  <%= f.fields_for :appearances do |a| %>
+    <%= render :partial => 'appearance_fields', locals: {f: a} %>
+    <div class='links'>
+      <%= link_to_add_association 'Add Appearance', f, :appearances %>  
+    </div>
+  <% end %>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create Group" %>
   </div>
 <% end %>

@@ -5,6 +5,8 @@ module BpCustomFields
     has_many :appearances
     
     accepts_nested_attributes_for :field_templates, reject_if: :all_blank_except_required, allow_destroy: true
+    accepts_nested_attributes_for :appearances, reject_if: :all_blank, allow_destroy: true
+    
     after_create :update_target_models
 
     validates :name, presence: true
