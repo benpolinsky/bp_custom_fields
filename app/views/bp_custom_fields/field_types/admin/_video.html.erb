@@ -1,1 +1,10 @@
-<%= custom_field_template.file_field :file %>
+<div class="custom-field video-field">
+  <%= builder.label :value, field_template.label, class: "form-label" %>
+  <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>
+
+  <p>Upload a video or... </p>
+  <%= builder.file_field :file, class: "form-control" %>
+
+  <p>enter url: </p>
+  <%= builder.text_field :value, class: "form-control" %>
+</div>

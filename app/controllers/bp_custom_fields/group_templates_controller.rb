@@ -17,12 +17,14 @@ module BpCustomFields
     # GET /groups/new
     def new
       @group_template = GroupTemplate.new
-      @group_template.appearances.build
-      @group_template.field_templates.build
+      @group_template.appearances.build if @group_template.appearances.none?
+      @group_template.field_templates.build if @group_template.field_templates.none?
     end
 
     # GET /groups/1/edit
     def edit
+      @group_template.appearances.build if @group_template.appearances.none?
+      @group_template.field_templates.build if @group_template.field_templates.none?
     end
 
     # POST /groups
@@ -40,7 +42,7 @@ module BpCustomFields
     # PATCH/PUT /groups/1
     def update
       if @group_template.update(group_template_params)
-        redirect_to @group_template, notice: 'Group was successfully updated.'
+        redirect_to edit_group_template_path(@group_template), notice: 'Group was successfully updated.'
       else
         render :edit
       end

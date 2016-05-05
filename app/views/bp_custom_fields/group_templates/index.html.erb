@@ -18,7 +18,6 @@
         <td><%= group_template.name %></td>
         <td><%= group_template.location %></td>
         <td><%= group_template.visible %></td>
-        <td><%= link_to 'Manage Fields', [:manage, group_template, :field_templates] %></td>
         <td><%= link_to 'Edit', edit_group_template_path(group_template) %></td>
         <td><%= link_to 'Destroy', group_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

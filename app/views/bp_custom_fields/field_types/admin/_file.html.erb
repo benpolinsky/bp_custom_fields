@@ -1,1 +1,5 @@
-<%= f.file_field :file %>
+<div class="custom-field video-field">
+  <%= builder.label :value, field_template.label, class: "form-label" %>
+  <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>
+  <%= builder.file_field :file, class: "form-control" %>
+</div>

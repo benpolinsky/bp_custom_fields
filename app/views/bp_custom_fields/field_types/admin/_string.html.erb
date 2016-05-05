@@ -1,1 +1,5 @@
-<%= text_field_tag custom_field_template.id_for_input, custom_field_template.value %>
+<div class="custom-field string-field">
+  <%= builder.label :value, field_template.label, class: "form-label" %>
+  <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>
+  <%= builder.text_field :value, class: "form-control" %>
+</div>

@@ -4,9 +4,6 @@ module BpCustomFields
   class FieldTemplatesController < ApplicationController
     before_action :find_group_template
     
-    def manage
-      @group_template.field_templates.build if @group_template.field_templates.none?
-    end
     
     protected
     def find_group_template

@@ -19,8 +19,6 @@ module BpCustomFields
       self.field_types.keys.map(&:titleize)
     end
     
-    def id_for_input
-      "custom_field_group_templates[#{group_template.id}][#{id}]"
-    end
+
   end
 end
