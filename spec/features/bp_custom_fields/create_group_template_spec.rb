@@ -72,7 +72,6 @@ describe 'creating a group_template', type: :feature do
         fill_in last_text_input[:name], with: "Your Bio"
         
         click_button "Create Group"
-        
       end
 
       within("form.edit_group_template") do

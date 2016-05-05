@@ -7,7 +7,6 @@ module BpCustomFields
     
     describe "Fieldable Model" do
       before :each do
-        
         class ::Post < ActiveRecord::Base
           include BpCustomFields::Fieldable
         end
