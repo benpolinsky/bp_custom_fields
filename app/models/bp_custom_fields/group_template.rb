@@ -22,7 +22,7 @@ module BpCustomFields
         target_model = appearances.first.resource.constantize        
         if target_model.all.any?
           target_model.all.each do |tm| 
-            tm.groups << self.groups.create
+            tm.groups << self.groups.new
             tm.groups.each {|group| group.create_fields_from_templates }
           end
         end

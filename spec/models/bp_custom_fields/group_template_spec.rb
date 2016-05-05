@@ -32,7 +32,7 @@ module BpCustomFields
       expect(group_template).to be_valid
     end
     
-    it "checks for any existing #appears_on resource instances and updates them with groups" do
+    it "checks for any existing #appears_on resource instances and updates them with groups", focus: true do
       BpCustomFields::GroupTemplate.delete_all
       post = Post.create
       expect(post.groups.size).to eq 0

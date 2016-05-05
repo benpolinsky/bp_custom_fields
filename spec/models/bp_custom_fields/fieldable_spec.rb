@@ -1,4 +1,5 @@
-# For defining fieldable functionality for an application's models
+require 'rails_helper'
+
 module BpCustomFields
   RSpec.describe "Fieldable Model" do
     

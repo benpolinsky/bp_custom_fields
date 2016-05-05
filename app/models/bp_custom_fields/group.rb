@@ -8,10 +8,9 @@ module BpCustomFields
     validates_presence_of :group_template
     
     def create_fields_from_templates
-      if group_template
-        group_template.field_templates.each do |ft|
-          fields.new(field_template: ft)
-        end
+      save
+      group_template.field_templates.each do |ft|
+        fields.create(field_template: ft)
       end
     end
   end
