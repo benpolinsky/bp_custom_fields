@@ -7,7 +7,7 @@ module BpCustomFields
     end
     
     it "delegates many methods to its template" do
-      @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appears_on: "Post")
+      @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appearances: [Appearance.new(resource: "Post")])
       @name_field = BpCustomFields::FieldTemplate.create(name: "Name", field_type: 0, group_template: @group_template)
       @name_field.fields.create
       expect(@name_field.fields.first.name).to eq "Name"
@@ -21,7 +21,7 @@ module BpCustomFields
         end
         
         @post = Post.create
-        @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appears_on: "Post")
+        @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appearances: [Appearance.new(resource: "Post")])
         @name_field = BpCustomFields::FieldTemplate.create(name: "Name", field_type: 0, group_template: @group_template)
         @bio_text_area = BpCustomFields::FieldTemplate.create(name: "Biography", field_type: 1, group_template: @group_template)
         @email_field = BpCustomFields::FieldTemplate.create(name: "Email", field_type: 3, group_template: @group_template)

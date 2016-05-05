@@ -2,14 +2,14 @@
   <fieldset class='field_type'>
     <div class='field'>
       <%= f.label :field_type, "Field Type: " %>
-      <%= f.select :field_type, options_for_select(BpCustomFields::FieldTemplate.pretty_field_types.zip(BpCustomFields::FieldTemplate.field_types.keys), f.object.field_type), {prompt: "Select Field Type"} %>
+      <%= f.select :field_type, options_for_select(BpCustomFields::FieldTemplate.pretty_field_types.zip(BpCustomFields::FieldTemplate.field_types.keys), f.object.field_type), {prompt: "Select Field Type"}, {class: "field-template-select-field-type"} %>
     </div>
   </fieldset>
   
   <fieldset class='field_options'>
     <div class='field'>
       <%= f.label :name, class: "form-label"  %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control field_template-name" %>
     </div>
     <div class='field'>
       <%= f.label :label, class: "form-label"  %>
@@ -46,7 +46,7 @@
       <%= f.text_area :default_value, class: "form-control" %>
     </div>
     
-    <div class='fiels'>
+    <div class='field'>
       <%= f.label :placeholder_text, class: "form-label" %>
       <%= f.text_field :placeholder_text, class: "form-control" %>
     </div>

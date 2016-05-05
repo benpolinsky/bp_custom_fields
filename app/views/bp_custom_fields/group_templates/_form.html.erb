@@ -11,19 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field name">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :appears_on %><br>
-    <%= f.text_field :appears_on %>
-  </div>
+
   <div class="field">
     <%= f.label :visible %><br>
     <%= f.check_box :visible %>
   </div>
+  
+<div class='appearance-fields'>  
+  <%= f.fields_for :appearances do |a| %>
+    <%= render :partial => 'appearance_fields', locals: {f: a} %>
+  <% end %>
+  <div class='links'>
+    <%= link_to_add_association 'Add Appearance', f, :appearances %>  
+  </div>
+</div>
+  
+<div class='field_template-fields'>
+  <%= f.fields_for :field_templates do |ft| %>
+    <%= render :partial => 'field_template_fields', locals: {f: ft} %>
+
+  <% end %>
+  <div class='links'>
+    <%= link_to_add_association 'Add Field', f, :field_templates %>  
+  </div>
+</div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create Group" %>
   </div>
 <% end %>

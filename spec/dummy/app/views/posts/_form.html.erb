@@ -25,10 +25,8 @@
   </div>
   
   <%# We'll call: %>
-  <%# display_custom_fields %> 
-  <% if @post.groups.any? && @post.groups.map(&:fields).any?%>
-    <p>You've got some mutherfucking custom fields.</p>
-  <% end %>
+  <%= f.bp_custom_fields %> 
+  
 
   <div class="actions">
     <%= f.submit %>

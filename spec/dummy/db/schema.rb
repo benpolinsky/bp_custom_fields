@@ -16,11 +16,14 @@ ActiveRecord::Schema.define(version: 20160502230125) do
   create_table "bp_custom_fields_appearances", force: :cascade do |t|
     t.string   "resource"
     t.integer  "resource_id"
-    t.boolean  "appears"
+    t.boolean  "appears",           default: true
     t.integer  "row_order"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "group_template_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
+
+  add_index "bp_custom_fields_appearances", ["group_template_id"], name: "index_bp_custom_fields_appearances_on_group_template_id"
 
   create_table "bp_custom_fields_field_templates", force: :cascade do |t|
     t.string   "name"

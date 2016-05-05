@@ -1,26 +1,9 @@
 # !-- in development, not suitable for anything yet -- !
-TODO:
 
-- Currently there's a appears_on string on GroupTemplates - make this into an association so it can have_many appearances and conditional logic.  
-
-Apperance
-resource:string
-resource_id:integer
-appears:boolean
-
-Appearance 1 - Appears on All Posts
-resource: "post"
-resource_id: nil
-appears:true 
-
-Appearance 2 - Does not appear on post 23 
-resource: "post"
-resource_id: 23
-appears:false
-
-Together, we'd have a custom_field_group that appears on all posts except 23.  We can continue to build.
-Each will need a position, so we can evaulate the logic in order. (rearrange the appearances and we'll show all posts, as the second overrules the first)
-
+## Current concern: 
+- The creation of groups, group_templates, fields, and field_templates are laced in callbacks.
+- You should extract them to a Creation Object and figure out how to call its methods not from callbacks
+- It will solve the current problem as well...
 
 # BpCustomFields
 
@@ -33,7 +16,7 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 4. Gives a little more control to web admins who aren't rails developers.
 
 ### 
-- thoughts - hierarchy of fields for repeaters and nested but start simple 
+- hierarchy of fields for repeaters and nested (ancestry)
 - locations.
 - jSON?
 - for settings, pages, options, preferences maybe a different gem with custom pages is the way to go
@@ -47,7 +30,7 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 - Map?  
 
 
-## brainstorming on instructions
+## brainstorming on instructions...
 
 1. add to gemfile
 2. bundle
@@ -55,3 +38,18 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 4. Install Migrations/Rake db (1/2 automated in install)
 4. Add include BpCustomFields::Fieldable to models (could generate rake task)
 5. Add display_custom_fields helper to forms
+
+## ...and front end usage
+
+1. query methods...
+
+
+## Appearances
+
+#### An Appearance is a way to reference a resource, a collection, or conditional queries (and soon random locations not tied to any resource)
+
+- An Appearance takes the name of a resource/model as a string
+- An Appearance optionally takes an id to target a specific record
+- Appearances are additive by default, but you can subtract from each other by setting appears to false
+
+TODO: Examples!
