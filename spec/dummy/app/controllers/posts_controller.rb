@@ -22,7 +22,6 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
-
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
     else
@@ -53,6 +52,6 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :slug, :content, groups_attributes: [:id, fields_attributes: [:id, :value]])
+      params.require(:post).permit(:title, :slug, :content, groups_attributes: [:id, :group_template_id, fields_attributes: [:id, :value]])
     end
 end

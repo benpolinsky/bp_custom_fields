@@ -32,17 +32,6 @@ module BpCustomFields
       expect(group_template).to be_valid
     end
     
-    it "checks for any existing #appears_on resource instances and updates them with groups", focus: true do
-      BpCustomFields::GroupTemplate.delete_all
-      post = Post.create
-      expect(post.groups.size).to eq 0
-
-      BpCustomFields::GroupTemplate.create(name: "Badge", appearances: @valid_appearances)
-      post.reload
-      expect(post.groups.size).to eq 1
-    end
-    
-    
     context "associations" do
       
       it "has_many groups" do

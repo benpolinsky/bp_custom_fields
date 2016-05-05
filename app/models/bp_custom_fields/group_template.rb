@@ -16,14 +16,12 @@ module BpCustomFields
       attrs.except(:required).values.all?(&:blank?)
     end
   
-    
     def update_target_models
       begin
-        target_model = appearances.first.resource.constantize        
+        target_model = appearances.first.resource.constantize
         if target_model.all.any?
-          target_model.all.each do |tm| 
-            tm.groups << self.groups.new
-            tm.groups.each {|group| group.create_fields_from_templates }
+          target_model.all.each do |tm|
+            BpCustomFields::FieldManager.new.initialize_group_with_fields(self)
           end
         end
       rescue Exception => e
