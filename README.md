@@ -1,9 +1,7 @@
 # !-- in development, not suitable for anything yet -- !
 
 ## Current concern: 
-- The creation of groups, group_templates, fields, and field_templates are laced in callbacks.
-- You should extract them to a Creation Object and figure out how to call its methods not from callbacks
-- It will solve the current problem as well...
+
 
 # BpCustomFields
 

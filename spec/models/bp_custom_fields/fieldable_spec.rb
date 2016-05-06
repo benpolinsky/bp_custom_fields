@@ -39,6 +39,7 @@ module BpCustomFields
         post.reload
         expect(post.groups.map(&:group_template).size).to eq 0
       end
+      
     end
   end
 end

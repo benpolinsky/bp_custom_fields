@@ -6,8 +6,6 @@ module BpCustomFields
     
     accepts_nested_attributes_for :field_templates, reject_if: :all_blank_except_required, allow_destroy: true
     accepts_nested_attributes_for :appearances, reject_if: :all_blank, allow_destroy: true
-    
-    after_create :update_target_models
 
     validates :name, presence: true
     validates :appearances, presence: true
@@ -16,19 +14,7 @@ module BpCustomFields
       attrs.except(:required).values.all?(&:blank?)
     end
   
-    def update_target_models
-      begin
-        target_model = appearances.first.resource.constantize
-        if target_model.all.any?
-          target_model.all.each do |tm|
-            BpCustomFields::FieldManager.new.initialize_group_with_fields(self)
-          end
-        end
-      rescue Exception => e
-        #puts e
-      end
-
-    end
+  
     
     # I THINK that it'll automatically be deleted from the target model when deleted here.. 
     

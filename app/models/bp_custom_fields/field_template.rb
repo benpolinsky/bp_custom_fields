@@ -9,7 +9,7 @@ module BpCustomFields
     enum field_type: [:string, :text, :number, :email, :editor, :date, :image, :video, :audio]
     
     belongs_to :group_template
-    has_many :fields
+    has_many :fields, dependent: :destroy
     
     validates :name, presence: true
     

@@ -79,5 +79,51 @@ module BpCustomFields
       group_two.create_fields_from_templates
       expect(group_two.fields.size).to eq 1
     end
+    
+    context "updating when template changes" do
+      before do
+        @group_template_with_a_field = BpCustomFields::GroupTemplate.create(
+          name: "Whatever", 
+          appearances: [Appearance.new(resource: "Doesntexist")]
+        )
+        @group_template_with_a_field.field_templates.create(
+          name: "firstname", 
+          field_type: 0, 
+          label: "firstname"
+        )
+        
+        @group = BpCustomFields::Group.create(group_template: @group_template_with_a_field)
+        @group.create_fields_from_templates      
+      end
+      
+      
+      it "can tell when a new field is added to group_template" do
+        expect(@group.update_available?).to eq false      
+        @group_template_with_a_field.field_templates.create(name: "Another Field tempalte", field_type: 0, label: "Another field")  
+        expect(@group.update_available?).to eq true
+      end
+      
+      
+      it "cannot update its fields if update is not available?" do
+        expect(@group.update_available?).to eq false
+        expect(@group.update_fields!).to eq false
+      end
+      
+      it "can #update_fields! if update_available?" do
+        expect(@group.update_available?).to eq false
+        field_template = @group_template_with_a_field.field_templates.create(name: "Another Field tempalte", field_type: 0, label: "Another field")
+        expect(@group.update_available?).to eq true
+        expect(@group.update_fields!).to match [field_template.id]
+        expect(@group.update_available?).to eq false
+      end
+      
+     
+      it "has not need to tell when all field_templates destroyed" do
+        expect(@group.update_available?).to eq false
+        @group_template_with_a_field.field_templates.destroy_all 
+        expect(@group.update_available?).to eq false # dependent: :destroy has us covered
+      end 
+      
+    end
   end
 end

@@ -15,7 +15,7 @@ module BpCustomFields
         if @object.groups.any?
           content_tag :div, class: "custom-field-container" do
             groups.each do |group|
-              concat content_tag :div, custom_fields_for(group), class: "custom-groups"
+              concat content_tag :div, custom_groups(group), class: "custom-groups"
             end
           end
         end
@@ -27,11 +27,23 @@ module BpCustomFields
         @object.groups.map(&:fields)
       end 
       
-      def custom_fields_for(group)
-        fields_for :groups do |group_f|
-          content_tag :div, class: "custom-group" do
-            concat content_tag(:span, group_f.hidden_field(:group_template_id))
-            concat content_tag(:span, custom_real_fields(group_f))
+      def custom_groups(group)
+        fields_for :groups do |group_builder|
+          custom_group(group_builder)
+        end
+      end
+      
+      def custom_group(group_builder)
+        content_tag :div, class: "custom-group" do
+          concat content_tag(:span, group_builder.hidden_field(:group_template_id))
+          concat content_tag(:span, custom_fields(group_builder))
+        end
+      end
+      
+      def custom_fields(group_builder)
+        group_builder.fields_for :fields do |fields_f|
+          capture do
+            concat custom_field(fields_f)
           end
         end
       end
@@ -42,13 +54,6 @@ module BpCustomFields
         locals: {builder: field_builder, field_template: field_template}
       end
       
-      def custom_real_fields(group_f)
-        group_f.fields_for :fields do |fields_f|
-          capture do
-            concat custom_field(fields_f)
-          end
-        end
-      end
     end
   end
 end

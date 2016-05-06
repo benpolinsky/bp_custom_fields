@@ -88,6 +88,7 @@ describe 'creating a group_template', type: :feature do
     end
     
     it "with non-visible checked" do
+      
     end
     
 

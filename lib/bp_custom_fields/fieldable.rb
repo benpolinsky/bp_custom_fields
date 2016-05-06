@@ -10,7 +10,7 @@ module BpCustomFields
     end
     
     def add_custom_field_groups
-      BpCustomFields::FieldManager.new.update_groups_for_fieldable(self)
+      BpCustomFields::FieldManager.update_groups_for_fieldable(self)
     end
   end
 end

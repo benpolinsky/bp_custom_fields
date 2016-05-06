@@ -1,4 +1,5 @@
-<div class="custom-field string-field">
+<div class="custom-field string-field <%= field_template.name.downcase.underscore %>">
+  <%= builder.hidden_field :field_template_id %>
   <%= builder.label :value, field_template.label, class: "form-label" %>
   <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>
   <%= builder.text_field :value, class: "form-control" %>
