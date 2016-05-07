@@ -11,12 +11,11 @@ module BpCustomFields
       include ActionView::Helpers::TagHelper
 
       def bp_custom_fields
-        @object.add_custom_field_groups if @object.groups.none?
+        @object.update_custom_field_groups
+        #@object.add_custom_field_groups if @object.groups.none?
         if @object.groups.any?
           content_tag :div, class: "custom-field-container" do
-            groups.each do |group|
-              concat content_tag :div, custom_groups(group), class: "custom-groups"
-            end
+            concat content_tag(:div, custom_groups, class: "custom-groups")
           end
         end
       end
@@ -27,7 +26,7 @@ module BpCustomFields
         @object.groups.map(&:fields)
       end 
       
-      def custom_groups(group)
+      def custom_groups
         fields_for :groups do |group_builder|
           custom_group(group_builder)
         end

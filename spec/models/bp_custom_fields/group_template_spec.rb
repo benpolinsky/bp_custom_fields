@@ -43,7 +43,7 @@ module BpCustomFields
         expect(group_template.groups.size).to eq 2
       end
       
-      it "has many appears_ons (models it'll attach itself to)" do
+      it "has many appearances (models it'll attach itself to)" do
       end
     end
   end

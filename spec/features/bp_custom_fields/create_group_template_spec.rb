@@ -91,10 +91,10 @@ describe 'creating a group_template', type: :feature do
       
     end
     
-
  
   end
   
+#  it "can clone a group_template from an exisiting one"
   context "unsuccessfully" do
   end
   
