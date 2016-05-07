@@ -58,11 +58,9 @@ ActiveRecord::Schema.define(version: 20160502230125) do
 
   create_table "bp_custom_fields_group_templates", force: :cascade do |t|
     t.string   "name"
-    t.string   "location"
     t.boolean  "visible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text     "appears_on"
   end
 
   create_table "bp_custom_fields_groups", force: :cascade do |t|

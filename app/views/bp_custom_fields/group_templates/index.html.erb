@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Location</th>
       <th>Visible</th>
       <th colspan="4"></th>
     </tr>
@@ -16,7 +15,6 @@
     <% @group_templates.each do |group_template| %>
       <tr>
         <td><%= group_template.name %></td>
-        <td><%= group_template.location %></td>
         <td><%= group_template.visible %></td>
         <td><%= link_to 'Edit', edit_group_template_path(group_template) %></td>
         <td><%= link_to 'Destroy', group_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>

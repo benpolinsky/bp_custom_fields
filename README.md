@@ -1,9 +1,16 @@
 # !-- in development, not suitable for anything yet -- !
 
-## Current concern: 
-
-
 # BpCustomFields
+Now:
+
+1. Test out specific resources (Post 1 include / exclude) and more complex appearances
+2. Fill out functionality - required, prepend, default text, etc
+3. Fill out and refactor *_field's
+3a. exclude custom field models from select (appearance``)
+4. How to handle default style... default theme, perhaps.
+5. Add Template more complex/Hierarchy fields 
+6. errors and notifications
+
 
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:

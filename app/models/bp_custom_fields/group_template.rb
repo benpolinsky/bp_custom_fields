@@ -10,6 +10,11 @@ module BpCustomFields
     validates :name, presence: true
     validates :appearances, presence: true
     
+    
+    def appears_on
+      appearances.appears_on
+    end
+    
     def all_blank_except_required(attrs)
       attrs.except(:required).values.all?(&:blank?)
     end

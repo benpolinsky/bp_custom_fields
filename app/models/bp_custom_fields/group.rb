@@ -14,8 +14,6 @@ module BpCustomFields
     def update_fields!
       if update_available?
         current_field_template_ids = fields.map(&:field_template_id)
-
-        # think about appearances though...
         field_template_ids_to_add = group_template.field_templates.map(&:id) - current_field_template_ids
         field_template_ids_to_add.each do |ft|
           fields.create(field_template_id: ft)
@@ -33,9 +31,6 @@ module BpCustomFields
         fields.create(field_template: ft)
       end
     end
-    
-
-    
     
   end
 end

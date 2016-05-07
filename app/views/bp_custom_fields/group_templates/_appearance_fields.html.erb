@@ -11,7 +11,7 @@
     
     <div class='field resource-appears'>
       <%= f.label :appears, "Conditions: " %>
-      <%= f.select :appears, options_for_select([["AND", 1], ["NOT", 0]], f.object.appears == true ? 1 : 0) %>
+      <%= f.select :appears, options_for_select([["INCLUDE", 1], ["EXCLUDE", 0]], f.object.appears == true ? 1 : 0) %>
     </div>
 
 
