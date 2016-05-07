@@ -12,7 +12,6 @@ module BpCustomFields
 
       def bp_custom_fields
         @object.update_custom_field_groups
-        #@object.add_custom_field_groups if @object.groups.none?
         if @object.groups.any?
           content_tag :div, class: "custom-field-container" do
             concat content_tag(:div, custom_groups, class: "custom-groups")

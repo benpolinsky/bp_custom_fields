@@ -13,9 +13,9 @@ module BpCustomFields
       if groups.none?
         add_custom_field_groups
       else
-        #groups.each(&:update_fields!)
+        # groups.each(&:update_fields!)
         add_new_custom_field_groups if new_groups_available?
-        #delete_stale_groups if stale_groups?
+        delete_stale_groups if stale_groups?
       end
 
 

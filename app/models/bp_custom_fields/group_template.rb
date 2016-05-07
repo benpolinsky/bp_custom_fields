@@ -15,13 +15,14 @@ module BpCustomFields
     end
     
     def self.find_for_resource(resource)
-      Appearance.where(resource: "Post").map(&:group_template).compact.uniq
+      Appearance.where(resource: resource.class.name).map(&:group_template).compact.uniq
       # having trouble getting a nested query to work so we'll use the less efficient above query for now...
       
       #joins(:appearances).where("appearances.resource = ?", resource.class.name)
     end
     
     def update_and_reload(params)
+      # not the way to go.. if bp_display_custom_fields handles everything else
       if update(params)
         groups.each do |group| 
           if group.fields.size != params["field_templates_attributes"].size

@@ -10,14 +10,14 @@ describe 'creating a group_template', type: :feature do
       expect(page).to have_content "Create a New Custom Field Group"
     end
     
-    it "without fields" do
+    it "without fields", js: true do
       within('form.new_group_template') do
         fill_in 'group_template_name', with: "Main Content"
         expect(page).to have_content "Choose a Resource/Model"
         select 'Post', from: 'group_template_appearances_attributes_0_resource'
+        click_link "remove field"
         click_button "Create Group"
       end
-
       within("form.edit_group_template") do
         expect(page).to have_field("group_template_appearances_attributes_0_resource", with: "Post")
       end
@@ -35,6 +35,7 @@ describe 'creating a group_template', type: :feature do
         select "Post", from: last_select[:name]
         last_text_input = all('.appearance-fields input[type="text"]').last
         fill_in last_text_input[:name], with: @first_post.id
+        click_link "remove field"
         click_button "Create Group"
       end
 

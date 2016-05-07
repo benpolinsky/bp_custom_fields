@@ -109,13 +109,86 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
       expect(all('.custom-group').size).to eq 1
       expect(all('.custom-field').size).to eq 1
       expect(all('.custom-field.name input').size).to eq 1
+      
+      nav_bar_custom_fields_link.click
+      
+      all("a", text: "Edit").last.click
+
+      within('form.edit_group_template') do
+        field = find('select#group_template_appearances_attributes_0_resource')
+        expect(field.value).to eq "Widget"
+        select "Post", from: field[:name]
+        click_button "Create Group"
+      end
+      
+      nav_bar_posts_link.click
+      click_link "Edit"
+      expect(all('.custom-group').size).to eq 2
+      expect(all('.custom-field').size).to eq 2
+      expect(all('.custom-field.name input').size).to eq 1
+      expect(all('.custom-field.new_field input').size).to eq 1
     end
     
-    it "removes fields when removed from its group's template"
+    it "removes fields when removed from its group's template", focus: true do
+      
+      nav_bar_custom_fields_link = find(".admin-navbar a.custom_fields")
+      nav_bar_posts_link = find('.admin-navbar a.posts')
+
+      expect(@custom_field_inputs.size).to eq 1
+      nav_bar_custom_fields_link.click
+      
+      click_link "Edit"
+      click_link "remove field"
+      click_button "Create Group" #TODO: Please change this submit to submit
+      nav_bar_posts_link.click
+      click_link "Edit"
+      expect(all('.custom-field input').size).to eq 0
+    end
     
-    it "removes groups when those groups' tempalates are deleted"
+    it "removes groups when those groups' tempalates are deleted" do
+      nav_bar_custom_fields_link = find(".admin-navbar a.custom_fields")
+      nav_bar_posts_link = find('.admin-navbar a.posts')
+
+      expect(@custom_field_inputs.size).to eq 1
+      nav_bar_custom_fields_link.click
+      
+      click_link "Destroy"
+      page.driver.browser.switch_to.alert.accept
+      
+      nav_bar_posts_link.click
+      
+      click_link "Edit"
+      expect(all('.custom-group').size).to eq 0
+      expect(all('.custom-field input').size).to eq 0
+    end
     
-    it "removes groups when those groups appearances change and no longer match"
+    it "removes groups when those groups appearances change and no longer match" do
+      
+      class ::Widget < ActiveRecord::Base
+        include BpCustomFields::Fieldable
+      end
+      
+      nav_bar_custom_fields_link = find(".admin-navbar a.custom_fields")
+      nav_bar_posts_link = find('.admin-navbar a.posts')
+
+      expect(@custom_field_inputs.size).to eq 1
+      nav_bar_custom_fields_link.click
+      
+      click_link "Edit"
+
+      within("form.edit_group_template") do
+        field = find('select#group_template_appearances_attributes_0_resource')
+        expect(field.value).to eq "Post"
+        select "Widget", from: field[:name]
+        click_button "Create Group"
+      end
+      
+      nav_bar_posts_link.click
+      
+      click_link "Edit"
+      expect(all('.custom-group').size).to eq 0
+      expect(all('.custom-field input').size).to eq 0
+    end
     
   end
 end
