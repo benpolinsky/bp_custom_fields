@@ -15,6 +15,7 @@ module BpCustomFields
     
     # TODO: A good idea to write these as queries rather than reduce or uniq
     # I'll performance test it...
+    # I'm also not confident in this logic...
     def self.appears_on
       location = all.map(&:appears_on)
       location = if location.uniq.size > 1

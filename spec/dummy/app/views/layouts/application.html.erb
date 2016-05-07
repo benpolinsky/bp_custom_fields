@@ -8,7 +8,10 @@
 </head>
 <body>
 
+<div class='admin-navbar'>
+  <%= link_to "Custom Fields", bp_custom_fields.root_path, class: "custom_fields" %>
+  <%= link_to "Posts", main_app.root_path, class: "posts" %>
+</div>
 <%= yield %>
-<%# display_bp_custom_fields %>
 </body>
 </html>

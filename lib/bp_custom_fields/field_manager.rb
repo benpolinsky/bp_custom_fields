@@ -13,6 +13,7 @@ module BpCustomFields
       where("bp_custom_fields_appearances.resource = ?", resource.class).references(:bp_custom_fields_appearances)
       resource.groups << found_templates.map {|t| initialize_group_with_fields(t) } 
     end
+    
 
     def self.update_existing_models
       target_model = appearances.first.resource.safe_constantize

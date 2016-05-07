@@ -13,27 +13,24 @@ module BpCustomFields
     def all_blank_except_required(attrs)
       attrs.except(:required).values.all?(&:blank?)
     end
-  
-  
     
-    # I THINK that it'll automatically be deleted from the target model when deleted here.. 
+    def self.find_for_resource(resource)
+      Appearance.where(resource: "Post").map(&:group_template).compact.uniq
+      # having trouble getting a nested query to work so we'll use the less efficient above query for now...
+      
+      #joins(:appearances).where("appearances.resource = ?", resource.class.name)
+    end
     
-    
-    # def self.find_for_location(request)
-    #
-    #   controller = request[:controller]
-    #   action = request[:action]
-    #   other_params = request.parameters.except(:controller, :action)
-    #
-    #   request_method = request.method
-    #   fullpath = request.fullpath
-    #   tbl = self.arel_table
-    #
-    #   # query = self.where(tbl[:location].eq(controller).or(tbl[:location].eq("#{controller}/#{action}")))
-    #   query = self.where("location LIKE ?", "%#{controller}%")
-    #   query
-    # end
-    
-    
+    def update_and_reload(params)
+      if update(params)
+        groups.each do |group| 
+          if group.fields.size != params["field_templates_attributes"].size
+            group.update_fields!
+          end
+        end
+      else
+        false
+      end
+    end
   end
 end

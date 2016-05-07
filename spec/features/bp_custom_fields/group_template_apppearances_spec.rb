@@ -1,1 +1,0 @@
-# make sure groups and custom fields appears where they should

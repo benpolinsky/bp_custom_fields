@@ -118,11 +118,13 @@ module BpCustomFields
       end
       
      
-      it "has not need to tell when all field_templates destroyed" do
+      it "has no need to tell when all field_templates destroyed" do
         expect(@group.update_available?).to eq false
         @group_template_with_a_field.field_templates.destroy_all 
         expect(@group.update_available?).to eq false # dependent: :destroy has us covered
       end 
+      
+      
       
     end
   end
