@@ -16,8 +16,8 @@ module BpCustomFields
         BpCustomFields::GroupTemplate.includes(:appearances).
         where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL OR (bp_custom_fields_appearances.resource_id = ? AND bp_custom_fields_appearances.appears = ?))", resource.class, resource.id, true).references(:bp_custom_fields_appearances)
       end
-      
-      resource.groups << found_templates.map {|t| initialize_group_with_fields(t) } 
+      last_templates = found_templates.reject {|t| t.appearances.any?{|a| a.appears == false}}
+      resource.groups << last_templates.map {|t| initialize_group_with_fields(t) } 
     end
     
 

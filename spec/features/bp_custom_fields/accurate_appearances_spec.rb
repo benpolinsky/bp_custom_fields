@@ -9,13 +9,7 @@ RSpec.describe "Accurate Appearances", type: :feature do
       include BpCustomFields::Fieldable
     end
   
-    # Setup Fake People
-    unless ActiveRecord::Base.connection.table_exists?(:people)
-      ActiveRecord::Base.connection.create_table :people do |t|
-        t.string :first_name
-        t.text :last_name
-      end
-    end
+    # Setup People
     
     class ::Person < ActiveRecord::Base
       include BpCustomFields::Fieldable
@@ -35,10 +29,8 @@ RSpec.describe "Accurate Appearances", type: :feature do
     5.times {|i| @five_posts << Post.create(title: "Post #{i}")}
 
   end
+
   
-  after(:all) do
-    ActiveRecord::Base.connection.drop_table(:people) if ActiveRecord::Base.connection.table_exists?(:people)
-  end
   context "Single Appearance" do
     before do
       @post = @five_posts.last
@@ -76,7 +68,7 @@ RSpec.describe "Accurate Appearances", type: :feature do
       expect(custom_fields_container.size).to eq 0
     end
     
-    it "will show on edit resource if matches and is included but siblings are excluded" do
+    it "will show on edit resource one matches and is included but a sibling is excluded" do
       @appearance.update(appears: false)
       inclusive_appearance = BpCustomFields::Appearance.create(resource: "Post", resource_id: @other_post.id, appears: true)
       @group_template.appearances << inclusive_appearance
@@ -84,6 +76,41 @@ RSpec.describe "Accurate Appearances", type: :feature do
       visit edit_post_path(@other_post.id)
       custom_fields_container = all('.custom-field-container')
       expect(custom_fields_container.size).to eq 1
+    end
+    
+    it "including two separate posts, all people except for one", focus: true do
+      person_one = Person.create(first_name: "Al")
+      person_two = Person.create(first_name: "Brady")
+      person_three = Person.create(first_name: "Cleveson")
+      person_four = Person.create(first_name: "Don")
+      
+      second_post_appearance = BpCustomFields::Appearance.create(resource: "Post", resource_id: @other_post.id, appears: true)
+      people_appearance = BpCustomFields::Appearance.create(resource: "Person")
+      first_person_appearance = BpCustomFields::Appearance.create(resource: "Person", resource_id: person_one.id, appears: false)
+      
+      @group_template.appearances << [second_post_appearance, people_appearance, first_person_appearance]
+      @group_template.save
+      
+      visit edit_post_path(@post)
+      custom_fields_container = all('.custom-field-container')
+      expect(custom_fields_container.size).to eq 1
+      
+      visit new_post_path
+      custom_fields_container = all('.custom-field-container')
+      expect(custom_fields_container.size).to eq 0
+      
+      visit new_person_path
+      custom_fields_container = all('.custom-field-container')
+      expect(custom_fields_container.size).to eq 1
+      
+      visit edit_person_path(person_one)
+      custom_fields_container = all('.custom-field-container')
+      expect(custom_fields_container.size).to eq 0
+      
+      visit edit_person_path(person_two)
+      custom_fields_container = all('.custom-field-container')
+      expect(custom_fields_container.size).to eq 1
+      
     end
   end
   
@@ -105,6 +132,9 @@ RSpec.describe "Accurate Appearances", type: :feature do
       custom_fields_container = all('.custom-field-container')
       expect(custom_fields_container.size).to eq 1
     end
+    
+    
+    
   end
   
 

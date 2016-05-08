@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502230125) do
+ActiveRecord::Schema.define(version: 20160508024209) do
 
   create_table "bp_custom_fields_appearances", force: :cascade do |t|
     t.string   "resource"
@@ -69,6 +69,13 @@ ActiveRecord::Schema.define(version: 20160502230125) do
     t.datetime "updated_at",        null: false
     t.integer  "groupable_id"
     t.string   "groupable_type"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
