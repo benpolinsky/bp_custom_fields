@@ -2,8 +2,9 @@
 
 # BpCustomFields
 Now:
-
+2. Front end displaying: 
 3. Fill out special fields like videos - just urls though.. / also custom options in the definition
+- video: vimeo/youtube support
 4. handle files
 5. How to handle default style... default theme, perhaps.
 6. Add Template more complex/Hierarchy fields 
