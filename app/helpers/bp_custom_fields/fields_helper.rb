@@ -1,6 +1,6 @@
 module BpCustomFields
   module FieldsHelper
-    def custom_fields_html_options(field_template, object, extra_classes='')
+    def bpcf_html_options(field_template, object, extra_classes='')
       html_options = {}
       html_options[:class] = "form-control #{extra_classes}"
       html_options[:placeholder] = field_template.placeholder_text if field_template.placeholder_text.present? && object.value.blank?

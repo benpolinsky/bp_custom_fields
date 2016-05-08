@@ -3,9 +3,18 @@
   
   <% case field.field_type %>
   <% when 'video' %>
-    <%= display_video field.value %>
+    <%= bp_display_video field.value %>
   <% when 'image' %>
     <%= image_tag field.value %>
+  <% when 'audio' %>
+    <%= field.value %>
+    <audio src="<%= field.value %>"></audio>
+  <% when 'date' %>
+    <%= field.value %>
+  <% when 'email' %>
+    <%= field.value %>
+  <% when 'number' %>
+    <%= field.value %>
   <% else %>
     <%= field.value %>
   <% end %>

@@ -1,6 +1,6 @@
 module BpCustomFields
   module DisplayHelper
-    def display_video(address)
+    def bp_display_video(address)
       video = BpCustomFields::Video.new(address)
       video_embed_html(video)
     end
