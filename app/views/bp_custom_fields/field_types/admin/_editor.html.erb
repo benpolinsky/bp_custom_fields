@@ -1,6 +1,1 @@
-<div class="custom-field string-field">
-  <%= builder.label :value, field_template.label, class: "form-label" %>
-  <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>
-  <p>Editor to be determined</p>
-  <%= builder.text_area :value, class: "form-control editor-to-be-determine" %>
-</div>
+<%= builder.text_area :value, class: "form-control editor-to-be-determine" %>

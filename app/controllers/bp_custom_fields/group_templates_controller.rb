@@ -61,8 +61,9 @@ module BpCustomFields
       end
       
       def set_all_application_models
+        excluded_models = ["ActiveRecord::SchemaMigration", 'BpCustomFields::GroupTemplate', 'BpCustomFields::Group']
         Rails.application.eager_load!
-        @app_models = ActiveRecord::Base.descendants.reject {|d| d.name == "ActiveRecord::SchemaMigration"}.map(&:name)
+        @app_models = ActiveRecord::Base.descendants.reject {|d| excluded_models.include?(d.name)}.map(&:name)
       end
 
       # Only allow a trusted parameter "white list" through.

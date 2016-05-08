@@ -1,5 +1,1 @@
-<div class="custom-field number-field">
-  <%= builder.label :value, field_template.label, class: "form-label" %>
-  <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>
-  <%= builder.number_field :value, class: "form-control" %>
-</div>
+<%= builder.number_field :value, class: "form-control" %>

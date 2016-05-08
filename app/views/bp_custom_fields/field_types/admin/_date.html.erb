@@ -1,6 +1,2 @@
-<div class="custom-field string-field">
-  <%= builder.label :value, field_template.label, class: "form-label" %>
-  <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>
-  <p>TODO: better date time support</p>
-  <%= builder.datetime_select :value, class: "form-control" %>
-</div>
+<p>TODO: better date time support</p>
+<%= builder.datetime_select :value, class: "form-control" %>

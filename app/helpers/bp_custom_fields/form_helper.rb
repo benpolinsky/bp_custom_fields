@@ -49,7 +49,7 @@ module BpCustomFields
        
       def custom_field(field_builder)
         field_template = field_builder.object.field_template
-        @template.render partial: "bp_custom_fields/field_types/admin/#{field_template.field_type}", 
+        @template.render partial: "bp_custom_fields/field_types/admin/basic", 
         locals: {builder: field_builder, field_template: field_template}
       end
       
