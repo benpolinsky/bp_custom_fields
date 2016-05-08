@@ -2,6 +2,8 @@
   <%= builder.hidden_field :field_template_id %>
   <%= builder.label :value, field_template.label, class: "form-label" %>
   <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>
+  <%= content_tag(:div, field_template.prepend, class: "bpcf-prepend") unless field_template.prepend.blank? %>
   <%= render partial: "bp_custom_fields/field_types/admin/#{field_template.field_type}", 
             locals: {builder: builder, field_template: field_template} %>
+  <%= content_tag(:div, field_template.append, class: "bpcf-prepend") unless field_template.append.blank? %>
 </div>

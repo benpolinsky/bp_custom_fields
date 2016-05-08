@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.text     "default_value"
     t.text     "placeholder_text"
     t.string   "prepend"
+    t.string   "append"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end

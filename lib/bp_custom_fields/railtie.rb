@@ -3,6 +3,7 @@ module BpCustomFields
     initializer "bp_custom_fields.initialize" do
       ActiveSupport.on_load(:action_view) do
         include BpCustomFields::FormHelper
+        include BpCustomFields::FieldsHelper
       end
     end
     

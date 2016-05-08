@@ -3,12 +3,11 @@
 # BpCustomFields
 Now:
 
-2. Fill out functionality - required, prepend, default text, etc
-3. Fill out and refactor *_field's
-3a. exclude custom field models from select (appearance``)
-4. How to handle default style... default theme, perhaps.
-5. Add Template more complex/Hierarchy fields 
-6. errors and notifications
+3. Fill out special fields like videos - just urls though.. / also custom options in the definition
+4. handle files
+5. How to handle default style... default theme, perhaps.
+6. Add Template more complex/Hierarchy fields 
+7. errors and notifications
 
 
 
@@ -32,6 +31,12 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 - Color Select
 - Better date/datetime selects
 - Map?  
+
+
+##### Options to add
+
+- more validations
+- custom classes
 
 
 ## brainstorming on instructions...

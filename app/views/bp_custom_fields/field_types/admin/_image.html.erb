@@ -1,5 +1,5 @@
 <p>Upload an image or (NEED TO SUPPORT DROPZONE! (or other lightweight drop library))... </p>
-<%= builder.file_field :file, class: "form-control" %>
+<%= builder.file_field :file, custom_fields_html_options(field_template) %>
 
 <p>enter url: </p>
-<%= builder.text_field :value, class: "form-control" %>
+<%= builder.text_field :value, custom_fields_html_options(field_template) %>

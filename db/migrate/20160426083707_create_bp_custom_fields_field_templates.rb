@@ -13,6 +13,7 @@ class CreateBpCustomFieldsFieldTemplates < ActiveRecord::Migration
       t.text :default_value
       t.text :placeholder_text
       t.string :prepend
+      t.string :append
       t.timestamps null: false
     end
   end
