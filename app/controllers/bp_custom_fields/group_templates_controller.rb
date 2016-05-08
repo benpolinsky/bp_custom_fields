@@ -41,7 +41,7 @@ module BpCustomFields
 
     # PATCH/PUT /groups/1
     def update
-      if @group_template.update_and_reload(group_template_params)
+      if @group_template.update_and_reload_fields(group_template_params)
         redirect_to edit_group_template_path(@group_template), notice: 'Group was successfully updated.'
       else
         render :edit

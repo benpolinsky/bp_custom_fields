@@ -20,9 +20,6 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
         class ::Post < ActiveRecord::Base
           include BpCustomFields::Fieldable
         end
-        BpCustomFields::Appearance.delete_all
-        Post.delete_all
-        BpCustomFields::Appearance.delete_all
       end
       
       it "one appearance can return all of a resource as a collection" do 

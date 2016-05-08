@@ -26,14 +26,14 @@ module BpCustomFields
       #joins(:appearances).where("appearances.resource = ?", resource.class.name)
     end
     
-    def update_and_reload(params)
+    def reload_fields
+      groups.each {|group| group.update_fields! if group.fields.size != field_templates.size}
+    end
+    
+    def update_and_reload_fields(params)
       # not the way to go.. if bp_display_custom_fields handles everything else
       if update(params)
-        groups.each do |group| 
-          if group.fields.size != params["field_templates_attributes"].size
-            group.update_fields!
-          end
-        end
+        reload_fields
       else
         false
       end

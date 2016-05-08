@@ -11,6 +11,7 @@ module BpCustomFields
       include ActionView::Helpers::TagHelper
 
       def bp_custom_fields
+        
         @object.update_custom_field_groups
         if @object.groups.any?
           content_tag :div, class: "custom-field-container" do

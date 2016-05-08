@@ -2,6 +2,11 @@ module BpCustomFields
   class Appearance < ActiveRecord::Base
     belongs_to :group_template
     
+    
+    def full_collection?(resource_class_name)
+      resource_id.nil? && resource == resource_class_name
+    end
+    
     def appears_on
       resource_model = resource.constantize
       if resource_id.nil?
@@ -12,7 +17,9 @@ module BpCustomFields
       end
     end
     
-    
+    def self.full_collection?(resource_class_name)
+      where(resource: resource_class_name, resource_id: nil).count > 0
+    end
     # TODO: A good idea to write these as queries rather than reduce or uniq
     # I'll performance test it...
     # I'm also not confident in this logic...

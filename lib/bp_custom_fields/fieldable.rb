@@ -48,7 +48,9 @@ module BpCustomFields
       reload
     end
     
-    
+    def group_templates
+      GroupTemplate.find_for_resource(self).flatten
+    end
     
     private
     
@@ -64,8 +66,5 @@ module BpCustomFields
       end
     end
     
-    def group_templates
-      GroupTemplate.find_for_resource(self).flatten
-    end
   end
 end
