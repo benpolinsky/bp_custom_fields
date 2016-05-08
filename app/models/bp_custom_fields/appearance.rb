@@ -17,9 +17,15 @@ module BpCustomFields
       end
     end
     
+    def excluded
+      !appears
+    end
+    
     def self.full_collection?(resource_class_name)
       where(resource: resource_class_name, resource_id: nil).count > 0
     end
+    
+    
     # TODO: A good idea to write these as queries rather than reduce or uniq
     # I'll performance test it...
     # I'm also not confident in this logic...

@@ -3,7 +3,6 @@
 # BpCustomFields
 Now:
 
-1. Test out specific resources (Post 1 include / exclude) and more complex appearances (it's going to behove me to use arel)
 2. Fill out functionality - required, prepend, default text, etc
 3. Fill out and refactor *_field's
 3a. exclude custom field models from select (appearance``)

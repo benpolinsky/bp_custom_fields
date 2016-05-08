@@ -6,9 +6,6 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
     @appearance = BpCustomFields::Appearance.new
   end
 
-  after(:all) do
-    ActiveRecord::Base.connection.drop_table(:people) if ActiveRecord::Base.connection.table_exists?(:people)
-  end
     
   it "belongs_to a group_template" do
     expect(@appearance.create_group_template(name: "Badge")).to be_a BpCustomFields::GroupTemplate
@@ -73,12 +70,7 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
       end
       
       it "can return a mixture of two different resources" do
-        unless ActiveRecord::Base.connection.table_exists?(:people)
-          ActiveRecord::Base.connection.create_table :people do |t|
-            t.string :first_name
-            t.text :last_name
-          end
-        end
+
         
         class ::Person < ActiveRecord::Base
           include BpCustomFields::Fieldable
@@ -108,12 +100,7 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
       end
 
       it "can return a mixture of two different resources, with only one resource subtracting from its collection", focus: true do
-        unless ActiveRecord::Base.connection.table_exists?(:people)
-          ActiveRecord::Base.connection.create_table :people do |t|
-            t.string :first_name
-            t.text :last_name
-          end
-        end
+
         
         class ::Person < ActiveRecord::Base
           include BpCustomFields::Fieldable
@@ -146,12 +133,7 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
       end
 
       it "can return a mixture of two different resources, each subtracting a respective record" do
-        unless ActiveRecord::Base.connection.table_exists?(:people)
-          ActiveRecord::Base.connection.create_table :people do |t|
-            t.string :first_name
-            t.text :last_name
-          end
-        end
+
         
         class ::Person < ActiveRecord::Base
           include BpCustomFields::Fieldable
@@ -185,12 +167,7 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
       end
     
       it "can return a mixture of two different resources, each subtracting several records" do
-        unless ActiveRecord::Base.connection.table_exists?(:people)
-          ActiveRecord::Base.connection.create_table :people do |t|
-            t.string :first_name
-            t.text :last_name
-          end
-        end
+
         
         class ::Person < ActiveRecord::Base
           include BpCustomFields::Fieldable

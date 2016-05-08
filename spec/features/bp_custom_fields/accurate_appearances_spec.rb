@@ -132,11 +132,7 @@ RSpec.describe "Accurate Appearances", type: :feature do
       custom_fields_container = all('.custom-field-container')
       expect(custom_fields_container.size).to eq 1
     end
-    
-    
-    
-  end
-  
 
+  end
   
 end

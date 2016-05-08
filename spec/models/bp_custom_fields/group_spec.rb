@@ -2,9 +2,6 @@ require 'rails_helper'
 require 'rspec/active_model/mocks'
 module BpCustomFields
   RSpec.describe BpCustomFields::Group, type: :model do
-    after(:all) do
-      ActiveRecord::Base.connection.drop_table(:people) if ActiveRecord::Base.connection.table_exists?(:people)
-    end
     
     it "exists" do
       expect(BpCustomFields::Group.new).to be_a BpCustomFields::Group
@@ -27,12 +24,6 @@ module BpCustomFields
     
     it "is polymorphic and can be attached to any model" do
       group_template = BpCustomFields::GroupTemplate.create(name: "Whatever")
-      unless ActiveRecord::Base.connection.table_exists?(:people)
-        ActiveRecord::Base.connection.create_table :people do |t|
-          t.string :first_name
-          t.text :last_name
-        end
-      end
       
       class ::Post < ActiveRecord::Base
         include BpCustomFields::Fieldable

@@ -14,10 +14,14 @@ module BpCustomFields
         where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL)", resource.class).references(:bp_custom_fields_appearances)
       else
         BpCustomFields::GroupTemplate.includes(:appearances).
-        where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL OR (bp_custom_fields_appearances.resource_id = ? AND bp_custom_fields_appearances.appears = ?))", resource.class, resource.id, true).references(:bp_custom_fields_appearances)
+        where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL OR bp_custom_fields_appearances.resource_id = ?)", resource.class, resource.id).references(:bp_custom_fields_appearances)
       end
-      last_templates = found_templates.reject {|t| t.appearances.any?{|a| a.appears == false}}
-      resource.groups << last_templates.map {|t| initialize_group_with_fields(t) } 
+      
+      found_templates = found_templates.reject do |template|
+        template.appearances.any?(&:excluded)
+      end
+      
+      resource.groups << found_templates.map {|t| initialize_group_with_fields(t) } 
     end
     
 
