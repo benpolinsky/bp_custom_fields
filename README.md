@@ -2,6 +2,7 @@
 
 # BpCustomFields
 Now:
+1. namespace all helper methods (display_video, etc)
 2. Front end displaying: 
 3. Fill out special fields like videos - just urls though.. / also custom options in the definition
 - video: vimeo/youtube support

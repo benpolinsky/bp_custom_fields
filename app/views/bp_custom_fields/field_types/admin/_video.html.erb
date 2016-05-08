@@ -1,5 +1,5 @@
 <p>Upload a video or... </p>
-<%= builder.file_field :file, custom_fields_html_options(field_template) %>
+<%= builder.file_field :file, custom_fields_html_options(field_template, builder.object) %>
 
 <p>enter url: </p>
-<%= builder.text_field :value, custom_fields_html_options(field_template) %>
+<%= builder.text_field :value, custom_fields_html_options(field_template, builder.object) %>

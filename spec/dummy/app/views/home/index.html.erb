@@ -1,8 +1,12 @@
 <% @custom_fields.each do |field| %>
+  <%# refactor to field.display or display_field(field) %>
+  
   <% case field.field_type %>
   <% when 'video' %>
-    <%= display_video(field.value) %>
+    <%= display_video field.value %>
+  <% when 'image' %>
+    <%= image_tag field.value %>
   <% else %>
     <%= field.value %>
   <% end %>
-<% end %>
+<% end %> 
