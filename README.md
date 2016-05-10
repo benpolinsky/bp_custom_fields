@@ -2,7 +2,9 @@
 
 # BpCustomFields
 Now:
-2. storing and displaying dates... / editor / audio embed?
+2. storing and displaying dates... need to store it as a string
+/ editor / audio embed?
+(seeds)
 4. handle files
 5. How to handle default style... default theme, perhaps.
 6. Add Template more complex/Hierarchy fields 
@@ -46,6 +48,7 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 4. Install Migrations/Rake db (1/2 automated in install)
 4. Add include BpCustomFields::Fieldable to models (could generate rake task)
 5. Add display_custom_fields helper to forms
+6. Probably want to add javascripts (and css?) to you file
 
 ## ...and front end usage
 

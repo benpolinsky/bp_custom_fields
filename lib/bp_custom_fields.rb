@@ -7,5 +7,10 @@ require 'bp_custom_fields/query_methods'
 require 'bp_custom_fields/video'
 
 module BpCustomFields
-  # global configuration
+  EXCLUDED_MODELS = [
+    "ActiveRecord::SchemaMigration", 
+    'BpCustomFields::GroupTemplate', 
+    'BpCustomFields::Group', 
+    'BpCustomFields::Appearance'
+  ]
 end
