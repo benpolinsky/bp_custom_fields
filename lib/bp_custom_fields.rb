@@ -11,6 +11,7 @@ module BpCustomFields
     "ActiveRecord::SchemaMigration", 
     'BpCustomFields::GroupTemplate', 
     'BpCustomFields::Group', 
-    'BpCustomFields::Appearance'
+    'BpCustomFields::Appearance',
+    'BpCustomFields::Field'
   ]
 end

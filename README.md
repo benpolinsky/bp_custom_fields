@@ -2,8 +2,8 @@
 
 # BpCustomFields
 Now:
-2. storing and displaying dates... need to store it as a string
-/ editor / audio embed?
+2. / editor / audio embed?
+3. options per specific field (file would set required types, time would set whether to include seconds, etc..)
 (seeds)
 4. handle files
 5. How to handle default style... default theme, perhaps.
