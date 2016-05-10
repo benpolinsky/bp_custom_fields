@@ -1,5 +1,7 @@
 /*
  *= require bp_custom_fields/flatpickr.min
+ *= require bp_custom_fields/forms
+ *= require bp_custom_fields/groups
  *= require_tree .
  *= require_self
  */
