@@ -6,7 +6,7 @@ module BpCustomFields
     # Which values are allowed/validated (customvalidator),
     # How the value is displayed to the user in the admin section
     # And how it is displayed on the front end
-    enum field_type: [:string, :text, :number, :email, :editor, :date_and_time, :date, :time, :image, :video, :audio]
+    enum field_type: [:string, :text, :number, :email, :editor, :date_and_time, :date, :time, :file, :image, :video, :audio]
     
     belongs_to :group_template
     has_many :fields, dependent: :destroy

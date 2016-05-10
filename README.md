@@ -2,15 +2,14 @@
 
 # BpCustomFields
 Now:
-2. / editor / audio embed?
-3. options per specific field (file would set required types, time would set whether to include seconds, etc..)
+1. options per specific field (file would set required types, time would set whether to include seconds, etc..)
 (seeds)
-4. handle files
-5. How to handle default style... default theme, perhaps.
-6. Add Template more complex/Hierarchy fields 
-7. errors and notifications
-
-
+2. handle files
+3. How to handle default style... default theme, perhaps.
+4. Add Template more complex/Hierarchy fields 
+5. audio (how are you handling this? - soundmanger?)
+6. errors and notifications
+7. editor?  
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 
