@@ -3,9 +3,7 @@
 # BpCustomFields
 Now:
 1. options per specific field_template
-  - textarea - rows (included but not functional)
   - editor: toobar: (none, simple, complex), rows (included not functiona;)
-  - image: restricted_types (included not functional), sizes? (not yet)
   
 2. options per specific field (not template)
  - text, input: not sure
