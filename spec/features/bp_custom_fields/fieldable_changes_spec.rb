@@ -39,7 +39,7 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
         last_text_input = all('.field_template-name').last  
         select "Text", from: last_field_type_select[:name]
         fill_in last_text_input[:name], with: "about"
-        click_button "Create Group"
+        click_button "Submit"
       end
       nav_bar_posts_link.click
       click_link "Edit"
@@ -68,7 +68,7 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
         fill_in "group_template_field_templates_attributes_0_name", with: "new_field"
         fill_in "group_template_field_templates_attributes_0_label", with: "new_field"
         
-        click_button "Create Group"
+        click_button "Submit"
       end
       nav_bar_posts_link.click
       click_link "Edit"
@@ -101,7 +101,7 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
         fill_in "group_template_field_templates_attributes_0_name", with: "new_field"
         fill_in "group_template_field_templates_attributes_0_label", with: "new_field"
         
-        click_button "Create Group"
+        click_button "Submit"
       end
       nav_bar_posts_link.click
       click_link "Edit"
@@ -118,7 +118,7 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
         field = find('select#group_template_appearances_attributes_0_resource')
         expect(field.value).to eq "Widget"
         select "Post", from: field[:name]
-        click_button "Create Group"
+        click_button "Submit"
       end
       
       nav_bar_posts_link.click
@@ -139,7 +139,7 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
       
       click_link "Edit"
       click_link "remove field"
-      click_button "Create Group" #TODO: Please change this submit to submit
+      click_button "Submit" 
       nav_bar_posts_link.click
       click_link "Edit"
       expect(all('.custom-field input').size).to eq 0
@@ -180,7 +180,7 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
         field = find('select#group_template_appearances_attributes_0_resource')
         expect(field.value).to eq "Post"
         select "Widget", from: field[:name]
-        click_button "Create Group"
+        click_button "Submit"
       end
       
       nav_bar_posts_link.click

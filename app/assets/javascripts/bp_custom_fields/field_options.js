@@ -20,7 +20,7 @@ function bp_bind_type_select(select){
 }
 
 function bp_show_field_options_for(field_type, container) {
-  container.find('.additional_option').removeClass('active');
-  container.find('.' + field_type + '.additional_option').addClass('active');
+  container.find('.additional-option').removeClass('active');
+  container.find('.' + field_type + '.additional-option').addClass('active');
 }
 

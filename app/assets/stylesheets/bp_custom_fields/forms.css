@@ -1,9 +1,9 @@
 .custom-fields{
   display:none;
 }
-.additional_option{
+.additional-option{
   display:none;
 }
-.additional_option.active{
+.additional-option.active{
   display:block;
 }

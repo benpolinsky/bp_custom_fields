@@ -2,14 +2,11 @@
 
 # BpCustomFields
 Now:
-1. options per specific field_template (js isn't working with multiple fields)
-  - file: required types
-  - date, datetime, time would set whether to include seconds, etc..
-  - input ?
-  - textarea - rows
-  - video?
-  - editor: toobar: (none, simple, complex), rows
-  - image: restricted_types, sizes?
+1. options per specific field_template
+  - textarea - rows (included but not functional)
+  - editor: toobar: (none, simple, complex), rows (included not functiona;)
+  - image: restricted_types (included not functional), sizes? (not yet)
+  
 2. options per specific field (not template)
  - text, input: not sure
  - editor: not sure

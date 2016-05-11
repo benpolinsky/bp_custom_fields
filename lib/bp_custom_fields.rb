@@ -17,4 +17,19 @@ module BpCustomFields
   ]
   
   PROTECTED_ATTRIBUTES = {groups_attributes: [:id, :group_template_id, fields_attributes: [:id, :value, :file, :field_template_id]]}
+
+  FIELD_TEMPLATE_OPTION_DEFINITIONS = {
+    string: [],
+    text: [:rows],
+    number: [],
+    email: [],
+    editor: [:rows, :toolbar],
+    date_and_time: [:datetime_format],
+    date: [:date_format],
+    time: [:time_format],
+    file: [:accepted_file_types],
+    image: [:accepted_image_types],
+    video: [],
+    audio: []
+  }
 end

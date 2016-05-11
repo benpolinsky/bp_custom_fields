@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.string   "label"
     t.integer  "group_template_id"
     t.integer  "field_type"
-    t.text     "options"
     t.string   "min"
     t.string   "max"
     t.boolean  "required"
@@ -39,8 +38,12 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.text     "placeholder_text"
     t.string   "prepend"
     t.string   "append"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "rows"
+    t.string   "date_format"
+    t.string   "accepted_file_types"
+    t.string   "toolbar"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   add_index "bp_custom_fields_field_templates", ["group_template_id"], name: "index_bp_custom_fields_field_templates_on_group_template_id"

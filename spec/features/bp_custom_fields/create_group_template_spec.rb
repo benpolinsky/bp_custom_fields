@@ -16,7 +16,7 @@ describe 'creating a group_template', type: :feature do
         expect(page).to have_content "Choose a Resource/Model"
         select 'Post', from: 'group_template_appearances_attributes_0_resource'
         click_link "remove field"
-        click_button "Create Group"
+        click_button "Submit"
       end
       within("form.edit_group_template") do
         expect(page).to have_field("group_template_appearances_attributes_0_resource", with: "Post")
@@ -36,7 +36,7 @@ describe 'creating a group_template', type: :feature do
         last_text_input = all('.appearance-fields input[type="text"]').last
         fill_in last_text_input[:name], with: @first_post.id
         click_link "remove field"
-        click_button "Create Group"
+        click_button "Submit"
       end
 
       within("form.edit_group_template") do
@@ -72,7 +72,7 @@ describe 'creating a group_template', type: :feature do
         select "Text", from: last_field_type_select[:name]
         fill_in last_text_input[:name], with: "Your Bio"
         
-        click_button "Create Group"
+        click_button "Submit"
       end
 
       within("form.edit_group_template") do

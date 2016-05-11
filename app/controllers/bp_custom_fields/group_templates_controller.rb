@@ -44,6 +44,7 @@ module BpCustomFields
       if @group_template.update_and_reload_fields(group_template_params)
         redirect_to edit_group_template_path(@group_template), notice: 'Group was successfully updated.'
       else
+        set_all_application_models
         render :edit
       end
     end
@@ -67,7 +68,25 @@ module BpCustomFields
 
       # Only allow a trusted parameter "white list" through.
       def group_template_params
-        params.require(:group_template).permit(:name, :visible, field_templates_attributes: [:_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, :instructions, :label, :placeholder_text, :id, :name, :options => [:an_option]], appearances_attributes: [:_destroy, :id, :resource, :resource_id, :appears])
+        params.require(:group_template).permit(:name, :visible, 
+          field_templates_attributes: [
+            :_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, 
+            :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, :date_format 
+          ], 
+          appearances_attributes: [:_destroy, :id, :resource, :resource_id, :appears]
+          )
+      end
+      
+      def permit_recursive_params(params)
+        params.map do |key, value|
+          if value.is_a?(Array)
+            { key => [ permit_recursive_params(value.first) ] }
+          elsif value.is_a?(Hash) || value.is_a?(ActionController::Parameters)
+            { key => permit_recursive_params(value) }
+          else
+            key
+          end
+        end
       end
   end
 end

@@ -11,9 +11,14 @@ module BpCustomFields
       html_options[:min] = field_template.min if field_template.min.present?
       html_options[:max] = field_template.max if field_template.max.present?
       html_options[:data] = options[:data] if options[:data]
+      html_options[:accept] = options[:accept] if options[:accept].present?
+      html_options[:rows] = options[:rows] if options[:rows].present?
       html_options
     end
     
+    def toolbar_select_default(f)
+      f.object.toolbar.present? ? f.object.toolbar : "Full" 
+    end
     
     private
     def field_value(template, object, options)

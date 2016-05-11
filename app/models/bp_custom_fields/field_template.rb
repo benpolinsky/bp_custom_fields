@@ -10,14 +10,13 @@ module BpCustomFields
     
     belongs_to :group_template
     has_many :fields, dependent: :destroy
-    
     validates :name, presence: true
-    
-    serialize :options, JSON
+  
     
     def self.pretty_field_types
       self.field_types.keys.map(&:titleize)
     end
+
     
 
   end
