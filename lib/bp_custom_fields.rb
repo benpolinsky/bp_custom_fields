@@ -12,7 +12,8 @@ module BpCustomFields
     'BpCustomFields::GroupTemplate', 
     'BpCustomFields::Group', 
     'BpCustomFields::Appearance',
-    'BpCustomFields::Field'
+    'BpCustomFields::Field',
+    'BpCustomFields::FieldTemplate'
   ]
   
   PROTECTED_ATTRIBUTES = {groups_attributes: [:id, :group_template_id, fields_attributes: [:id, :value, :file, :field_template_id]]}

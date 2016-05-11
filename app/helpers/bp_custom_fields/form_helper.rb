@@ -10,8 +10,7 @@ module BpCustomFields
       include ActionView::Helpers::TextHelper
       include ActionView::Helpers::TagHelper
 
-      def bp_custom_fields
-        
+      def bp_custom_fields        
         @object.update_custom_field_groups
         if @object.groups.any?
           content_tag :div, class: "custom-field-container" do
@@ -20,7 +19,21 @@ module BpCustomFields
         end
       end
       
+      def bp_additional_options
+        content_tag :div do
+          FieldTemplate.field_types.keys.each do |field_type|
+            concat content_tag(:div, display_field_template_options(field_type), class: "additional_option #{field_type}")
+          end
+        end
+      end
+      
       private
+      
+      def display_field_template_options(field_type)
+        fields_for :options do |o|
+          @template.render(partial: "bp_custom_fields/field_types/options/#{field_type}", locals: {builder: o})
+        end
+      end
       
       def groups
         @object.groups.map(&:fields)

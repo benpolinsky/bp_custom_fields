@@ -1,3 +1,9 @@
 .custom-fields{
   display:none;
 }
+.additional_option{
+  display:none;
+}
+.additional_option.active{
+  display:block;
+}

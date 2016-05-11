@@ -2,14 +2,20 @@
 
 # BpCustomFields
 Now:
-1. options per specific field (file would set required types, time would set whether to include seconds, etc..)
+1. options per specific field 
+  - file: required types, 
+  - date, datetime, time would set whether to include seconds, etc..
+  - input ?
+  - textarea - rows
+  - video?
+  - editor: toobar: (none, simple, complex), rows
+  - image: restricted_types, sizes?
 (seeds)
-2. handle files
-3. How to handle default style... default theme, perhaps.
-4. Add Template more complex/Hierarchy fields 
-5. audio (how are you handling this? - soundmanger?)
-6. errors and notifications
-7. editor?  
+2. Add Template more complex/Hierarchy fields 
+3. audio (how are you handling this? - soundmanger?)
+4. errors and notifications
+5. editor?  
+6. How to handle default style... default theme, perhaps.
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 
@@ -47,6 +53,7 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 4. Install Migrations/Rake db (1/2 automated in install)
 4. Add include BpCustomFields::Fieldable to models (could generate rake task)
 5. Add display_custom_fields helper to forms
+5. Add strong_parameters to controller
 6. Probably want to add javascripts (and css?) to you file
 
 ## ...and front end usage
