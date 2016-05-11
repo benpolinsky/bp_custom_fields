@@ -71,7 +71,7 @@ module BpCustomFields
         params.require(:group_template).permit(:name, :visible, 
           field_templates_attributes: [
             :_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, 
-            :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, :date_format 
+            :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, :date_format, :time_format 
           ], 
           appearances_attributes: [:_destroy, :id, :resource, :resource_id, :appears]
           )

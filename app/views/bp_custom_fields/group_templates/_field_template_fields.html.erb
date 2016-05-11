@@ -63,9 +63,14 @@
       <%= f.select :toolbar, options_for_select(["None", "Basic", "Full"], toolbar_select_default(f)), class: "form-control" %>
     </div>
     
-    <div class='field additional-option date date_and_time time'>
-      <%= f.label :date_format, "Date or Time Format", class: "form-label" %>
+    <div class='field additional-option date date_and_time'>
+      <%= f.label :date_format, "Date Format", class: "form-label" %>
       <%= f.text_field :date_format, class: "form-control" %>
+    </div>
+    
+    <div class='field additional-option date_and_time time'>
+      <%= f.label :time_format, "Time Format", class: "form-label" %>
+      <%= f.text_field :time_format, class: "form-control" %>
     </div>
   
     <div class='field additional-option file image'>

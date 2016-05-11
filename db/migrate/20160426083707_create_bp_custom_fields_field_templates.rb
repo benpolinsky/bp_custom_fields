@@ -15,6 +15,7 @@ class CreateBpCustomFieldsFieldTemplates < ActiveRecord::Migration
       t.string :append
       t.integer :rows
       t.string :date_format
+      t.string :time_format
       t.string :accepted_file_types
       t.string :toolbar
       t.timestamps null: false

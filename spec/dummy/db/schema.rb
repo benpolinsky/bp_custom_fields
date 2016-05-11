@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.string   "append"
     t.integer  "rows"
     t.string   "date_format"
+    t.string   "time_format"
     t.string   "accepted_file_types"
     t.string   "toolbar"
     t.datetime "created_at",          null: false
