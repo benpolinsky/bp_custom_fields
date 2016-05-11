@@ -2,15 +2,23 @@
 
 # BpCustomFields
 Now:
-1. options per specific field 
-  - file: required types, 
+1. options per specific field_template (js isn't working with multiple fields)
+  - file: required types
   - date, datetime, time would set whether to include seconds, etc..
   - input ?
   - textarea - rows
   - video?
   - editor: toobar: (none, simple, complex), rows
   - image: restricted_types, sizes?
-(seeds)
+2. options per specific field (not template)
+ - text, input: not sure
+ - editor: not sure
+ - images: look to acf?
+ - video: fullscreen, maybe size..,maybe autoplay
+ - audio: 
+ - file: similar to acf - how to display?
+ - dates: 
+ 
 2. Add Template more complex/Hierarchy fields 
 3. audio (how are you handling this? - soundmanger?)
 4. errors and notifications
