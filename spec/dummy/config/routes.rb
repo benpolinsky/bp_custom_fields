@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :posts, :people
 
   get 'home' => 'home#index'
+  get 'home/post/:id' => 'home#post'
   root to: 'posts#index'
 
 end

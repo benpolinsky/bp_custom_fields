@@ -3,9 +3,6 @@ require 'rails_helper'
 module BpCustomFields
   RSpec.describe "Fieldable Model" do
     
-    # should probably move this to a support folder/method
-    
-    describe "Fieldable Model" do
       before :each do
         class ::Post < ActiveRecord::Base
           include BpCustomFields::Fieldable
@@ -112,7 +109,62 @@ module BpCustomFields
         expect(post.stale_groups?).to eq false
         expect{post.delete_stale_groups}.to_not change{post.groups.size}
       end
-      
-    end
+
+      context "querying custom fields", focus: true do
+        before do
+          @post = Post.create
+          @group_template = BpCustomFields::GroupTemplate.create(name: "Gallery", appearances: [Appearance.new(resource: "Post")])
+          @picture_one_template = @group_template.field_templates.create(name: "picture one", field_type: "string")
+          @picture_two_template = @group_template.field_templates.create(name: "picture two", field_type: "string")
+          @picture_three_template = @group_template.field_templates.create(name: "picture three", field_type: "string")
+          
+          @group_template_two = BpCustomFields::GroupTemplate.create(name: "Badge", appearances: [Appearance.new(resource: "Post")])
+          @badge_template_one = @group_template_two.field_templates.create(name: 'picture one', field_type: 'string')
+          BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
+          
+        end
+        
+        
+        it 'can ::find_fields(string) with the same name' do
+          expect(Post.find_fields('picture one')).to match [@picture_one_template.fields.first, @badge_template_one.fields.first]
+          expect(Post.find_fields('picture two')).to match [@picture_two_template.fields.first]
+        end
+        
+        #it 'can #find_fields(keyable) within a specific group'
+        
+        it '::find_group will find a group with specified name' do
+          expect(Post.find_group('Badge')).to eq [@group_template_two.groups.first]
+          expect(Post.find_group('Gallery')).to eq [@group_template.groups.first]
+        end
+        
+        
+        it "can return #groups_and_fields for a record" do
+          expect(@post.groups_and_fields).to eq [{
+            "Gallery" => [
+              @picture_one_template.fields.first,
+              @picture_two_template.fields.first,
+              @picture_three_template.fields.first
+              ]},{
+            "Badge" => [
+              @badge_template_one.fields.first
+            ]}
+          ]
+          
+          
+          @person = Person.create
+          @group_template_three = BpCustomFields::GroupTemplate.create(name: "Bio", appearances: [Appearance.new(resource: "Person", resource_id: @person.id)])
+          @bio_field_template_one = @group_template_three.field_templates.create(name: 'biography title', field_type: 'string')
+          BpCustomFields::FieldManager.update_groups_for_fieldable(@person)
+          expect(@person.groups_and_fields).to match [{"Bio" => [@bio_field_template_one.fields.first]}]
+        end
+        
+        
+        it "can return #custom_fields for a record" do
+          expect(@post.custom_fields).to eq [@picture_one_template.fields.first, @picture_two_template.fields.first, @picture_three_template.fields.first, @badge_template_one.fields.first]  
+        end
+
+
+        #TODO: find by type
+      end
   end
 end

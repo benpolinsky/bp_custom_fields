@@ -6,7 +6,9 @@ module BpCustomFields
     
     accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
     validates_presence_of :group_template
-
+    
+    delegate :name, to: :group_template
+    
     def update_available?
       fields.size != group_template.field_templates.size
     end

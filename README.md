@@ -1,23 +1,12 @@
 # !-- in development, not suitable for anything yet -- !
 
 # BpCustomFields
-Now:
-1. options per specific field_template
-  - editor: toobar: (none, simple, complex), rows (included not functiona;)
-  
-2. options per specific field (not template)
- - text, input: not sure
- - editor: not sure
- - images: look to acf?
- - video: fullscreen, maybe size..,maybe autoplay
- - audio: 
- - file: similar to acf - how to display?
- - dates: 
- 
+
+1. Front Queries and Displaying for all types.  
 2. Add Template more complex/Hierarchy fields 
-3. audio (how are you handling this? - soundmanger?)
-4. errors and notifications
-5. editor?  
+3. editor?  (and toolbar option)
+4. audio (how are you handling this? - soundmanger?)
+5. errors and notifications
 6. How to handle default style... default theme, perhaps.
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
