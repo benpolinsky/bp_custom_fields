@@ -2,9 +2,9 @@
 
 # BpCustomFields
 
-1. Front Queries and Displaying for all types.  
-2. Add Template more complex/Hierarchy fields 
-3. editor?  (and toolbar option)
+1. Add Choices and Gallery
+2. editor - toolbar
+3. Add Template more complex/Hierarchy fields 
 4. audio (how are you handling this? - soundmanger?)
 5. errors and notifications
 6. How to handle default style... default theme, perhaps.
@@ -25,10 +25,27 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 
 ##### Fields to add
 (basically just look at acf pro)
+- Choices:
+ - Checkbox
+ - Select
+ - True / False
 
+- Gallery
 - Color Select
+- Map?
 - Better date/datetime selects
-- Map?  
+- oEmbed (replace video?)
+
+Layout:
+ - Flexible Content
+ - Repeater
+ - Tab
+
+Relational:
+  Page Link/Route
+  Resource or instance
+  Relationship
+  Tags
 
 
 ##### Options to add
@@ -46,11 +63,21 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 4. Add include BpCustomFields::Fieldable to models (could generate rake task)
 5. Add display_custom_fields helper to forms
 5. Add strong_parameters to controller
-6. Probably want to add javascripts (and css?) to you file
+6. Probably want to add javascripts (and css?) to your file
 
-## ...and front end usage
+## query methods
 
-1. query methods...
+    Resource.find_fields('field name')
+    Resource.find_groups
+    
+    @resource.groups_and_fields
+    @resource.custom_fields
+
+
+
+
+## display helpers
+  
 
 
 ## Appearances

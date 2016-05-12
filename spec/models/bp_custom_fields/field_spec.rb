@@ -2,9 +2,6 @@ require 'rails_helper'
 
 module BpCustomFields
   RSpec.describe BpCustomFields::Field, type: :model do
-    it "exists" do
-      expect(BpCustomFields::Field.new).to be_a BpCustomFields::Field
-    end
     
     it "delegates many methods to its template" do
       @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appearances: [Appearance.new(resource: "Post")])
@@ -13,6 +10,122 @@ module BpCustomFields
       expect(@name_field.fields.first.name).to eq "Name"
       # other attributes/methods
     end
+    
+    context "displaying" do
+      before do
+        class ::Post < ActiveRecord::Base
+          include BpCustomFields::Fieldable
+        end
+  
+        @post = Post.create(title: "A Post", slug: "Post-slug", content: "Slow lorem")
+        @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appearances: [BpCustomFields::Appearance.new(resource: "Post", resource_id: @post.id)])
+      end
 
+      context "basic displays" do
+        before do
+          @string_field_template = BpCustomFields::FieldTemplate.create(name: "Name", label: "Name", field_type: 0, group_template: @group_template)
+          @text_field_template = BpCustomFields::FieldTemplate.create(name: "Biography", label: "Biography", field_type: 1, group_template: @group_template)
+          @number_field_template = BpCustomFields::FieldTemplate.create(name: "Number", label: "Number", field_type: 2, group_template: @group_template)
+          @email_field_template = BpCustomFields::FieldTemplate.create(name: "Email", label: "Email", field_type: 3, group_template: @group_template)
+          
+          BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
+          @post.save
+          
+          @name_field = @post.find_fields('Name').first
+          @name_field.update(value: "Benedict Arnold")
+          @text_field = @post.find_fields('Biography').first
+          @text_field.update(value: "Traitor Ipsum")
+          @number_field = @post.find_fields('Number').first
+          @number_field.update(value: 1)
+          @email_field = @post.find_fields('Email').first
+          @email_field.update(value: "benedict@gmail.dev")
+        end
+        
+        it "string" do
+          expect(@name_field.display).to eq "Benedict Arnold"
+        end
+
+        it "text" do
+          expect(@text_field.display).to eq "Traitor Ipsum"
+        end
+  
+        it "number" do
+          expect(@number_field.display).to eq 1
+          @number_field.update(value: 12312.3123)
+          expect(@number_field.display).to eq 12312.3123
+        end
+  
+        it "email" do
+          expect(@email_field.display).to eq "benedict@gmail.dev" # any reason at all for this field?
+        end
+  
+
+      end
+
+      context "complex displays" do
+        before do
+          @image_field_template = BpCustomFields::FieldTemplate.create(name: "Image", label: "Image", field_type: 9, group_template: @group_template)
+          @file_field_template = BpCustomFields::FieldTemplate.create(name: "File", label: "File", field_type: 8, group_template: @group_template)
+          @video_field_template = BpCustomFields::FieldTemplate.create(name: "Video", label: "Video", field_type: 10, group_template: @group_template)
+          @audio_field_template = BpCustomFields::FieldTemplate.create(name: "Audio", label: "Audio", field_type: 11, group_template: @group_template)
+          
+          
+          BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
+          @post.save
+        end
+
+
+        context "fileables" do
+          before do
+            @image_path = BpCustomFields::Engine.root.join('spec', 'support', 'files', "image.jpg") 
+            @image = Rack::Test::UploadedFile.new(@image_path, 'image/jpeg')
+            @image_field = @post.find_fields('Image').first
+            @image_field.update(file: @image)
+          end
+          
+          it "has a fileable? method" do
+            expect(@image_field.fileable?).to eq true
+            @string_field_template = BpCustomFields::FieldTemplate.create(name: "Name", label: "Name", field_type: 0, group_template: @group_template)
+            @name_field = @string_field_template.fields.new
+            expect(@name_field.fileable?).to eq false
+            @file_field = @file_field_template.fields.new
+            expect(@file_field.fileable?).to eq true
+            @video_field = @video_field_template.fields.new
+            expect(@video_field.fileable?).to eq true
+            @audio_field = @audio_field_template.fields.new
+            expect(@audio_field.fileable?).to eq true
+          end
+          
+          it "can display the src" do
+            expect(@image_field.display).to eq "/uploads/bp_custom_fields/field/file/#{@image_field.id}/image.jpg"
+          end
+          
+          it "can display an absolute src" do
+            expect(@image_field.absolute_url).to eq "http://localhost:3000/uploads/bp_custom_fields/field/file/#{@image_field.id}/image.jpg"
+          end
+        end
+
+
+        context "dateable" do
+          before do
+            @date_field_template = BpCustomFields::FieldTemplate.create(name: "Date", label: "Date", field_type: 6, group_template: @group_template)
+            @date_field = @date_field_template.fields.create(value: "1-21-21")
+            @post.save
+          end
+          pending "date"
+          # it "date_and_time"
+          # it "time"
+        end
+
+        
+        pending "editor"
+      end
+
+
+
+
+      context "layout displays" do
+      end
+    end
   end
 end

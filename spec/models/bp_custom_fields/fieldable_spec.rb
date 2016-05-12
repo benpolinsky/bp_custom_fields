@@ -133,8 +133,8 @@ module BpCustomFields
         #it 'can #find_fields(keyable) within a specific group'
         
         it '::find_group will find a group with specified name' do
-          expect(Post.find_group('Badge')).to eq [@group_template_two.groups.first]
-          expect(Post.find_group('Gallery')).to eq [@group_template.groups.first]
+          expect(Post.find_groups('Badge')).to eq [@group_template_two.groups.first]
+          expect(Post.find_groups('Gallery')).to eq [@group_template.groups.first]
         end
         
         
@@ -162,6 +162,10 @@ module BpCustomFields
         it "can return #custom_fields for a record" do
           expect(@post.custom_fields).to eq [@picture_one_template.fields.first, @picture_two_template.fields.first, @picture_three_template.fields.first, @badge_template_one.fields.first]  
         end
+        
+        pending "can #find_fields for a specific record"
+        
+        pending "can #find_groups for a specific record"
 
 
         #TODO: find by type
