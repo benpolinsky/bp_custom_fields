@@ -3,6 +3,7 @@
 # BpCustomFields
 
 1. Add Choices and Gallery
+- update flatpickr to latest release
 2. editor - toolbar
 3. Add Template more complex/Hierarchy fields 
 4. audio (how are you handling this? - soundmanger?)

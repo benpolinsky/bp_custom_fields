@@ -11,6 +11,8 @@ module BpCustomFields
       # other attributes/methods
     end
     
+
+    
     context "displaying" do
       before do
         class ::Post < ActiveRecord::Base
@@ -116,7 +118,33 @@ module BpCustomFields
           # it "date_and_time"
           # it "time"
         end
-
+        
+        context "chooseables fields", focus: true do
+          it "stores and displays choiceable fields with a single value as a normal string" do
+            @dropdown_field_template = BpCustomFields::FieldTemplate.create(name: "Favorite Color", label: "favorite-color", choices: "red, blue, yellow", field_type: 13)
+            dropdown_field = @dropdown_field_template.fields.create(value: "red")
+            expect(dropdown_field.display).to eq "red"
+          end
+      
+          it "stores choiceable fields with multiple values as a comma delineated string and returns its value as an array", focus: true do
+            @dropdown_field_template = BpCustomFields::FieldTemplate.create(name: "Favorite Color", label: "favorite-color", choices: "red, blue, yellow", field_type: 13, multiple: true)
+            dropdown_field = @dropdown_field_template.fields.create(value: "red, yellow")
+            expect(dropdown_field.display).to eq ['red', 'yellow']
+          end
+      
+          it "displays truefalse fields as 1/false 0/true" do
+            @truefalse_field_template = BpCustomFields::FieldTemplate.create(
+              name: "Favorite Color", 
+              label: "favorite-color",
+              field_type: 14
+            )
+            true_field = @truefalse_field_template.fields.create(value: '0')
+            expect(true_field.display).to eq 'true'
+            
+            false_field = @truefalse_field_template.fields.create(value: '1')
+            expect(false_field.display).to eq 'false'
+          end
+        end
         
         pending "editor"
       end

@@ -12,7 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20160508024209) do
-  
+
   create_table "bp_custom_fields_appearances", force: :cascade do |t|
     t.string   "resource"
     t.integer  "resource_id"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.string   "time_format"
     t.string   "accepted_file_types"
     t.string   "toolbar"
+    t.text     "choices"
+    t.boolean  "multiple"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end

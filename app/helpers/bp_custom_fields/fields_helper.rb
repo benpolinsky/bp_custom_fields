@@ -13,7 +13,14 @@ module BpCustomFields
       html_options[:data] = options[:data] if options[:data]
       html_options[:accept] = field_template.accepted_file_types if field_template.accepted_file_types.present?
       html_options[:rows] = field_template.rows if field_template.rows.present?
+     # html_options[:multiple] = field_template.multiple if field_template.multiple
       #html_options[:toolbar] = field_template.toolbar if field_template.toolbar.present?
+      html_options
+    end
+    
+    def bpcf_html_other_options(field_template)
+      html_options = {}
+      html_options[:multiple] = true if field_template.multiple?
       html_options
     end
     

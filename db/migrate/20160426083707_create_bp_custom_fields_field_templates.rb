@@ -18,6 +18,8 @@ class CreateBpCustomFieldsFieldTemplates < ActiveRecord::Migration
       t.string :time_format
       t.string :accepted_file_types
       t.string :toolbar
+      t.text :choices
+      t.boolean :multiple
       t.timestamps null: false
     end
   end
