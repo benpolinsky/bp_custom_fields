@@ -1,8 +1,9 @@
 # !-- in development, not suitable for anything yet -- !
 
+
 # BpCustomFields
 
-1. Add Choices and Gallery
+1. Gallery
 - update flatpickr to latest release
 2. editor - toolbar
 3. Add Template more complex/Hierarchy fields 
@@ -25,11 +26,29 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 - there's also the option of allowing a route/location based custom field in addition as a quick way to create settings pages...
 
 ##### Fields to add
-(basically just look at acf pro)
-- Choices:
- - Checkbox
- - Select
- - True / False
+
+GALLERY
+
+Field Template = Gallery
+Parent Field - acts as anchor - value is either the name of the gallery or blank
+children fields - each image in the gallery, field_template is automatically set to image
+
+
+REPEATER
+
+Field Template - Repeater
+Parent Field - groups fields together and acts as anchor - value is probably blank
+Children Fields - Each field_template can be changed.  
+
+
+TABS
+Parent Field - Acts as anchor
+1st Children - First set of children are the layout for each tab
+2nd Children - these are the fields within each.
+
+
+FLEX CONTENT - Later!  Will have to think about this after you implement everything else.
+
 
 - Gallery
 - Color Select
