@@ -15,6 +15,7 @@ module BpCustomFields
       html_options[:rows] = field_template.rows if field_template.rows.present?
      # html_options[:multiple] = field_template.multiple if field_template.multiple
       #html_options[:toolbar] = field_template.toolbar if field_template.toolbar.present?
+      html_options[:selected] = 'selected' if object.value == "true"
       html_options
     end
     
