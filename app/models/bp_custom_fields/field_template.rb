@@ -16,6 +16,9 @@ module BpCustomFields
     belongs_to :group_template
     has_many :fields, dependent: :destroy
     validates :name, presence: true
+    # TODO: field_type is required
+    # TODO: choices is required if type is chooseable
+
   
     
     def self.pretty_field_types

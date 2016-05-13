@@ -11,6 +11,15 @@ module BpCustomFields
     
     # TODO: value or file needs to be present to be valid
     
+    def value=(value)
+      value = if field_type == 'checkboxes' && multiple
+        value.compact.reject!{|v| v == "0"}
+      else
+        value
+      end
+      super
+    end
+    
     def display
       case 
       when field_type == "number"
