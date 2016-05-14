@@ -16,3 +16,10 @@
 .bpcf-editor p{
   margin-top:0px;
 }
+
+
+/* children fields */
+
+.field_template_children-fields{
+  padding-left:20px;
+}

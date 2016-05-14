@@ -1,0 +1,10 @@
+<div class='child-fields'>  
+  
+  <%= builder.fields_for :children do |child| %>
+    <%= render :partial => 'bp_custom_fields/field_types/admin/repeating_fields', locals: {f: child} %>
+  <% end %>
+  
+  <div class='links'>
+    <%= link_to_add_association 'Add Rows', builder, :children, {partial: '/bp_custom_fields/field_types/admin/child_fields'}%>  
+  </div>
+</div>

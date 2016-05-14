@@ -87,19 +87,21 @@
       <%= f.label :multiple, class: "form-label" %>
       <%= f.check_box :multiple, class: "form-control" %>
     </div>
-
-<%= f.object.inspect %>
-    <div class='field additional-option repeater'>
-      <div class='field_template_children-fields'>  
-        <%= f.fields_for :children do |c| %>
-          <%= render :partial => 'child_field_templates', locals: {f: c} %>
-        <% end %>
-        <div class='links'>
-          <%= link_to_add_association 'Add Subfield', f, :children, partial: "child_field_templates" %>  
+    
+    
+    <% unless f.object.new_record? %>
+      <div class='field additional-option repeater'>
+        <div class='field_template_children-fields'>  
+          <%= f.fields_for :children do |c| %>
+            <%= render :partial => 'child_field_templates', locals: {f: c} %>
+          <% end %>
+          <div class='links'>
+            <%= link_to_add_association 'Add Subfield', f, :children, partial: "child_field_templates" %>  
+          </div>
         </div>
       </div>
-    </div>
-    
-    <%= link_to_remove_association "remove field", f %>
+    <% end %>
+
+    <%= link_to_remove_association "Remove Subfield", f %>
   </div>
 </div>

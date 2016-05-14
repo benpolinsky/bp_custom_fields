@@ -10,7 +10,7 @@ module BpCustomFields
                       :string, :text, :number, :email, :editor, 
                       :date_and_time, :date, :time, :file, 
                       :image, :video, :audio, :checkboxes, 
-                      :dropdown, :truefalse, :gallery
+                      :dropdown, :truefalse, :gallery, :repeater
                       ]
     
     belongs_to :group_template
@@ -80,6 +80,14 @@ module BpCustomFields
     
     def self.nestable_types
       ['gallery']
+    end
+    
+    def self.field_type_options
+      BpCustomFields::FieldTemplate.pretty_field_types.zip(BpCustomFields::FieldTemplate.field_types.keys)
+    end
+    
+    def self.repeater_field_type_options
+      self.field_type_options - [["Repeater", "repeater"]]
     end
     
     def self.pretty_field_types
