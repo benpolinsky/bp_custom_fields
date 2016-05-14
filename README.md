@@ -2,15 +2,13 @@
 
 
 # BpCustomFields
-
-1. Gallery
-- update flatpickr to latest release
 2. editor - toolbar
-3. Add Template more complex/Hierarchy fields 
-- Everything orderable (esp fields)
-4. audio (how are you handling this? - soundmanger?)
-5. errors and notifications
-6. How to handle default style... default theme, perhaps.
+3. Acomplex/Hierarchy fields 
+   - 
+4. Everything orderable (esp fields)
+5. audio (how are you handling this? - soundmanger or just leave it up to user for now... (maybe eliminate type...)
+6. errors and notifications
+7. How to handle default style... default theme, perhaps.
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 
@@ -27,14 +25,6 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 - there's also the option of allowing a route/location based custom field in addition as a quick way to create settings pages...
 
 ##### Fields to add
-
-GALLERY
-
-Field Template = Gallery
-Parent Field - acts as anchor - value is either the name of the gallery or blank
-children fields - each image in the gallery, field_template is automatically set to image
-
-
 
 
 
