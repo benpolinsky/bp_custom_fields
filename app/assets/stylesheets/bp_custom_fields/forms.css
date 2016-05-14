@@ -7,3 +7,12 @@
 .additional-option.active{
   display:block;
 }
+
+.bpcf-editor{
+  border:1px solid lightgrey;
+  min-height:100px;
+}
+
+.bpcf-editor p{
+  margin-top:0px;
+}

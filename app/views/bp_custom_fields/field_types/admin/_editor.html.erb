@@ -1,3 +1,1 @@
-
-
-<%= builder.text_area :value, bpcf_html_options(field_template, builder.object, {class: "editor-to-be-named-later"}) %>
+<%= builder.text_area :value, bpcf_html_options(field_template, builder.object, {class: "bpcf-editor", data: {'toolbar-state' => field_template.toolbar}}) %>

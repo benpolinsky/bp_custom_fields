@@ -2,13 +2,13 @@
 
 
 # BpCustomFields
-2. editor - toolbar
-3. Acomplex/Hierarchy fields 
-   - 
-4. Everything orderable (esp fields)
-5. audio (how are you handling this? - soundmanger or just leave it up to user for now... (maybe eliminate type...)
-6. errors and notifications
-7. How to handle default style... default theme, perhaps.
+1. More Hierarchy fields 
+2. Everything orderable (esp fields)
+3. audio (how are you handling this? - soundmanger or just leave it up to user for now... (maybe eliminate type...)
+4. errors and notifications
+5. How to handle default style... default theme, perhaps.
+6. toolbar full/complex/none - how to pass to js
+
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 
