@@ -7,6 +7,7 @@
 - update flatpickr to latest release
 2. editor - toolbar
 3. Add Template more complex/Hierarchy fields 
+- Everything orderable (esp fields)
 4. audio (how are you handling this? - soundmanger?)
 5. errors and notifications
 6. How to handle default style... default theme, perhaps.
@@ -32,6 +33,9 @@ GALLERY
 Field Template = Gallery
 Parent Field - acts as anchor - value is either the name of the gallery or blank
 children fields - each image in the gallery, field_template is automatically set to image
+
+
+
 
 
 REPEATER

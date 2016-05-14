@@ -2,8 +2,13 @@ module BpCustomFields
   module FieldManager    
     def self.initialize_group_with_fields(group_template)
       group = BpCustomFields::Group.new(group_template: group_template)
-      group_template.field_templates.each do |ft|
-        group.fields.build(field_template: ft)
+      group_template.field_templates.each do |field_template|
+        if field_template.field_type == "gallery"
+          parent_field = group.fields.build(field_template: field_template)
+          field_template.children.create(field_type: 'image', name: "gallery image")
+        else
+          group.fields.build(field_template: field_template)
+        end
       end
       group
     end

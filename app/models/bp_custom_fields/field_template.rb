@@ -10,21 +10,25 @@ module BpCustomFields
                       :string, :text, :number, :email, :editor, 
                       :date_and_time, :date, :time, :file, 
                       :image, :video, :audio, :checkboxes, 
-                      :dropdown, :truefalse 
+                      :dropdown, :truefalse, :gallery
                       ]
     
     belongs_to :group_template
     has_many :fields, dependent: :destroy
+    has_many :children, class_name: "BpCustomFields::FieldTemplate", inverse_of: :parent, foreign_key: "parent_id"
+    belongs_to :parent, class_name: "BpCustomFields::FieldTemplate", inverse_of: :children
+    
+    accepts_nested_attributes_for :children
+    
+    
     validates :name, presence: true
+    validate :gallery_children
+  
     # TODO: field_type is required
     # TODO: choices is required if type is chooseable
 
   
-    
-    def self.pretty_field_types
-      self.field_types.keys.map(&:titleize)
-    end
-
+  
     def all_choices
       array_choices = choices.split(",").map(&:strip)
       if array_choices.all?{|c| c.include?(':')}
@@ -34,6 +38,52 @@ module BpCustomFields
       end
     end
     
+    def has_children?
+      children.any?(&:persisted?)
+    end
+    
+    def is_root?
+      parent.nil?
+    end
+    
+    def gallery_children
+      errors.add(:field_type, "Children of galleries must be set to images") if parent.try(:field_type) == "gallery" && field_type != 'image'
+    end
+    
+    def fileable?
+      self.class.fileable_types.include? field_type
+    end
+    
+    def dateable?
+      self.class.dateable_types.include? field_type
+    end
+    
+    def chooseable?
+      self.class.chooseable_types.include? field_type
+    end
+    
+    def nestable?
+      self.class.nestable_types.include? field_type
+    end
+    
+    def self.fileable_types
+      ['image', 'video', 'file', 'audio']
+    end
 
+    def self.dateable_types
+      ['date', 'datetime', 'time']
+    end  
+    
+    def self.chooseable_types
+      ['dropdown', 'truefalse', 'checkboxes']
+    end
+    
+    def self.nestable_types
+      ['gallery']
+    end
+    
+    def self.pretty_field_types
+      self.field_types.keys.map(&:titleize)
+    end
   end
 end

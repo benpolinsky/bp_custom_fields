@@ -5,7 +5,7 @@ module BpCustomFields
     
     it "delegates many methods to its template" do
       @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appearances: [Appearance.new(resource: "Post")])
-      @name_field = BpCustomFields::FieldTemplate.create(name: "Name", field_type: 0, group_template: @group_template)
+      @name_field = BpCustomFields::FieldTemplate.create(name: "Name", field_type: 'string', group_template: @group_template)
       @name_field.fields.create
       expect(@name_field.fields.first.name).to eq "Name"
       # other attributes/methods
@@ -25,10 +25,10 @@ module BpCustomFields
 
       context "basic displays" do
         before do
-          @string_field_template = BpCustomFields::FieldTemplate.create(name: "Name", label: "Name", field_type: 0, group_template: @group_template)
-          @text_field_template = BpCustomFields::FieldTemplate.create(name: "Biography", label: "Biography", field_type: 1, group_template: @group_template)
-          @number_field_template = BpCustomFields::FieldTemplate.create(name: "Number", label: "Number", field_type: 2, group_template: @group_template)
-          @email_field_template = BpCustomFields::FieldTemplate.create(name: "Email", label: "Email", field_type: 3, group_template: @group_template)
+          @string_field_template = BpCustomFields::FieldTemplate.create(name: "Name", label: "Name", field_type: 'string', group_template: @group_template)
+          @text_field_template = BpCustomFields::FieldTemplate.create(name: "Biography", label: "Biography", field_type: 'text', group_template: @group_template)
+          @number_field_template = BpCustomFields::FieldTemplate.create(name: "Number", label: "Number", field_type: 'number', group_template: @group_template)
+          @email_field_template = BpCustomFields::FieldTemplate.create(name: "Email", label: "Email", field_type: 'email', group_template: @group_template)
           
           BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
           @post.save
@@ -66,10 +66,10 @@ module BpCustomFields
 
       context "complex displays" do
         before do
-          @image_field_template = BpCustomFields::FieldTemplate.create(name: "Image", label: "Image", field_type: 9, group_template: @group_template)
-          @file_field_template = BpCustomFields::FieldTemplate.create(name: "File", label: "File", field_type: 8, group_template: @group_template)
-          @video_field_template = BpCustomFields::FieldTemplate.create(name: "Video", label: "Video", field_type: 10, group_template: @group_template)
-          @audio_field_template = BpCustomFields::FieldTemplate.create(name: "Audio", label: "Audio", field_type: 11, group_template: @group_template)
+          @image_field_template = BpCustomFields::FieldTemplate.create(name: "Image", label: "Image", field_type: 'image', group_template: @group_template)
+          @file_field_template = BpCustomFields::FieldTemplate.create(name: "File", label: "File", field_type: 'file', group_template: @group_template)
+          @video_field_template = BpCustomFields::FieldTemplate.create(name: "Video", label: "Video", field_type: 'video', group_template: @group_template)
+          @audio_field_template = BpCustomFields::FieldTemplate.create(name: "Audio", label: "Audio", field_type: 'audio', group_template: @group_template)
           
           
           BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
@@ -119,17 +119,19 @@ module BpCustomFields
           # it "time"
         end
         
-        context "chooseables fields", focus: true do
+        context "chooseables fields" do
           it "stores and displays choiceable fields with a single value as a normal string" do
-            @dropdown_field_template = BpCustomFields::FieldTemplate.create(name: "Favorite Color", label: "favorite-color", choices: "red, blue, yellow", field_type: 13)
+            @dropdown_field_template = BpCustomFields::FieldTemplate.create(name: "Favorite Color", label: "favorite-color", choices: "red, blue, yellow", field_type: 'dropdown')
             dropdown_field = @dropdown_field_template.fields.create(value: "red")
             expect(dropdown_field.display).to eq "red"
           end
+          
       
-          it "stores choiceable fields with multiple values as a comma delineated string and returns its value as an array", focus: true do
-            @dropdown_field_template = BpCustomFields::FieldTemplate.create(name: "Favorite Color", label: "favorite-color", choices: "red, blue, yellow", field_type: 13, multiple: true)
-            dropdown_field = @dropdown_field_template.fields.create(value: "red, yellow")
-            expect(dropdown_field.display).to eq ['red', 'yellow']
+          it "stores choiceable fields with multiple values as an array and returns as array or string" do
+            @dropdown_field_template = BpCustomFields::FieldTemplate.create(name: "Favorite Color", label: "favorite-color", choices: "red, blue, yellow", field_type: 'dropdown', multiple: true)
+            dropdown_field = @dropdown_field_template.fields.create(value: ['red', 'yellow'])
+            expect(dropdown_field.to_a).to eq ['red', 'yellow']
+            expect(dropdown_field.display).to eq "red,yellow"
           end
       
           it "displays truefalse fields as 1/false 0/true" do
@@ -148,12 +150,44 @@ module BpCustomFields
         
         pending "editor"
       end
+      
+      context "hierarchical displays", focus: true do
+        context "galleries" do
+          before do
+            @image_path = BpCustomFields::Engine.root.join('spec', 'support', 'files', "image.jpg")
+            @second_image_path = BpCustomFields::Engine.root.join('spec', 'support', 'files', "image_2.jpg")  
+            @image = Rack::Test::UploadedFile.new(@image_path, 'image/jpeg')
+            @second_image = Rack::Test::UploadedFile.new(@second_image_path, 'image/jpeg')
+            
+            @gallery_field_template = BpCustomFields::FieldTemplate.create(
+              name: "My First Gallery", 
+              label: "my-first-gallery", 
+              field_type: "gallery", 
+              group_template: @group_template
+              )
 
-
-
-
-      context "layout displays" do
+          end
+          
+          it 'has many children fields' do
+            gallery_field = @gallery_field_template.fields.create
+            image_template = @gallery_field_template.children.create(field_type: 'image', name: "gallery image")
+            expect(gallery_field.field_type).to eq 'gallery'
+            gallery_field.children.create(field_template: image_template)
+            gallery_field.children.create(field_template: image_template)
+            expect(gallery_field.children.size).to eq 2
+          end
+          
+          it "can display an array of its children's urls" do
+            gallery_field = @gallery_field_template.fields.create
+            image_template = @gallery_field_template.children.create(field_type: 'image', name: "gallery image")
+            expect(gallery_field.field_type).to eq 'gallery'
+            field_1 = gallery_field.children.create(field_template: image_template, file: @image)
+            field_2 = gallery_field.children.create(field_template: image_template, file: @second_image)
+            expect(gallery_field.to_a).to eq ["http://localhost:3000/uploads/bp_custom_fields/field/file/#{field_1.id}/image.jpg", "http://localhost:3000/uploads/bp_custom_fields/field/file/#{field_2.id}/image_2.jpg"]
+          end
+        end
       end
+      
     end
   end
 end

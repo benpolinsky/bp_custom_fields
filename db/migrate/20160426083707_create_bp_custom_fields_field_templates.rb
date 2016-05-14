@@ -20,6 +20,7 @@ class CreateBpCustomFieldsFieldTemplates < ActiveRecord::Migration
       t.string :toolbar
       t.text :choices
       t.boolean :multiple
+      t.integer :parent_id
       t.timestamps null: false
     end
   end

@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.string   "toolbar"
     t.text     "choices"
     t.boolean  "multiple"
+    t.integer  "parent_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.integer  "group_id"
     t.text     "value"
     t.string   "file"
+    t.integer  "parent_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end

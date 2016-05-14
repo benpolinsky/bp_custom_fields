@@ -2,22 +2,30 @@ module BpCustomFields
   class Field < ActiveRecord::Base
     belongs_to :field_template
     belongs_to :group
+    has_many :children, class_name: "BpCustomFields::Field", inverse_of: :parent, foreign_key: "parent_id"
+    belongs_to :parent, class_name: "BpCustomFields::Field", inverse_of: :children
     
-    
-    delegate :name, :label, :field_type, :min, :max, :instructions, :default_value, :placeholder_text, :prepend, :choices, :multiple, to: :field_template      
+    delegate :name, :label, :field_type, :min, :max, :instructions, :default_value, 
+             :placeholder_text, :prepend, :choices, :multiple,
+             :fileable?, :dateable?, :chooseable?, :nestable?, to: :field_template
+      
     mount_uploader :file, BasicUploader
     attr_accessor :is_image
-
+    
+    before_save :set_value_for_multiple
+    accepts_nested_attributes_for :children
     
     # TODO: value or file needs to be present to be valid
+    def self.only_parents
+      where("parent_id IS NULL")
+    end
     
-    def value=(value)
-      value = if field_type == 'checkboxes' && multiple
+    def set_value_for_multiple
+      value = if field_type == 'checkboxes' && multiple && value.present?
         value.compact.reject!{|v| v == "0"}
       else
         value
       end
-      super
     end
     
     def display
@@ -42,6 +50,8 @@ module BpCustomFields
         rescue JSON::ParserError
           [value]
         end
+      elsif nestable?
+        children.map(&:absolute_url)
       else
         [value]
       end
@@ -58,30 +68,8 @@ module BpCustomFields
       Rails.application.routes.url_helpers.root_url[0..-2] + file.url
     end
 
-
-    # TODO: these methods are ripe for some refactoring
-    def fileable?
-      self.class.fileable_types.include? field_type
-    end
-    
-    def dateable?
-      self.class.dateable_types.include? field_type
-    end
-    
-    def chooseable?
-      self.class.chooseable_types.include? field_type
-    end
-    
-    def self.fileable_types
-      ['image', 'video', 'file', 'audio']
-    end
-
-    def self.dateable_types
-      ['date', 'datetime', 'time']
-    end  
-    
-    def self.chooseable_types
-      ['dropdown', 'truefalse', 'checkboxes']
+    def new_gallery_image_id
+      parent.field_template.children.first.id
     end
     
     private

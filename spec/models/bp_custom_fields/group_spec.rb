@@ -49,11 +49,12 @@ module BpCustomFields
     
     it "has many fields" do
       group_template = BpCustomFields::GroupTemplate.create(name: "Whatever")
+      field_template = BpCustomFields::FieldTemplate.create(name: "String", field_type: 'string')
       group = BpCustomFields::Group.create(group_template: group_template)
       expect(group.fields.size).to eq 0
-      group.fields.create
+      group.fields.create(field_template: field_template)
       expect(group.fields.size).to eq 1
-      group.fields.create
+      group.fields.create(field_template: field_template)
       expect(group.fields.size).to eq 2
     end
     
@@ -64,7 +65,7 @@ module BpCustomFields
       expect(group.fields.size).to eq 0
       
       template_with_a_field = BpCustomFields::GroupTemplate.create(name: "Whatever", appearances: [Appearance.new(resource: "Doesntexist")])
-      template_with_a_field.field_templates.create(name: "firstname", field_type: 0, label: "firstname")
+      template_with_a_field.field_templates.create(name: "firstname", field_type: 'string', label: "firstname")
       group_two = BpCustomFields::Group.create(group_template: template_with_a_field)
       expect(group_two.fields.size).to eq 0
       group_two.create_fields_from_templates

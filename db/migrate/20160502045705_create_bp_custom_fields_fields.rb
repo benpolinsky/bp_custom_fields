@@ -5,6 +5,7 @@ class CreateBpCustomFieldsFields < ActiveRecord::Migration
       t.references :group, index: true, foreign_key: true
       t.text :value
       t.string :file
+      t.integer :parent_id
       t.timestamps null: false
     end
   end
