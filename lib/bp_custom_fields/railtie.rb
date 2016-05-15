@@ -6,6 +6,9 @@ module BpCustomFields
         include BpCustomFields::FieldsHelper
         include BpCustomFields::DisplayHelper
       end
+      ActiveSupport.on_load :action_controller do
+        include BpCustomFields::DisplayHelper
+     end
     end
   end
 end

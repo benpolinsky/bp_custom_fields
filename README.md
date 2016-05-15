@@ -18,7 +18,7 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 4. Gives a little more control to web admins who aren't rails developers.
 
 ### 
-- hierarchy of fields for repeaters and nested (ancestry)
+- hierarchy of fields for repeaters and nested
 - locations.
 - jSON?
 - for settings, pages, options, preferences maybe a different gem with custom pages is the way to go
@@ -29,20 +29,27 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 
 
 - REPEATER
+
+Update current fields + groups: if they aren't initialized with a repeater, and then they are updated with one,
+any current values aren't getting the new repeater...
+
+
+
+
 Right now I'm limiting the nesting of repeaters at 3.  There are two problems with this.
-  1st -> recursive partials, I'm having trouble figuring out how/when to end the recurision (i think the idea is to not populate the new fields until select.. perhaps..)
-  2nd -> strong_parameters: I'm nesting level after level of children_attrubutes (the solution would be to not used nested attributes, and instead send each sequntiually)
-ONCE I Once i get into flex content, I may need to figure this out.
+  1st -> recursive partials - can only go one more than is currently saved
+    - perhaps the idea is to always create one more than we need, after we add?   I'll fiddle with the wrap_object, perhaps
+  2nd -> strong_parameters: this can be solved via a similar idea: 
+      http://stackoverflow.com/questions/17657306/recursive-tree-like-strong-parameters
+
 
 Field Template - Repeater
 Parent Field - groups fields together and acts as anchor - value is probably blank
 Children Fields - Each field_template can be changed.  
 
 
-TABS
-Parent Field - Acts as anchor
-1st Children - First set of children are the layout for each tab
-2nd Children - these are the fields within each.
+- TABS
+- think about it...
 
 
 FLEX CONTENT - Later!  Will have to think about this after you implement everything else.

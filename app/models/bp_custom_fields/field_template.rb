@@ -18,7 +18,7 @@ module BpCustomFields
     has_many :children, class_name: "BpCustomFields::FieldTemplate", inverse_of: :parent, foreign_key: "parent_id"
     belongs_to :parent, class_name: "BpCustomFields::FieldTemplate", inverse_of: :children
     
-    accepts_nested_attributes_for :children
+    accepts_nested_attributes_for :children, reject_if: :all_blank, allow_destroy: true
     
     
     validates :name, presence: true
@@ -48,6 +48,19 @@ module BpCustomFields
     
     def gallery_children
       errors.add(:field_type, "Children of galleries must be set to images") if parent.try(:field_type) == "gallery" && field_type != 'image'
+    end
+    
+    def initialize_if
+      self if number_of_parents(self) < 5
+    end
+    
+    def number_of_parents(ob, num=0)
+      if ob.parent.present?
+        num += 1
+        number_of_parents(ob.parent, num)
+      else
+        num
+      end
     end
     
     def fileable?

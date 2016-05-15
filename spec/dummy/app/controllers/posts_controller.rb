@@ -54,4 +54,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :slug, :content, BpCustomFields::PROTECTED_ATTRIBUTES)
     end
+    
 end

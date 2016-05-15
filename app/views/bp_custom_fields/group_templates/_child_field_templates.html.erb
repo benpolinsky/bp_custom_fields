@@ -1,3 +1,4 @@
+
 <div class='nested-fields'>  
   <div class='field_type'>
     <div class='field'>
@@ -89,18 +90,21 @@
     </div>
     
     
-    <% unless f.object.new_record? %>
+    <%# one option is to track the number of f.object.parents and restrict that way...%>
+    <%# if i wrap this, however, and do that in the object creation, it could work too %>
       <div class='field additional-option repeater'>
         <div class='field_template_children-fields'>  
           <%= f.fields_for :children do |c| %>
             <%= render :partial => 'child_field_templates', locals: {f: c} %>
           <% end %>
           <div class='links'>
-            <%= link_to_add_association 'Add Subfield', f, :children, partial: "child_field_templates" %>  
+            <%= link_to_add_association 'Add Subfield', f, :children, {
+              partial: "child_field_templates", wrap_object: 
+              Proc.new { |child_template| child_template.initialize_if}} %>  
           </div>
         </div>
       </div>
-    <% end %>
+
 
     <%= link_to_remove_association "Remove Subfield", f %>
   </div>

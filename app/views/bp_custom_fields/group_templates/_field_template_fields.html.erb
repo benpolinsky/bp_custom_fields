@@ -94,7 +94,7 @@
           <%= render :partial => 'child_field_templates', locals: {f: c} %>
         <% end %>
         <div class='links'>
-          <%= link_to_add_association 'Add Subfield', f, :children, partial: "child_field_templates" %>  
+          <%= link_to_add_association 'Add Subfield', f, :children, {partial: "child_field_templates"} %>  
         </div>
       </div>
     </div>

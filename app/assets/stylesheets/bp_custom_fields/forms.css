@@ -23,3 +23,7 @@
 .field_template_children-fields{
   padding-left:20px;
 }
+
+.nested-fields.repeater{
+  padding-left: 30px;
+}

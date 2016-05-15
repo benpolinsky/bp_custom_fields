@@ -15,8 +15,9 @@ module BpCustomFields
     attr_accessor :is_image
     
     before_save :set_value_for_multiple
-    accepts_nested_attributes_for :children
-    accepts_nested_attributes_for :repeater_groups    
+
+    accepts_nested_attributes_for :children, reject_if: :all_blank, allow_destroy: true
+    accepts_nested_attributes_for :repeater_groups, reject_if: :all_blank, allow_destroy: true    
     # TODO: value or file needs to be present to be valid
     def self.only_parents
       where("parent_id IS NULL")

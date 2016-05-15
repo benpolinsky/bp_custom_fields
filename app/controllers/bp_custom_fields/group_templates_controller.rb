@@ -56,46 +56,25 @@ module BpCustomFields
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_group_template
-        @group_template = GroupTemplate.find(params[:id])
-      end
+    def set_group_template
+      @group_template = GroupTemplate.find(params[:id])
+    end
 
-      def set_all_application_models
-        Rails.application.eager_load!
-        @app_models = ActiveRecord::Base.descendants.reject {|d| BpCustomFields::EXCLUDED_MODELS.include?(d.name)}.map(&:name)
-      end
+    def set_all_application_models
+      Rails.application.eager_load!
+      @app_models = ActiveRecord::Base.descendants.reject {|d| BpCustomFields::EXCLUDED_MODELS.include?(d.name)}.map(&:name)
+    end
 
-      # Only allow a trusted parameter "white list" through.
-      def group_template_params
-        params.require(:group_template).permit(:name, :visible, 
-          field_templates_attributes: [
-            :_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, 
-            :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, 
-            :date_format, :time_format, :choices, :multiple, children_attributes: 
-              [:_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, 
-            :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, 
-            :date_format, :time_format, :choices, :multiple, :parent_id, children_attributes: 
-              [:_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, 
-            :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, 
-            :date_format, :time_format, :choices, :multiple, :parent_id 
-              ]
-            ]
-          ], 
-          appearances_attributes: [:_destroy, :id, :resource, :resource_id, :appears]
-          )
-      end
-      
-      def permit_recursive_params(params)
-        params.map do |key, value|
-          if value.is_a?(Array)
-            { key => [ permit_recursive_params(value.first) ] }
-          elsif value.is_a?(Hash) || value.is_a?(ActionController::Parameters)
-            { key => permit_recursive_params(value) }
-          else
-            key
-          end
-        end
-      end
+    # Only allow a trusted parameter "white list" through.
+    def group_template_params
+      params.require(:group_template).permit(:name, :visible, 
+        field_templates_attributes: [
+          :_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, 
+          :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, 
+          :date_format, :time_format, :choices, :multiple, children_attributes: bpcf_group_template_permitted_params(params[:group_template][:field_templates_attributes])
+        ], 
+        appearances_attributes: [:_destroy, :id, :resource, :resource_id, :appears]
+        )
+    end
   end
 end

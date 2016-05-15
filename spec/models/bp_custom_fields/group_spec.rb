@@ -131,7 +131,7 @@ module BpCustomFields
       field_template = BpCustomFields::FieldTemplate.create(name: "Repeater", field_type: 'repeater', group_template: group_template)
       group = BpCustomFields::Group.create(group_template: group_template)
       field = group.fields.create(field_template: field_template)
-      repeater_group = field.repeater_groups.create
+      repeater_group = field.repeater_groups.create(is_repeater_group: true)
       expect(repeater_group.valid?).to eq true
     end
   end
