@@ -89,23 +89,21 @@
       <%= f.check_box :multiple, class: "form-control" %>
     </div>
     
-    
-    <%# one option is to track the number of f.object.parents and restrict that way...%>
-    <%# if i wrap this, however, and do that in the object creation, it could work too %>
-      <div class='field additional-option repeater'>
-        <div class='field_template_children-fields'>  
-          <%= f.fields_for :children do |c| %>
-            <%= render :partial => 'child_field_templates', locals: {f: c} %>
-          <% end %>
-          <div class='links'>
-            <%= link_to_add_association 'Add Subfield', f, :children, {
-              partial: "child_field_templates", wrap_object: 
-              Proc.new { |child_template| child_template.initialize_if}} %>  
-          </div>
+
+    <div class='field additional-option repeater'>
+      <div class='field_template_children-fields'>  
+        <%= f.fields_for :children do |c| %>
+          <%= render :partial => 'child_field_templates', locals: {f: c, remove_label: "Remove Subfield" } %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association 'Add Subfield', f, :children, {
+            partial: "child_field_templates", wrap_object: 
+            Proc.new { |child_template| child_template.initialize_if}, render_options: {locals: {remove_label: "Remove Subfield"}}} %>  
         </div>
       </div>
+    </div>
 
 
-    <%= link_to_remove_association "Remove Subfield", f %>
+    <%= link_to_remove_association remove_label, f %>
   </div>
 </div>

@@ -10,7 +10,8 @@ module BpCustomFields
                       :string, :text, :number, :email, :editor, 
                       :date_and_time, :date, :time, :file, 
                       :image, :video, :audio, :checkboxes, 
-                      :dropdown, :truefalse, :gallery, :repeater
+                      :dropdown, :truefalse, :gallery, :repeater,
+                      :tab
                       ]
     
     belongs_to :group_template
@@ -101,6 +102,11 @@ module BpCustomFields
     
     def self.repeater_field_type_options
       self.field_type_options - [["Repeater", "repeater"]]
+    end
+    
+    
+    def self.tab_field_type_options
+      self.field_type_options - [["Repeater", "repeater"], ["Tab", "tab"]]
     end
     
     def self.pretty_field_types

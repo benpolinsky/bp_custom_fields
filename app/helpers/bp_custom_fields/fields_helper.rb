@@ -34,7 +34,7 @@ module BpCustomFields
       if object.value.present?
         object.value
       elsif template.default_value.present?
-        default_value
+        template.default_value
       elsif options[:value].present?
         options[:value]
       else

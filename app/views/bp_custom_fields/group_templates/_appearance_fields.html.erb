@@ -1,7 +1,7 @@
 <div class='nested-fields'>  
     <div class='field resource-select'>
       <%= f.label :resource, "Choose a Resource/Model" %>
-      <%= f.select :resource, options_for_select(@app_models, f.object.resource), {prompt: "Select Field Type"} %>
+      <%= f.select :resource, options_for_select(@app_models, f.object.resource), {prompt: "Select Resource/Model"} %>
     </div>
     
     <div class='field resource-id'>

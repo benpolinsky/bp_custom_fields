@@ -91,13 +91,26 @@
     <div class='field additional-option repeater'>
       <div class='field_template_children-fields'>  
         <%= f.fields_for :children do |c| %>
-          <%= render :partial => 'child_field_templates', locals: {f: c} %>
+          <%= render :partial => 'child_field_templates', locals: {f: c, remove_label: "Remove Subfield"} %>
         <% end %>
         <div class='links'>
-          <%= link_to_add_association 'Add Subfield', f, :children, {partial: "child_field_templates"} %>  
+          <%= link_to_add_association 'Add Subfield', f, :children, {partial: "child_field_templates", render_options: {locals: {remove_label: "Remove Subfield"}}} %>  
         </div>
       </div>
     </div>
+    
+  
+    <div class='field additional-option tab'>
+      <div class='field_template_children-fields'>  
+        <%= f.fields_for :children do |c| %>
+          <%= render :partial => 'child_field_templates', locals: {f: c, remove_label: "Remove Tab Field"} %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association 'Add Tab Field', f, :children, {partial: "tab_template", render_options: {locals: {remove_label: "Remove Tab Field"}}} %>  
+        </div>
+      </div>
+    </div>
+    
     
     <%= link_to_remove_association "remove field", f %>
   </div>

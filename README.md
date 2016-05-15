@@ -29,30 +29,20 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 
 
 - REPEATER
-
-Update current fields + groups: if they aren't initialized with a repeater, and then they are updated with one,
-any current values aren't getting the new repeater...
-
-
-
-
-Right now I'm limiting the nesting of repeaters at 3.  There are two problems with this.
-  1st -> recursive partials - can only go one more than is currently saved
-    - perhaps the idea is to always create one more than we need, after we add?   I'll fiddle with the wrap_object, perhaps
-  2nd -> strong_parameters: this can be solved via a similar idea: 
-      http://stackoverflow.com/questions/17657306/recursive-tree-like-strong-parameters
-
-
-Field Template - Repeater
-Parent Field - groups fields together and acts as anchor - value is probably blank
-Children Fields - Each field_template can be changed.  
+  
+  - look out for edge cases involved with updating fields that are already attached to existing resources
+  
+  - for the user side, when filling in nester repeater values, right now I'm hard coding in a level max of 5.
+  - this is because I'm having trouble allowing deep nested params with strong parameters
+  - Thinking about this: https://github.com/rails/rails/issues/9454#issuecomment-199357625 as a solution
 
 
 - TABS
-- think about it...
+  - think about it...
 
 
-FLEX CONTENT - Later!  Will have to think about this after you implement everything else.
+- FLEX CONTENT
+  
 
 
 - Gallery
@@ -62,14 +52,14 @@ FLEX CONTENT - Later!  Will have to think about this after you implement everyth
 - oEmbed (replace video?)
 
 Layout:
- - Flexible Content
- - Repeater
+ - Repeater - polishing needed, but check
  - Tab
-
+ - Flexible Content
+ 
 Relational:
   Page Link/Route
   Resource or instance
-  Relationship
+  Relationship?
   Tags
 
 

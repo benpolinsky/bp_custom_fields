@@ -18,6 +18,13 @@ module BpCustomFields
           repeater_group = field.repeater_groups.build
           # will build each field our repeater field template specifies
           repeater_group.initialize_with_repeater_fields(field)
+          
+        elsif field_template.field_type == "tab"
+          field = group.fields.build(field_template: field_template)
+          field_template.children.each do |child_template|
+            field.children.build(field_template: child_template)
+          end
+          
         else
           group.fields.build(field_template: field_template)
         end
