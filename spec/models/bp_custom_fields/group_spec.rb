@@ -115,9 +115,24 @@ module BpCustomFields
         @group_template_with_a_field.field_templates.destroy_all 
         expect(@group.update_available?).to eq false # dependent: :destroy has us covered
       end 
-      
-      
-      
+    end
+    
+    it "can belong to a parent_field" do
+      group_template = BpCustomFields::GroupTemplate.create(name: "Whatever")
+      field_template = BpCustomFields::FieldTemplate.create(name: "Repeater", field_type: 'repeater', group_template: group_template)
+      group = BpCustomFields::Group.create(group_template: group_template)
+      field = group.fields.create(field_template: field_template)
+      repeater_group = field.repeater_groups.create
+      expect(repeater_group.parent_field).to eq field
+    end
+    
+    it "does not need a group template to be valid when it is a repeater_group" do
+      group_template = BpCustomFields::GroupTemplate.create(name: "Whatever")
+      field_template = BpCustomFields::FieldTemplate.create(name: "Repeater", field_type: 'repeater', group_template: group_template)
+      group = BpCustomFields::Group.create(group_template: group_template)
+      field = group.fields.create(field_template: field_template)
+      repeater_group = field.repeater_groups.create
+      expect(repeater_group.valid?).to eq true
     end
   end
 end

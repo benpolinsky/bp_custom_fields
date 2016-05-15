@@ -1,11 +1,15 @@
 module BpCustomFields
   class Group < ActiveRecord::Base
+    attr_accessor :is_repeater_group
+    
     has_many :fields, dependent: :destroy
+    belongs_to :parent_field, class_name: "BpCustomFields::Field"
+    
     belongs_to :group_template
     belongs_to :groupable, polymorphic: true
     
     accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
-    validates_presence_of :group_template
+    validates :group_template, presence: true, unless: Proc.new { |g| g.is_repeater_group }
     
     delegate :name, to: :group_template
     
@@ -32,6 +36,13 @@ module BpCustomFields
       group_template.field_templates.each do |ft|
         fields.create(field_template: ft)
       end
+    end
+    
+    def initialize_with_repeater_fields(repeater)
+      repeater.field_template.children.each do |child_template|
+        fields.build(field_template: child_template)
+      end
+      self
     end
     
   end

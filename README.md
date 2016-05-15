@@ -28,7 +28,11 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 
 
 
-REPEATER
+- REPEATER
+Right now I'm limiting the nesting of repeaters at 3.  There are two problems with this.
+  1st -> recursive partials, I'm having trouble figuring out how/when to end the recurision (i think the idea is to not populate the new fields until select.. perhaps..)
+  2nd -> strong_parameters: I'm nesting level after level of children_attrubutes (the solution would be to not used nested attributes, and instead send each sequntiually)
+ONCE I Once i get into flex content, I may need to figure this out.
 
 Field Template - Repeater
 Parent Field - groups fields together and acts as anchor - value is probably blank

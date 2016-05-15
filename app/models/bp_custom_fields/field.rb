@@ -2,6 +2,8 @@ module BpCustomFields
   class Field < ActiveRecord::Base
     belongs_to :field_template
     belongs_to :group
+    has_many :repeater_groups, class_name: "BpCustomFields::Group", foreign_key: "parent_field_id"
+  
     has_many :children, class_name: "BpCustomFields::Field", inverse_of: :parent, foreign_key: "parent_id"
     belongs_to :parent, class_name: "BpCustomFields::Field", inverse_of: :children
     
@@ -14,7 +16,7 @@ module BpCustomFields
     
     before_save :set_value_for_multiple
     accepts_nested_attributes_for :children
-    
+    accepts_nested_attributes_for :repeater_groups    
     # TODO: value or file needs to be present to be valid
     def self.only_parents
       where("parent_id IS NULL")

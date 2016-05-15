@@ -186,6 +186,26 @@ module BpCustomFields
             expect(gallery_field.to_a).to eq ["http://localhost:3000/uploads/bp_custom_fields/field/file/#{field_1.id}/image.jpg", "http://localhost:3000/uploads/bp_custom_fields/field/file/#{field_2.id}/image_2.jpg"]
           end
         end
+        
+        context "repeaters" do
+          before do
+            @repeater_field_template = BpCustomFields::FieldTemplate.create(
+              name: "My First Repeater", 
+              label: "my-first-Repeater", 
+              field_type: "repeater", 
+              group_template: @group_template
+              )
+            @repeater_field = @repeater_field_template.fields.create
+          end
+          
+          it "has many repeater_groups" do
+            expect(@repeater_field.repeater_groups.size).to eq 0
+            @repeater_field.repeater_groups.create
+            @repeater_field.repeater_groups.create            
+            expect(@repeater_field.repeater_groups.size).to eq 2           
+          end
+          
+        end
       end
       
     end

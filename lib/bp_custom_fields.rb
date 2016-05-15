@@ -21,7 +21,12 @@ module BpCustomFields
       :id, :group_template_id, fields_attributes: [
         :id, :value, :file, :field_template_id, value: [], children_attributes: [
           :id, :value, :file, :field_template_id, :parent_id, value: []
-          ]
+          ],
+        repeater_groups_attributes: [:is_repeater_group, :parent_field_id, fields_attributes: [
+          :id, :value, :file, :field_template_id, value: [], children_attributes: [
+            :id, :value, :file, :field_template_id, :parent_id, value: []
+            ]
+        ]]
         ]
       ]
     }
