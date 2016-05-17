@@ -1,5 +1,5 @@
 # !-- in development, not suitable for anything yet -- !
-
+-- replace field partials with helpers - it takes too long to render all of them
 
 # BpCustomFields
 1. More Hierarchy fields 
@@ -29,7 +29,7 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 
 
 - REPEATER
-  
+  †
   - look out for edge cases involved with updating fields that are already attached to existing resources
   
   - for the user side, when filling in nester repeater values, right now I'm hard coding in a level max of 5.
@@ -42,6 +42,14 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 
 
 - FLEX CONTENT
+  flex_content field_type: 
+    initialize itself and one child - a layout field
+    - each child layout field (field_type) gets a name and can be selected by the user as many times, so in this way its a repeater
+    - each child layout can have whatever fieldtypes
+  
+  when we create a new one, and initialize fields, we'll have to create one of each?
+  think about it more.
+  plan it out on paper
   
 
 

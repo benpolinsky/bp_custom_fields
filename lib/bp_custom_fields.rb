@@ -18,8 +18,8 @@ module BpCustomFields
   
   
   # this is...not great...
-  # the problem is that a field can have repeater_groups and repeater groups have fields etc...
-  # we need to repeat both the fields_attributes and the repeater_group_attributes
+  # the problem is that a field can have sub_groups and repeater groups have fields etc...
+  # we need to repeat both the fields_attributes and the sub_group_attributes
   
   # so, I think we have two differnet 'bases' and attach each?
   PROTECTED_ATTRIBUTES = {
@@ -28,23 +28,23 @@ module BpCustomFields
         :id, :value, :file, :field_template_id, value: [], children_attributes: [
           :id, :value, :file, :field_template_id, :parent_id, value: []
           ],
-        repeater_groups_attributes: [:_destroy, :id, :is_repeater_group, :parent_field_id, fields_attributes: [
+        sub_groups_attributes: [:_destroy, :id, :is_sub_group, :parent_field_id, fields_attributes: [
           :id, :value, :file, :field_template_id, value: [], children_attributes: [
             :id, :value, :file, :field_template_id, :parent_id, value: []
             ],
-            repeater_groups_attributes: [:_destroy, :id, :is_repeater_group, :parent_field_id, fields_attributes: [
+            sub_groups_attributes: [:_destroy, :id, :is_sub_group, :parent_field_id, fields_attributes: [
               :id, :value, :file, :field_template_id, value: [], children_attributes: [
                 :id, :value, :file, :field_template_id, :parent_id, value: []
                 ],
-                repeater_groups_attributes: [:_destroy, :id, :is_repeater_group, :parent_field_id, fields_attributes: [
+                sub_groups_attributes: [:_destroy, :id, :is_sub_group, :parent_field_id, fields_attributes: [
                   :id, :value, :file, :field_template_id, value: [], children_attributes: [
                     :id, :value, :file, :field_template_id, :parent_id, value: []
                     ],
-                    repeater_groups_attributes: [:_destroy, :id, :is_repeater_group, :parent_field_id, fields_attributes: [
+                    sub_groups_attributes: [:_destroy, :id, :is_sub_group, :parent_field_id, fields_attributes: [
                       :id, :value, :file, :field_template_id, value: [], children_attributes: [
                         :id, :value, :file, :field_template_id, :parent_id, value: []
                         ],
-                        repeater_groups_attributes: [:_destroy, :id, :is_repeater_group, :parent_field_id, fields_attributes: [
+                        sub_groups_attributes: [:_destroy, :id, :is_sub_group, :parent_field_id, fields_attributes: [
                           :id, :value, :file, :field_template_id, value: [], children_attributes: [
                             :id, :value, :file, :field_template_id, :parent_id, value: []
                             ]

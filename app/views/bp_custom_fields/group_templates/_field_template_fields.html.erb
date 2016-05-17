@@ -111,6 +111,17 @@
       </div>
     </div>
     
+    <div class='field additional-option flexible-content'>
+      <div class='field_template_children-fields'>  
+        <%= f.fields_for :children do |c| %>
+          <%= render :partial => 'child_field_templates', locals: {f: c, remove_label: "Remove Tab Field"} %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association 'Add Tab Field', f, :children, {partial: "tab_template", render_options: {locals: {remove_label: "Remove Tab Field"}}} %>  
+        </div>
+      </div>
+    </div>
+    
     
     <%= link_to_remove_association "remove field", f %>
   </div>

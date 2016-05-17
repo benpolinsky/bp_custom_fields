@@ -1,12 +1,12 @@
-<div class='repeater-group-fields'>  
-  <%= builder.fields_for :repeater_groups do |a| %>
-    <%= render :partial => 'bp_custom_fields/field_types/admin/repeater_group_fields', locals: {f: a} %>
+<div class='sub-group-fields'>  
+  <%= builder.fields_for :sub_groups do |a| %>
+    <%= render :partial => 'bp_custom_fields/field_types/admin/sub_group_fields', locals: {f: a} %>
   <% end %>
   <div class='links'>
     <%= link_to_add_association 'Add Row', 
-        builder, :repeater_groups, {
-          partial: 'bp_custom_fields/field_types/admin/repeater_group_fields',
-          wrap_object: Proc.new { |repeater_group| repeater_group.initialize_with_repeater_fields(builder.object) }
+        builder, :sub_groups, {
+          partial: 'bp_custom_fields/field_types/admin/sub_group_fields',
+          wrap_object: Proc.new { |sub_group| sub_group.initialize_with_repeater_fields(builder.object) }
           } %>  
   </div>
 </div>

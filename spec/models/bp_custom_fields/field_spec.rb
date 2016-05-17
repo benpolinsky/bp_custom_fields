@@ -198,13 +198,27 @@ module BpCustomFields
             @repeater_field = @repeater_field_template.fields.create
           end
           
-          it "has many repeater_groups" do
-            expect(@repeater_field.repeater_groups.size).to eq 0
-            @repeater_field.repeater_groups.create
-            @repeater_field.repeater_groups.create            
-            expect(@repeater_field.repeater_groups.size).to eq 2           
+          it "has many sub_groups" do
+            expect(@repeater_field.sub_groups.size).to eq 0
+            @repeater_field.sub_groups.create
+            @repeater_field.sub_groups.create            
+            expect(@repeater_field.sub_groups.size).to eq 2           
           end
           
+          it "each repeater group in turn has many field templates" do
+          end
+        end
+        
+        context "flexible content" do
+          
+          it "is a field_template" do #field
+          end
+          
+          it "has many layout groups (can't be manually selected)" do #group
+            
+          end
+          
+          it "each layout group has many fields as if a normal group" #fields 
         end
       end
       

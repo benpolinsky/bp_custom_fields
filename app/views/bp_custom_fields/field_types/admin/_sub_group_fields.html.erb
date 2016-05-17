@@ -2,7 +2,7 @@
     <div class='field'>
 
       <%# f.hidden_field :parent_field_id%>
-      <%= f.hidden_field :is_repeater_group, value: true%>
+      <%= f.hidden_field :is_sub_group, value: true%>
       <%= f.fields_for :fields do |repeater_field| %>
          <div class="custom-field <%= repeater_field.object.field_template.field_type %> <%= repeater_field.object.field_template.name.downcase.underscore %>">
            <%= repeater_field.hidden_field :field_template_id %>

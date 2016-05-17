@@ -11,7 +11,7 @@ module BpCustomFields
                       :date_and_time, :date, :time, :file, 
                       :image, :video, :audio, :checkboxes, 
                       :dropdown, :truefalse, :gallery, :repeater,
-                      :tab
+                      :tab, :flexible_content, :layout
                       ]
     
     belongs_to :group_template
@@ -97,7 +97,7 @@ module BpCustomFields
     end
     
     def self.field_type_options
-      BpCustomFields::FieldTemplate.pretty_field_types.zip(BpCustomFields::FieldTemplate.field_types.keys)
+      BpCustomFields::FieldTemplate.pretty_field_types.zip(BpCustomFields::FieldTemplate.field_types.except(:layout).keys)
     end
     
     def self.repeater_field_type_options
@@ -110,7 +110,7 @@ module BpCustomFields
     end
     
     def self.pretty_field_types
-      self.field_types.keys.map(&:titleize)
+      self.field_types.except(:layout).keys.map(&:titleize)
     end
   end
 end

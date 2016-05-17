@@ -21,22 +21,24 @@
     <%= f.check_box :visible %>
   </div>
   
-<div class='appearance-fields'>  
-  <%= f.fields_for :appearances do |a| %>
-    <%= render :partial => 'appearance_fields', locals: {f: a} %>
-  <% end %>
-  <div class='links'>
-    <%= link_to_add_association 'Add Appearance', f, :appearances %>  
-  </div>
-</div>
-  
 <div class='field_template-fields'>
+  <h3>Fields</h3>
   <%= f.fields_for :field_templates do |ft| %>
     <%= render :partial => 'field_template_fields', locals: {f: ft} %>
 
   <% end %>
   <div class='links'>
     <%= link_to_add_association 'Add Field', f, :field_templates %>  
+  </div>
+</div>
+
+<div class='appearance-fields'>  
+  <h3>Appearances</h3>
+  <%= f.fields_for :appearances do |a| %>
+    <%= render :partial => 'appearance_fields', locals: {f: a} %>
+  <% end %>
+  <div class='links'>
+    <%= link_to_add_association 'Add Appearance', f, :appearances %>  
   </div>
 </div>
 

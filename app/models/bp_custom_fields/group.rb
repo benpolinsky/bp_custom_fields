@@ -1,6 +1,6 @@
 module BpCustomFields
   class Group < ActiveRecord::Base
-    attr_accessor :is_repeater_group
+    attr_accessor :is_sub_group
     
     has_many :fields, dependent: :destroy
     belongs_to :parent_field, class_name: "BpCustomFields::Field"
@@ -9,7 +9,7 @@ module BpCustomFields
     belongs_to :groupable, polymorphic: true
     
     accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
-    validates :group_template, presence: true, unless: Proc.new { |g| g.is_repeater_group }
+    validates :group_template, presence: true, unless: Proc.new { |g| g.is_sub_group }
     
     delegate :name, to: :group_template
     
@@ -40,7 +40,11 @@ module BpCustomFields
     
     def initialize_with_repeater_fields(repeater)
       repeater.field_template.children.each do |child_template|
+        if child_template.field_type == "gallery"
+          child_template.children.create(field_type: 'image', name: "gallery image")
+        end
         fields.build(field_template: child_template)
+
       end
       self
     end

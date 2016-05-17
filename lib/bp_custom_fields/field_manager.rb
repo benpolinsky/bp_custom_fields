@@ -1,5 +1,8 @@
 module BpCustomFields
   module FieldManager    
+    
+    # this method is ripe for refactoring
+    # there's repetition in Group#initialize_with_repeater_fields as well
     def self.initialize_group_with_fields(group_template)
       group = BpCustomFields::Group.new(group_template: group_template)
       group_template.field_templates.each do |field_template|
@@ -15,13 +18,19 @@ module BpCustomFields
           field = group.fields.build(field_template: field_template)
           
           # our first repeater group
-          repeater_group = field.repeater_groups.build
+          sub_group = field.sub_groups.build
           # will build each field our repeater field template specifies
-          repeater_group.initialize_with_repeater_fields(field)
+          sub_group.initialize_with_repeater_fields(field)
           
         elsif field_template.field_type == "tab"
+          # initialize tab field
           field = group.fields.build(field_template: field_template)
+          
+          # each field_template's children 
           field_template.children.each do |child_template|
+            if child_template.field_type == "gallery"
+              child_template.children.create(field_type: 'image', name: "gallery image")
+            end
             field.children.build(field_template: child_template)
           end
           
