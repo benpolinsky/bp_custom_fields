@@ -1,4 +1,6 @@
 # !-- in development, not suitable for anything yet -- !
+
+
 -- replace field partials with helpers - it takes too long to render all of them
 
 # BpCustomFields
@@ -42,15 +44,15 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 
 
 - FLEX CONTENT
-  flex_content field_type: 
-    initialize itself and one child - a layout field
-    - each child layout field (field_type) gets a name and can be selected by the user as many times, so in this way its a repeater
-    - each child layout can have whatever fieldtypes
-  
-  when we create a new one, and initialize fields, we'll have to create one of each?
-  think about it more.
-  plan it out on paper
-  
+ 
+
+Field side - we need to store:
+
+Field that corresponds to flexible_content holds a value indicating which layout was chosen
+Field's children each hold a value responding to the type of each layouts children type
+
+
+====
 
 
 - Gallery

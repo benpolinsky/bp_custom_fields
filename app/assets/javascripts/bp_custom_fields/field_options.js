@@ -24,3 +24,6 @@ function bp_show_field_options_for(field_type, container) {
   container.find('.' + field_type + '.additional-option').addClass('active');
 }
 
+function bp_display_layout(selected_layout){
+  
+}

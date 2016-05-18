@@ -44,7 +44,6 @@ module BpCustomFields
           child_template.children.create(field_type: 'image', name: "gallery image")
         end
         fields.build(field_template: child_template)
-
       end
       self
     end

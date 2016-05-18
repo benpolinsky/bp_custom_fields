@@ -1,44 +1,51 @@
 module BpCustomFields
   module FieldManager    
-    
-    # this method is ripe for refactoring
-    # there's repetition in Group#initialize_with_repeater_fields as well
+  
     def self.initialize_group_with_fields(group_template)
       group = BpCustomFields::Group.new(group_template: group_template)
       group_template.field_templates.each do |field_template|
-        if field_template.field_type == "gallery"
-          # with a gallery, we don't have a child template
-          field_template.children.create(field_type: 'image', name: "gallery image")
-
-          # let's build the gallery field
-          group.fields.build(field_template: field_template)
-
-        elsif field_template.field_type == "repeater"
-          # let's build the repeater field
-          field = group.fields.build(field_template: field_template)
-          
-          # our first repeater group
-          sub_group = field.sub_groups.build
-          # will build each field our repeater field template specifies
-          sub_group.initialize_with_repeater_fields(field)
-          
-        elsif field_template.field_type == "tab"
-          # initialize tab field
-          field = group.fields.build(field_template: field_template)
-          
-          # each field_template's children 
-          field_template.children.each do |child_template|
-            if child_template.field_type == "gallery"
-              child_template.children.create(field_type: 'image', name: "gallery image")
-            end
-            field.children.build(field_template: child_template)
-          end
-          
-        else
-          group.fields.build(field_template: field_template)
-        end
+        field = group.fields.build(field_template: field_template)
+        initialize_field(field)
       end
       group
+    end
+    
+    def self.initialize_field(field)
+      case field.field_template.field_type
+      when "gallery"
+        initialize_gallery(field)
+      when "repeater"
+        initialize_repeater(field)
+      when "tab"
+        initialize_tab(field)
+      when "flexible_content"
+        initialize_flexible_content(field)
+      end
+    end
+    
+    def self.initialize_gallery(field)
+      field.field_template.children.create(field_type: 'image', name: "gallery image")
+    end
+    
+    def self.initialize_repeater(field)
+      sub_group = field.sub_groups.build
+      sub_group.initialize_with_repeater_fields(field)
+    end
+    
+    def self.initialize_tab(field)
+      field.field_template.children.each do |child_template|
+        initialize_field(field.children.build(field_template: child_template))
+      end
+    end
+    
+    def self.initialize_flexible_content(field)
+      field.field_template.children.each do |layout_template|
+        child_field = field.children.build(field_template: layout_template)
+        layout_template.children.each do |layout_child_template|
+          layout_child_field = child_field.children.build(field_template: layout_child_template)
+          initialize_field(layout_child_field)
+        end
+      end 
     end
     
     def self.update_groups_for_fieldable(resource)

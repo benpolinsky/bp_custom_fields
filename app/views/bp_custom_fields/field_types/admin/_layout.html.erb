@@ -1,0 +1,12 @@
+<%= f.fields_for :children do |child_field| %>
+
+    <%= child_field.fields_for :children do |sub_child_field| %>
+      <%= sub_child_field.object.name %>
+    <% end %>
+  
+    <%= child_field.object.field_template.field_type %>
+    <%= child_field.fields_for :sub_groups do |sub_child_field| %>
+      <%= sub_child_field.object %>
+    <% end %>
+
+<% end %>

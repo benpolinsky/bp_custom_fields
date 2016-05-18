@@ -67,6 +67,19 @@ module BpCustomFields
         end
         
       end
+      
+      context "flexible content" do
+        before do
+          @flex_content_template = BpCustomFields::FieldTemplate.create(name: "Flex", field_type: 'flexible_content', group_template: @group_template)
+        end
+        
+        it "can only have children of type 'layout'" do
+          @flex_content_template.children.build(name: "valid layout", field_type: 'text')
+          expect(@flex_content_template.valid?).to eq false
+          @flex_content_template.children.first.field_type = 'layout'
+          expect(@flex_content_template.valid?).to eq true
+        end
+      end
     end
   end
 end

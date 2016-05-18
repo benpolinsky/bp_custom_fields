@@ -23,12 +23,21 @@ module BpCustomFields
     
     
     validates :name, presence: true
+
+    # move these into a validation object
     validate :gallery_children
+    validate :flex_children
   
     # TODO: field_type is required
     # TODO: choices is required if type is chooseable
 
-  
+    def gallery_children
+      errors.add(:field_type, "Children of galleries must be set to images") if parent.try(:field_type) == "gallery" && field_type != 'image'
+    end
+    
+    def flex_children
+      errors.add(:field_type, "Children of flexible content must be set to layout") if parent.try(:field_type) == 'flexible_content' && field_type != 'layout'
+    end
   
     def all_choices
       array_choices = choices.split(",").map(&:strip)
@@ -45,10 +54,6 @@ module BpCustomFields
     
     def is_root?
       parent.nil?
-    end
-    
-    def gallery_children
-      errors.add(:field_type, "Children of galleries must be set to images") if parent.try(:field_type) == "gallery" && field_type != 'image'
     end
     
     def initialize_if

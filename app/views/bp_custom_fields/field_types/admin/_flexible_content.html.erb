@@ -1,0 +1,11 @@
+
+<%= builder.fields_for :children do |cf| %>
+  <%= cf.fields_for :children do |fcf| %>
+
+  <% end %>
+<% end %>
+
+<div class='layout-choices'>
+    <%# render partial: "bp_custom_fields/field_types/admin/layout", 
+        locals: {f: builder, field_template: field_template} %>
+</div>

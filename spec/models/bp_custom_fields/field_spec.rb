@@ -205,7 +205,12 @@ module BpCustomFields
             expect(@repeater_field.sub_groups.size).to eq 2           
           end
           
-          it "each repeater group in turn has many field templates" do
+          it "each subgroup in turn has many fields" do
+            sub_group = @repeater_field.sub_groups.create
+            name_template = BpCustomFields::FieldTemplate.create(name: "Name", field_type: 'string', group_template: @group_template)
+            bio_template = BpCustomFields::FieldTemplate.create(name: "Bio", field_type: 'text', group_template: @group_template)
+            sub_group.fields << [name_template.fields.create, bio_template.fields.create]
+            expect(sub_group.fields.size).to eq 2 
           end
         end
         
