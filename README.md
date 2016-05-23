@@ -4,7 +4,7 @@
 -- replace field partials with helpers - it takes too long to render all of them
 
 # BpCustomFields
-1. More Hierarchy fields 
+1. More Hierarchy field work - flex content
 2. Everything orderable (esp fields)
 3. audio (how are you handling this? - soundmanger or just leave it up to user for now... (maybe eliminate type...)
 4. errors and notifications
@@ -31,16 +31,10 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 
 
 - REPEATER
-  †
   - look out for edge cases involved with updating fields that are already attached to existing resources
-  
-  - for the user side, when filling in nester repeater values, right now I'm hard coding in a level max of 5.
-  - this is because I'm having trouble allowing deep nested params with strong parameters
-  - Thinking about this: https://github.com/rails/rails/issues/9454#issuecomment-199357625 as a solution
+  - for the user side, when filling in nester repeater values, right now I'm hard coding in a max of 10 levels
+  - the recursive partial rendering needs to know when to stop because it prerenders
 
-
-- TABS
-  - think about it...
 
 
 - FLEX CONTENT
