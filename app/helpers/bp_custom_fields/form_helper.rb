@@ -9,7 +9,7 @@ module BpCustomFields
       def bp_custom_fields        
         @object.update_custom_field_groups
         if @object.groups.any?
-          content_tag :div, class: "custom-field-container" do
+          content_tag :div, class: "custom-field-container bpcf-base-theme" do
             concat content_tag(:div, custom_groups, class: "custom-groups")
           end
         end

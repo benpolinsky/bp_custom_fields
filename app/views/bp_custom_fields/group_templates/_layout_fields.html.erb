@@ -27,7 +27,7 @@
           <%= render :partial => 'child_field_templates', locals: {f: c, remove_label: "Remove Field"} %>
         <% end %>
         <div class='links'>
-          <%= link_to_add_association 'Add Field', f, :children, {partial: "tab_template", render_options: {locals: {remove_label: "Remove Field"}}} %>  
+          <%= link_to_add_association 'Add Field', f, :children, {partial: "child_field_templates", render_options: {locals: {remove_label: "Remove Field"}}} %>  
         </div>
       </div>
     </div>

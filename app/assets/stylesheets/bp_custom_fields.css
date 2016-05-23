@@ -4,6 +4,10 @@
  *= require bp_custom_fields/medium_themes/flat.min
  *= require bp_custom_fields/forms
  *= require bp_custom_fields/groups
+ *= require bp_custom_fields/themes/base-theme
+ *= require bp_custom_fields/tether.css
+ *= require bp_custom_fields/drop-theme-basic
+ *= require bp_custom_fields/tooltip-theme-arrows
  *= require_tree .
  *= require_self
  */

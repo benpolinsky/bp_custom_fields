@@ -1,6 +1,6 @@
 # !-- in development, not suitable for anything yet -- !
 
-
+-- flex contents disappear when edited if none when created
 -- replace field partials with helpers - it takes too long to render all of them
 
 # BpCustomFields

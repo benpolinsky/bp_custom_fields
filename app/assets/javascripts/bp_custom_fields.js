@@ -5,4 +5,8 @@
 //= require bp_custom_fields/flatpickr_config
 //= require bp_custom_fields/medium-editor.min
 //= require bp_custom_fields/editor_config
+//= require bp_custom_fields/tether.min
+//= require bp_custom_fields/drop.min
+//= require bp_custom_fields/tooltip.min
 //= require bp_custom_fields/field_options
+//= require bp_custom_fields/themes/base-theme

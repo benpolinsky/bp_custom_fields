@@ -57,7 +57,7 @@ module BpCustomFields
     end
     
     def initialize_if
-      self if number_of_parents(self) < 10
+      self if number_of_parents(self) < 5
     end
     
     def number_of_parents(ob, num=0)
