@@ -20,28 +20,19 @@ module BpCustomFields
       nodes
     end
     
-    #
-    # def recursive_params(params)
-    #   sub_groups_base = [:_destroy, :id, :is_sub_group, :parent_field_id]
-    #   fields_base = [:id, :value, :file, :field_template_id, {value: []}, {children_attributes: [
-    #         :id, :value, :file, :field_template_id, :parent_id, value: []]}, {sub_groups_attributes: sub_groups_base}]
-    #
-    #   field_nodes = []
-    #
-    #   if params.present?
-    #     params.values.each do |inner_params|
-    #       (1..count_levels(inner_params, :fields_attributes)).each do |val|
-    #         byebug
-    #         field_nodes = fields_base.last[:sub_groups_attributes] += [fields_attributes: field_nodes]
-    #       end
-    #     end
-    #   end
-    # {groups_attributes: [:group_template_id, :id, field_nodes]}
-    #
-    # end
+    def bpcf_fieldable_permitted_params(params)
+      node_attributes_base = [:id, :container, :value, :file, :field_template_id, :parent_id, :_destroy, value: []]
+      nodes = []
+      if params.present?
+        params.values.map{|v| v["fields_attributes"].values}.flatten.each do |inner_params|
+          (1..count_levels(inner_params, :children_attributes)).each do |val|
+            nodes = node_attributes_base + [children_attributes: nodes]
+          end
+        end
+      end
+      nodes
+    end
     
-
-  
     private 
     
     def count_levels(node_params, att_name)

@@ -52,7 +52,8 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :slug, :content, BpCustomFields::PROTECTED_ATTRIBUTES)
+      params.require(:post).permit(:title, :slug, :content, groups_attributes: [
+      :id, :group_template_id, :_destroy, fields_attributes: [:id, :value, :file, :field_template_id, :_destroy, value: [], children_attributes: bpcf_fieldable_permitted_params(params[:post][:groups_attributes])]])
     end
     
 end

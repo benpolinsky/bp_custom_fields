@@ -1,9 +1,11 @@
 <div class="nested-fields layout_fields">
+  <div class='field'>
   <%= f.hidden_field :field_template_id %>
   <%= f.fields_for :children do |inside_field| %>
     <%= inside_field.hidden_field :field_template_id %>
     <%= render partial: "bp_custom_fields/field_types/admin/#{inside_field.object.field_type}", 
             locals: {builder: inside_field, field_template: inside_field.object.field_template} %>
   <% end %>
-  <%= link_to_remove_association "remove_flex", f %>
+</div>
+  <%= link_to_remove_association( "Remove #{f.object.name}", f)%>
 </div>  

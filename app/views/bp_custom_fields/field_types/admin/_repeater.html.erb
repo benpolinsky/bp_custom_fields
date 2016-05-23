@@ -1,11 +1,11 @@
 <div class='sub-group-fields'>  
   <%= builder.fields_for :children do |a| %>
-    <%= render :partial => 'bp_custom_fields/field_types/admin/sub_group_fields', locals: {f: a} %>
+    <%= render :partial => 'bp_custom_fields/field_types/admin/container_fields', locals: {f: a} %>
   <% end %>
   <div class='links'>
     <%= link_to_add_association 'Add Row', 
         builder, :children, {
-          partial: 'bp_custom_fields/field_types/admin/sub_group_fields',
+          partial: 'bp_custom_fields/field_types/admin/container_fields',
           wrap_object: Proc.new { |container_field| BpCustomFields::FieldManager.initialize_repeater(builder.object) }
           } %>  
   </div>

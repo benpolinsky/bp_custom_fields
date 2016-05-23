@@ -1,10 +1,11 @@
 <div class='flexible_content-fields'>
   <% builder.object.children.each do |layout| %>
+
     <%= builder.fields_for :children, layout do |layout_field| %>
-      <%= render :partial => 'bp_custom_fields/field_types/admin/flex_content_children', locals: {f: layout_field} %>
+      <%= render :partial => 'bp_custom_fields/field_types/admin/flex_content_children', locals: {f: layout_field} if layout_field.object.children.any?  %>
     <% end %>
     <div class='links'>
-      <%= link_to_add_association 'Add Flexible Content', builder, :children, {
+      <%= link_to_add_association "Add #{layout.name}", builder, :children, {
             partial: 'bp_custom_fields/field_types/admin/flex_content_children',
             wrap_object: Proc.new { |field| field.initialize_layout(layout)} 
             } %>
