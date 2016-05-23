@@ -27,8 +27,8 @@ module BpCustomFields
     groups_attributes: [
       :id, :group_template_id, :_destroy, fields_attributes:[
         :id, :value, :file, :field_template_id, :_destroy, value: [], children_attributes: [
-          :id, :value, :file, :field_template_id, :parent_id, :_destroy, value: [], children_attributes: [
-            :_destroy, :id, :value, :file, :field_template_id, :parent_id, :_destroy, value: [],
+          :id, :container, :value, :file, :field_template_id, :parent_id, :_destroy, value: [], children_attributes: [
+            :_destroy, :container, :id, :value, :file, :field_template_id, :parent_id, :_destroy, value: [],
             sub_groups_attributes: [:_destroy, :id, :is_sub_group, :parent_field_id, fields_attributes: [
               :id, :value, :file, :_destroy, :field_template_id, value: [], children_attributes: [
                 :_destroy, :id, :value, :file, :_destroy, :field_template_id, :parent_id, value: []

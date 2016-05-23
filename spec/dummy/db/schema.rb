@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.text     "value"
     t.string   "file"
     t.integer  "parent_id"
+    t.boolean  "container"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
@@ -74,7 +75,6 @@ ActiveRecord::Schema.define(version: 20160508024209) do
 
   create_table "bp_custom_fields_groups", force: :cascade do |t|
     t.integer  "group_template_id"
-    t.integer  "parent_field_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "groupable_id"

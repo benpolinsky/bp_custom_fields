@@ -197,21 +197,23 @@ module BpCustomFields
               )
             @repeater_field = @repeater_field_template.fields.create
           end
+
           
-          it "has many sub_groups" do
-            expect(@repeater_field.sub_groups.size).to eq 0
-            @repeater_field.sub_groups.create
-            @repeater_field.sub_groups.create            
-            expect(@repeater_field.sub_groups.size).to eq 2           
+          it "has many container fields" do
+            expect(@repeater_field.container_fields.size).to eq 0
+            @repeater_field.children.create(container: true)
+            @repeater_field.children.create(container: true)
+            expect(@repeater_field.container_fields.size).to eq 2
           end
           
-          it "each subgroup in turn has many fields" do
-            sub_group = @repeater_field.sub_groups.create
+          it "each container field in turn has many fields" do
+            container_field = @repeater_field.children.create(container: true)
             name_template = BpCustomFields::FieldTemplate.create(name: "Name", field_type: 'string', group_template: @group_template)
             bio_template = BpCustomFields::FieldTemplate.create(name: "Bio", field_type: 'text', group_template: @group_template)
-            sub_group.fields << [name_template.fields.create, bio_template.fields.create]
-            expect(sub_group.fields.size).to eq 2 
+            container_field.children << [name_template.fields.create, bio_template.fields.create]
+            expect(container_field.children.size).to eq 2 
           end
+          
         end
         
         context "flexible content" do

@@ -82,18 +82,19 @@ RSpec.describe "FieldManager" do
     end
     
     # still using (sub)groups for repeater fields
-    it "creates a repeater field and sub group" do
+    it "creates a repeater field and container field" do
       group = @field_manager.initialize_group_with_fields(@group_template)
       expect(group.fields.size).to eq 1
       expect(group.fields.first.field_type).to eq 'repeater'
-      expect(group.fields.first.sub_groups.size).to eq 1
+      expect(group.fields.first.children.size).to eq 1
+      expect(group.fields.first.children.first.container).to eq true
     end
     
     it "creates a field for each type withing each sub group" do
       group = @field_manager.initialize_group_with_fields(@group_template)
-      subgroup = group.fields.first.sub_groups.first
-      expect(subgroup.fields.size).to eq 2
-      expect(subgroup.fields.map(&:name)).to match ['Task Field', 'Completed']
+      container_field = group.fields.first.children.first
+      expect(container_field.children.size).to eq 2
+      expect(container_field.children.map(&:name)).to match ['Task Field', 'Completed']
     end
   end
   
@@ -144,14 +145,14 @@ RSpec.describe "FieldManager" do
       @gallery_field_template = @homebody_field_template.children.create(name: "Article Gallery", field_type: "gallery")
     end
     
-    it "creates necessary groups on a repeater field" do
+    it "creates necessary container fields on a repeater field" do
       group = @field_manager.initialize_group_with_fields(@group_template, true)
       buckets = group.fields.first.children.first
       bucket_repeater = buckets.children.first
       expect(buckets.field_type).to eq 'layout'
       expect(bucket_repeater.field_type).to eq 'repeater'
-      expect(bucket_repeater.sub_groups.size).to eq 1
-      expect(bucket_repeater.sub_groups.first.fields.size).to eq 3
+      expect(bucket_repeater.children.size).to eq 1
+      expect(bucket_repeater.children.first.children.size).to eq 3
     end
     
     it "creates necessary fields and templates on a gallery field" do

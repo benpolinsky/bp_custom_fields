@@ -28,8 +28,8 @@ module BpCustomFields
     end
     
     def self.initialize_repeater(field)
-      sub_group = field.sub_groups.build
-      sub_group.initialize_with_repeater_fields(field)
+      container_field = field.children.build(container: true)
+      container_field.initialize_with_repeater_fields(field)
     end
     
     def self.initialize_tab(field)

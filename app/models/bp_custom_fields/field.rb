@@ -2,7 +2,7 @@ module BpCustomFields
   class Field < ActiveRecord::Base
     belongs_to :field_template
     belongs_to :group
-    has_many :sub_groups, class_name: "BpCustomFields::Group", foreign_key: "parent_field_id"
+    # has_many :sub_groups, class_name: "BpCustomFields::Group", foreign_key: "parent_field_id"
   
     has_many :children, class_name: "BpCustomFields::Field", inverse_of: :parent, foreign_key: "parent_id"
     belongs_to :parent, class_name: "BpCustomFields::Field", inverse_of: :children
@@ -17,13 +17,21 @@ module BpCustomFields
     before_save :set_value_for_multiple
 
     accepts_nested_attributes_for :children, reject_if: :all_blank, allow_destroy: true
-    accepts_nested_attributes_for :sub_groups, reject_if: :all_blank, allow_destroy: true    
+    # accepts_nested_attributes_for :sub_groups, reject_if: :all_blank, allow_destroy: true
     # TODO: value or file needs to be present to be valid
+    
+    
+    
+    def container_fields
+      children.where(container: true)
+    end
+    
     def self.only_parents
       where("parent_id IS NULL")
     end
     
     def set_value_for_multiple
+      return if container?
       value = if field_type == 'checkboxes' && multiple && value.present?
         value.compact.reject!{|v| v == "0"}
       else
@@ -83,6 +91,17 @@ module BpCustomFields
     def new_gallery_image_id
       parent.field_template.children.first.id
     end
+    
+    def initialize_with_repeater_fields(repeater)
+      repeater.field_template.children.each do |child_template|
+        if child_template.field_type == "gallery"
+          child_template.children.create(field_type: 'image', name: "gallery image")
+        end
+        children.build(field_template: child_template)
+      end
+      self
+    end
+    
     
     private
     # Thanks to @jaredonline: http://stackoverflow.com/a/8072164/791026    
