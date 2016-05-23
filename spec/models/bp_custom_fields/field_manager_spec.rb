@@ -112,7 +112,7 @@ RSpec.describe "FieldManager" do
     end
 
     it "creates a flex_content field and layout fields" do
-      group = @field_manager.initialize_group_with_fields(@group_template)
+      group = @field_manager.initialize_group_with_fields(@group_template, true)
       expect(group.fields.size).to eq 1
       expect(group.fields.first.field_type).to eq 'flexible_content'
       expect(group.fields.first.children.size).to eq 2
@@ -121,7 +121,7 @@ RSpec.describe "FieldManager" do
     end
     
     it "builds all possible flex_contents' layouts' childrens' fields" do
-      group = @field_manager.initialize_group_with_fields(@group_template)
+      group = @field_manager.initialize_group_with_fields(@group_template, true)
       first_layout_field = group.fields.first.children.first
       second_layout_field = group.fields.first.children.last
       expect(first_layout_field.children.size).to eq 3
@@ -145,7 +145,7 @@ RSpec.describe "FieldManager" do
     end
     
     it "creates necessary groups on a repeater field" do
-      group = @field_manager.initialize_group_with_fields(@group_template)
+      group = @field_manager.initialize_group_with_fields(@group_template, true)
       buckets = group.fields.first.children.first
       bucket_repeater = buckets.children.first
       expect(buckets.field_type).to eq 'layout'
@@ -155,7 +155,7 @@ RSpec.describe "FieldManager" do
     end
     
     it "creates necessary fields and templates on a gallery field" do
-      group = @field_manager.initialize_group_with_fields(@group_template)
+      group = @field_manager.initialize_group_with_fields(@group_template, true)
 
       gallery_layout = group.fields.last.children.last
       gallery_field = gallery_layout.children.first
@@ -175,7 +175,7 @@ RSpec.describe "FieldManager" do
       @tab_field_template_two = @person_information_template.children.create(name: "Second Tab", field_type: 'tab')
       @second_tab_child_one = @tab_field_template_two.children.create(name: "Activity", field_type: 'string')
       @second_tab_child_two = @tab_field_template_two.children.create(name: "About Activity", field_type: 'text')
-      group = @field_manager.initialize_group_with_fields(@group_template)
+      group = @field_manager.initialize_group_with_fields(@group_template, true)
       
       person_info_layout = group.fields.last.children.last
       tab_one = person_info_layout.children.first

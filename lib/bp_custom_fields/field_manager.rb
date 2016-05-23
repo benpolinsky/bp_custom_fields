@@ -1,16 +1,16 @@
 module BpCustomFields
   module FieldManager    
   
-    def self.initialize_group_with_fields(group_template)
+    def self.initialize_group_with_fields(group_template, initial=false)
       group = BpCustomFields::Group.new(group_template: group_template)
       group_template.field_templates.each do |field_template|
         field = group.fields.build(field_template: field_template)
-        initialize_field(field)
+        initialize_field(field, initial)
       end
       group
     end
     
-    def self.initialize_field(field)
+    def self.initialize_field(field, initial=false)
       case field.field_template.field_type
       when "gallery"
         initialize_gallery(field)
@@ -19,7 +19,7 @@ module BpCustomFields
       when "tab"
         initialize_tab(field)
       when "flexible_content"
-        initialize_flexible_content(field)
+        initialize_flexible_content(field, initial)
       end
     end
     
@@ -38,12 +38,14 @@ module BpCustomFields
       end
     end
     
-    def self.initialize_flexible_content(field)
+    def self.initialize_flexible_content(field, initial=false)
       field.field_template.children.each do |layout_template|
         child_field = field.children.build(field_template: layout_template)
-        layout_template.children.each do |layout_child_template|
-          layout_child_field = child_field.children.build(field_template: layout_child_template)
-          initialize_field(layout_child_field)
+        if initial == true
+          layout_template.children.each do |layout_child_template|
+            layout_child_field = child_field.children.build(field_template: layout_child_template)
+            initialize_field(layout_child_field)
+          end
         end
       end 
     end

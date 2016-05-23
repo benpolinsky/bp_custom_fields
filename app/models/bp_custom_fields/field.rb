@@ -60,7 +60,16 @@ module BpCustomFields
       end
     end
     
-    
+    def initialize_layout(layout)
+      self.field_template = layout.field_template
+      self.parent = layout.parent
+      layout.field_template.children.each do |layout_child_template|
+        child_field = self.children.build(field_template: layout_child_template)
+        BpCustomFields::FieldManager.initialize_field(child_field)        
+      end
+      self
+    end
+
     # think about different ways to refactor field_type-specific methods
     # once you flesh them all out: STI, etc..s
     
