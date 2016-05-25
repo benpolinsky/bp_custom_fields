@@ -31,6 +31,11 @@ module BpCustomFields
     # TODO: field_type is required
     # TODO: choices is required if type is chooseable
 
+
+    def all_blank_except(atts)
+      atts.except(:required, :field_type, :_destroy).values.all?(&:blank?)
+    end
+    
     def gallery_children
       errors.add(:field_type, "Children of galleries must be set to images") if parent.try(:field_type) == "gallery" && field_type != 'image'
     end

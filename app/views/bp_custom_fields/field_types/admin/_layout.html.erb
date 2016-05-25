@@ -1,7 +1,8 @@
-<%= f.fields_for :children do |child_field| %>
-
+<%= builder.fields_for :children do |child_field| %>
+  <%= builder.hidden_field :field_template_id %>
     <%= child_field.fields_for :children do |sub_child_field| %>
-      <%= sub_child_field.object.name %>
+      <%= render partial: "bp_custom_fields/field_types/admin/basic", 
+              locals: {f: inside_field, field_template: inside_field.object.field_template} %>
     <% end %>
   
     <%# child_field.object.field_template.field_type %>

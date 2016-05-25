@@ -1,8 +1,7 @@
 jQuery(document).ready(function($) {
-  // TODO: you need to gather each within a flex group... but one thing at a time
-  // all add_links, replace with a plus, and move text to a hover state
+  // TODO: you need to gather each within a flex group... 
   if ($('.custom-field-container ').length > 0 && $('.links .add_fields').length > 0) {
-    initialize_custom_field_design()    
+    initialize_custom_field_design();
   }
   
   $('.custom-field-container').on('click', '.toggle-group', function(event) {
@@ -20,7 +19,7 @@ function toggleFieldGroup(fieldGroup) {
 function initialize_custom_field_design() {
   var bpcf_element_counter = 0;
   
-  var fields = $('.links .add_fields')
+  var fields = $('.flexible_content .links .add_fields')
   var menu = '<div class="field-menu">+</div>';
   $('.custom-field-container').append(menu);
   

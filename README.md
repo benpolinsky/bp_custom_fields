@@ -1,7 +1,6 @@
 # !-- in development, not suitable for anything yet -- !
 
--- flex contents disappear when edited if none when created
--- in general the edit form needs a bunch of work
+-- keep an eye on group/field_template edit/update - I think we're ok..
 -- replace field partials with helpers - it takes too long to render all of them
 
 # BpCustomFields
@@ -58,8 +57,8 @@ Field's children each hold a value responding to the type of each layouts childr
 
 Layout:
  - Repeater - polishing needed, but check
- - Tab
- - Flexible Content
+ - Tab - polishing neeeded, but check
+ - Flexible Content - polishing needed, but check
  
 Relational:
   Page Link/Route
@@ -109,3 +108,5 @@ Relational:
 - Appearances are additive by default, but you can subtract from each other by setting appears to false
 
 TODO: Examples!
+
+- Perhaps a walk-through using [shepherd](http://github.hubspot.com/shepherd/docs/welcome/)
