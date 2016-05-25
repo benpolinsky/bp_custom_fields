@@ -29,8 +29,9 @@ module BpCustomFields
       
       def custom_group(group_builder)
         content_tag :div, class: "custom-group" do
+          concat content_tag(:p, "#{group_builder.object.name}", class: 'toggle-group active')
           concat content_tag(:span, group_builder.hidden_field(:group_template_id))
-          concat content_tag(:span, custom_fields(group_builder))
+          concat content_tag(:div, custom_fields(group_builder), class: "custom-group-inner active")
         end
       end
       

@@ -1,6 +1,7 @@
 # !-- in development, not suitable for anything yet -- !
 
 -- flex contents disappear when edited if none when created
+-- in general the edit form needs a bunch of work
 -- replace field partials with helpers - it takes too long to render all of them
 
 # BpCustomFields
@@ -97,7 +98,7 @@ Relational:
 
 ## display helpers
   
-
+# Importing and Exporting would be nice
 
 ## Appearances
 

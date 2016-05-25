@@ -7,7 +7,9 @@
     <div class='links'>
       <%= link_to_add_association "Add #{layout.name}", builder, :children, {
             partial: 'bp_custom_fields/field_types/admin/flex_content_children',
-            wrap_object: Proc.new { |field| field.initialize_layout(layout)} 
+            wrap_object: Proc.new { |field| field.initialize_layout(layout)},
+            "data-association-insertion-method" => 'append',
+            "data-association-insertion-node" => '.custom-field-container' 
             } %>
     </div>
   <% end %>

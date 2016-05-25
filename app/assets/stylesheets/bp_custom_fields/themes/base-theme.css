@@ -3,34 +3,98 @@
   width:100%;
   border:1px dotted black;
   box-sizing:border-box;
-  padding:20px 10px 10px 10px;
+  padding:30px;
   position:relative;
 }
 
-.bpcf-base-theme:after{
-  content: "BpCustomFields";
-  background-color:black;
-  color:white;
-  padding:2px;
-  position:absolute;
-  top:2px;
-  right:2px;
-  font-weight:bold;
-  text-transform:uppercase;
-}
 
 .field-menu {
   display:block;
   width:30px;
   height:30px;
   cursor:pointer;
+  font-weight:bold;
+  font-size:30px;
+  line-height:1;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
-.the-menu.drop-element{
-  cursor:pointer;
-  width:75px;
+.the-menu a{
+  color:#E5E5E5;
+  display:block;
+  text-decoration:none;
+  border-bottom:1px solid white;
+  padding:5px 0;
+}
+
+.the-menu a:last-of-type{
+  border-bottom:none;
+  
+}
+
+.the-menu a:hover{
+ color:white; 
+}
+
+.bpcf-link-hidden{
+  display:none;
+}
+
+.bpcf-base-theme .field{
+  width:100%;
+}
+
+.bpcf-base-theme .form-label{
+  display:block;
+}
+
+.bpcf-base-theme .custom-field{
+  border:1px solid #FFE7FF;
+  padding:10px 5px;
+  box-sizing:border-box;
+}
+
+.bpcf-base-theme .form-control{
+  width: 100%;
+  box-sizing: border-box;
+  height: 25px;
+  max-width: 220px;
+  font-size: 13px;
+}
+
+.bpcf-base-theme .text .form-control{
+
+  max-width:500px;
+  height:100px;
+}
+
+.bpcf-base-theme .bpcf-editor{
   height:auto;
-  background-color:grey;
-  color:black;
-  padding:10px;
+  max-width:100%;
+}
+
+.bpcf-base-theme p.toggle-group{
+  cursor:pointer;
+  padding-left:4px;
+}
+.bpcf-base-theme p.toggle-group:before{
+  content: "\25B9";
+  position:relative;
+  left:-4px;
+}
+
+.bpcf-base-theme p.toggle-group.active:before{
+  content: "\25BE";
+  position:relative;
+  left:-4px;
+}
+
+.bpcf-base-theme .custom-group-inner{
+  display:none;
+}
+
+.bpcf-base-theme .custom-group-inner.active{
+  display:block
 }

@@ -2,9 +2,8 @@
   <div class='field'>
   <%= f.hidden_field :field_template_id %>
   <%= f.fields_for :children do |inside_field| %>
-    <%= inside_field.hidden_field :field_template_id %>
-    <%= render partial: "bp_custom_fields/field_types/admin/#{inside_field.object.field_type}", 
-            locals: {builder: inside_field, field_template: inside_field.object.field_template} %>
+    <%= render partial: "bp_custom_fields/field_types/admin/basic", 
+            locals: {f: inside_field, field_template: inside_field.object.field_template} %>
   <% end %>
 </div>
   <%= link_to_remove_association( "Remove #{f.object.name}", f)%>

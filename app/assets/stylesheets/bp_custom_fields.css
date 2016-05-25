@@ -7,6 +7,9 @@
  *= require bp_custom_fields/themes/base-theme
  *= require bp_custom_fields/tether.css
  *= require bp_custom_fields/drop-theme-basic
+ *= require bp_custom_fields/drop-theme-hubspot-popovers
+ *= require bp_custom_fields/drop-theme-arrows-bounce.min
+ *= require bp_custom_fields/drop-theme-arrows-bounce-dark.min
  *= require bp_custom_fields/tooltip-theme-arrows
  *= require_tree .
  *= require_self

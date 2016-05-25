@@ -3,17 +3,8 @@
       <%= f.hidden_field :container %>
       <%= f.fields_for :children do |child_field| %>
 
-         <div class="custom-field <%= child_field.object.field_template.field_type %> <%= child_field.object.field_template.name.downcase.underscore %>">
-           <%= child_field.hidden_field :field_template_id %>
-           <%= child_field.label :value, child_field.object.field_template.label, class: "form-label" %>
-           <%= content_tag(:div, child_field.object.field_template.instructions, class: "field-instructions") unless child_field.object.field_template.instructions.blank? %>
-           <%= content_tag(:div, child_field.object.field_template.prepend, class: "bpcf-prepend") unless child_field.object.field_template.prepend.blank? %>
-           <%= child_field.object.field_template.field_type %>
-           <%= render partial: "bp_custom_fields/field_types/admin/#{child_field.object.field_template.field_type}", 
-                     locals: {builder: child_field, field_template: child_field.object.field_template} %>
-           <%= content_tag(:div, child_field.object.field_template.append, class: "bpcf-prepend") unless child_field.object.field_template.append.blank? %>
-         </div>
-
+      <%= render partial: "bp_custom_fields/field_types/admin/basic", 
+              locals: {f: child_field, field_template: child_field.object.field_template} %>
       <% end %>
     </div>
     <%= link_to_remove_association "Remove Row", f %>
