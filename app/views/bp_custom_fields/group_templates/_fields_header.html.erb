@@ -7,7 +7,7 @@
   </ul>
 
   <ul class='bpcf-header-list-bottom'>
-    <li id='order'><%= f.index.to_i + 1 %></li>
+    <li id='order'><%= f.index.to_i+1 %></li>
     <%= f.hidden_field :row_order, value: (f.object.row_order.present? ? f.object.row_order : 1) %>  
     <li id='label'><%= f.object.label %></li>
     <li id='name'><%= f.object.name %></li>

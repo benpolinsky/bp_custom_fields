@@ -6,7 +6,7 @@ jQuery(document).ready(function() {
   
   $('.field_template-fields').on('cocoon:after-insert', function (e, insertedItem) {
     new_select = insertedItem.find('select.field-template-select-field-type').first();
-    previousItems = insertedItem.siblings().size() + 1
+    previousItems = insertedItem.siblings('.nested-fields').size() + 1
     insertedItem.find('.bpcf-field-header .bpcf-header-list-bottom li#order').text(previousItems)
     insertedItem.find('.bpcf-field-header .bpcf-header-list-bottom input[type="hidden"]').val(previousItems);
     bp_bind_type_select(new_select);
