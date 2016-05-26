@@ -2,7 +2,7 @@
 <div class='nested-fields'>  
   <%= render :partial => 'fields_header', locals: {f: f} %>
   
-  <div class='field_options'>
+  <div class='field_options active'>
     <%= render partial: 'common_fields', locals: {f: f}  %>
 
     <div class='field additional-option repeater'>
@@ -11,7 +11,7 @@
          <span class='help-text'>Each set of these fields can be repeated by the user over and over.  I'll need to be able to set minimum and maximum fields for this.</span>
       </div>
       
-      <div class='field_value field_template_children-fields'>  
+      <div class='field-value field_template_children-fields'>  
         <%= f.fields_for :children do |c| %>
           <%= render partial: 'child_field_templates', locals: {f: c, remove_label: "Remove Subfield"} %>
         <% end %>
@@ -27,7 +27,7 @@
         Tab Fields
         <span class='help-text'>Help for tab fields - how they work etc</span>
       </div>
-      <div class='field_template_children-fields field_value'>  
+      <div class='field_template_children-fields field-value'>  
         <%= f.fields_for :children do |c| %>
           <%= render partial: 'tab_template', locals: {f: c, remove_label: "Remove Tab Field"} %>
         <% end %>
@@ -42,7 +42,7 @@
         Flexible Content Fields
         <span class='help-text'>Flexible Content allows you to define a series of layouts for users to select.  Each layout can have as many fields as you wish. </span>
       </div>
-      <div class='field_template_children-fields field_value'>  
+      <div class='field_template_children-fields field-value'>  
         <%= f.fields_for :children do |c| %>
           <%= render partial: 'layout_fields', locals: {f: c, remove_label: "Remove Layout"} %>
         <% end %>

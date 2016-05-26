@@ -16,6 +16,12 @@ jQuery(document).ready(function() {
   $('.field_template-fields').on('keyup', 'input.field_template-label', function(event) {
     bp_update_header_value(this, 'label', $(this).val());
   });
+  
+  $('.field_template-fields').on('click', '.bpcf-header-list-top', function(event) {
+    var toggleable = $(this).parent().siblings('.field_options');
+    $(this).toggleClass('active');
+    toggleable.toggleClass('active');
+  });
 });
 
 function bp_bind_type_select(select){

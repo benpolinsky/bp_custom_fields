@@ -1,5 +1,5 @@
 <div class='bpcf-field-header'>
-  <ul class='bpcf-header-list-top'>
+  <ul class='bpcf-header-list-top active'>
     <li>Order</li>
     <li>Label</li>
     <li>Name</li>
@@ -12,13 +12,4 @@
     <li id='name'><%= f.object.name %></li>
     <li id='type'><%= f.object.field_type %></li>
   </ul>
-</div>
-
-<div class='field field_type'>
-  <div class='info'>
-    <%= f.label :field_type, "Field Type: " %>
-  </div>
-  <div class='field-value'>
-    <%= f.select :field_type, options_for_select(BpCustomFields::FieldTemplate.field_type_options, f.object.field_type), {prompt: "Select Field Type"}, {class: "field-template-select-field-type"} %>
-  </div>
 </div>

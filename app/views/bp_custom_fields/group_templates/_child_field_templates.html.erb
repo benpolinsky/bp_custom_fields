@@ -2,7 +2,7 @@
 <div class='nested-fields'>  
  <%= render :partial => 'fields_header', locals: {f: f} %>
  
- <div class='field_options'>
+ <div class='field_options active'>
    <%= render partial: 'common_fields', locals: {f: f}  %>
  
     <div class='field additional-option repeater'>
@@ -10,7 +10,7 @@
         Repeating Fields
         <span class='help-text'>Each set of these fields can be repeated by the user over and over.  I'll need to be able to set minimum and maximum fields for this.</span>
       </div>
-      <div class='field_value field_template_children-fields'>  
+      <div class='field-value field_template_children-fields'>  
         <%= f.fields_for :children do |c| %>
           <%= render :partial => 'child_field_templates', locals: {f: c, remove_label: "Remove Subfield" } %>
         <% end %>

@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class='field_options'>
+  <div class='field_options active'>
     <div class='field'>
       <div class='info'>
         <%= f.label :name, class: "form-label"  %>
@@ -41,7 +41,7 @@
     </div>
 
     <div class='field'>
-      <div class='field_template_children-fields'>  
+      <div class='layout-children-fields'>  
         <%= f.fields_for :children do |c| %>
           <%= render :partial => 'child_field_templates', locals: {f: c, remove_label: "Remove Field"} %>
         <% end %>
