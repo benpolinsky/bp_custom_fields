@@ -1,8 +1,15 @@
 # !-- in development, not suitable for anything yet -- !
-
--- keep an eye on group/field_template edit/update - I think we're ok..
+-- collapse (creation form)
+-- reordering (creation form)
+-- validations, both when a user makes a field required, and what should be required for different field types - custom validator time.
+  - Repeaters, min and max
+  - Flex content min and max?
+-- Tabs + Repeaters:  figure out what to include (more tabs, repeaters, flex... etc)
+-- Tabs: if you should make them more like repeatables or layouts... (so you're effectively declaring a tab group field.)
+-- child_field_templates and _field_template_fields are nearly identical.... refactor  
 -- replace field partials with helpers - it takes too long to render all of them
-
+-- Flex content - More layout options (min + max, add row label override)
+- "No Fields - click add ____ to add " message if no fields in current level
 # BpCustomFields
 1. More Hierarchy field work - flex content
 2. Everything orderable (esp fields)
@@ -10,7 +17,7 @@
 4. errors and notifications
 5. How to handle default style... default theme, perhaps.
 6. toolbar full/complex/none - how to pass to js
-
+7. namespace all css classes etc
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 
@@ -18,6 +25,11 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 2. Settings/Options/Preferences pages.  It's a big question in Rails apps.  Some end up creating a Setting singletonish model or define settings in a .yml file.  I've always found these methods less than fitting solutions.  
 3. Content that only gets displayed on certin instances of resources.  Let's say you only want to display a certain field on Post id 10.  Or a post with the slug "breakfast."  You could write some conditional logic in the view, but then you've got a field in your model that's only used for one instance. 
 4. Gives a little more control to web admins who aren't rails developers.
+
+Much credit goes to ACF and its creator @elliotcondon for the inspiration.  Wordpress and Rails are different beasts, and so while ACF relies on serialization of attributes in wordpress' main table (posts?), we're able to mvc this a bit more.
+Nonetheless, his project has completely 100% guided my approach, especially the UX.
+
+Thanks to the fabulous Cocoon gem from @nathanvda which bp_custom_fields heavily relies upon.
 
 ### 
 - hierarchy of fields for repeaters and nested

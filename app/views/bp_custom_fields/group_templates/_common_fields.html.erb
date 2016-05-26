@@ -1,0 +1,141 @@
+    <div class='field'>
+      <div class='info'>
+        <%= f.label :name, class: "form-label"  %>
+        <span class='help-text'>Will appear in all readable situations, on the form edit page, etc... </span>
+      </div>
+      <div class='field-value'>
+
+        <%= f.text_field :name, class: "form-control field_template-name" %>
+      </div>  
+    </div>
+    
+    <div class='field'>
+      <div class='info'>
+        <%= f.label :label, class: "form-label"  %>
+        <span class='help-text'>No spaces.  Used for lookup etc.  Maybe I've flipped these....</span>
+      </div>
+      <div class='field-value'>
+        <%= f.text_field :label, class: "form-control field_template-label" %>
+      </div>
+    </div>
+    
+    <div class='field'>
+      <div class='info'>
+        <%= f.label :min, class: "form-label"  %>
+        <span class='help-text'>Minimum number of characters</span>
+      </div>
+      
+      <div class='field-value'><%= f.text_field :min, class: "form-control" %></div>
+    </div>
+    
+    <div class='field'>
+      <div class='info'>
+        <%= f.label :max, class: "form-label"  %>
+        <span class='help-text'>Maximum number of characters</span>
+      </div>
+      <div class='field-value'><%= f.text_field :max, class: "form-control" %></div>
+    </div>
+    
+    <div class='field'>
+      <div class='info'>
+        <%= f.label :prepend, class: "form-label" %>
+        <span class='help-text'>Text that will appear before a field ($ or any icon you might want to use)</span>
+      </div>
+      <div class='field-value'><%= f.text_field :prepend, class: "form-control" %></div>
+    </div>
+
+    <div class='field'>
+      <div class='info'>
+        <%= f.label :append, class: "form-label" %>
+        <span class='help-text'>Text that will appear after a field ($ or any icon you might want to use)</span>
+      </div>
+      <div class='field-value'><%= f.text_field :append, class: "form-control" %></div>
+    </div>
+
+    <div class='field'>
+      <div class='info'>  
+        <%= f.label :required, class: "form-label" %>
+        <span class='help-text'>Make this field required</span>
+      </div>
+      <div class='field-value'><%= f.check_box :required, class: "form-control" %></div>
+    </div>
+
+    <div class='field'>
+      <div class='info'>
+        <%= f.label :instructions, class: "form-label" %>
+        <span class='help-text'>Add some instructions for the user.</span>
+      </div>
+      <div class='field-value'><%= f.text_area :instructions, class: "form-control" %></div>
+    </div>
+    
+    <div class='field'>
+      <div class='info'>
+        <%= f.label :default_value, class: "form-label" %>
+        <span class='help-text'>Value will appear in field until user enters a new one.</span>
+      </div>
+      <div class='field-value'><%= f.text_area :default_value, class: "form-control" %></div>
+    </div>
+    
+    <div class='field additional-option text editor'>
+      <div class='info'>
+        <%= f.label :rows, class: "form-label" %>
+        <span class='help-text'>Rows/Height for the textarea/editor</span>
+      </div>
+      <div class='field-value'><%= f.number_field :rows, class: "form-control" %></div>
+    </div>
+
+    
+    <div class='field additional-option editor'>
+      <div class='info'>
+        <%= f.label :toolbar, class: "form-label" %>  
+        <span class='help-text'>No toolbar, a basic toolbar, or a full toolbar (need to implement this i think)</span>
+      </div>
+      <div class='field-value'>
+        <%= f.select :toolbar, options_for_select(["None", "Basic", "Full"], toolbar_select_default(f)), class: "form-control" %>  
+      </div>
+    </div>
+    
+    <div class='field additional-option date date_and_time'>
+      <div class='info'>
+        <%= f.label :date_format, "Date Format", class: "form-label"%>
+        <span class='help-text'>Enter the date format to display to the user. <a target="_new" href='http://chmln.github.io/flatpickr/#dateformat'>Find out options here.</a></span>              
+      </div>
+
+      <%= content_tag :div, (f.text_field :date_format, class: "form-control"), class: "field-value" %>
+    </div>
+    
+    <div class='field additional-option date_and_time time'>
+      <div class='info'>
+        <%= f.label :time_format, "Time Format", class: "form-label" %>     
+        <span class='help-text'>Enter the time format to display to the user. <a target="_new" href='http://chmln.github.io/flatpickr/#timeformat'>Find out options here.</a></span>                          
+      </div>
+
+      <%= content_tag :div, (f.text_field :time_format, class: "form-control"), class: "field-value" %>
+    </div>
+  
+    <div class='field additional-option file image'>
+      <div class='info'>
+        <%= f.label :accepted_file_types, class: "form-label" %>  
+        <span class='help-text'>Enter a comma delineated list of accepted filetypes... (eg: .jpg, .png, .jpeg)</span>              
+      </div>
+      
+      <%= content_tag :div, (f.text_field :accepted_file_types, class: "form-control"), class: "field-value" %>
+    </div>
+    
+    <div class='field additional-option dropdown checkboxes'>
+      <div class='info'>
+        <%= f.label :choices, class: "form-label" %> 
+         <span class='help-text'>Enter your choices as a comma delineated list.  To set a different label for each value, separate the label and value with a :</span>         
+      </div>
+      
+      <%= content_tag :div, (f.text_area :choices, class: "form-control"), class: 'field-value' %>
+    </div>  
+    
+    <div class='field additional-option dropdown checkboxes'>
+      <div class='info'>
+        <%= f.label :multiple, class: "form-label" %>        
+         <span class='help-text'>Allow multiple selections?</span>         
+      </div>
+
+      <%= content_tag :div, (f.check_box :multiple, class: "form-control"), class: "field-value" %>
+    </div>

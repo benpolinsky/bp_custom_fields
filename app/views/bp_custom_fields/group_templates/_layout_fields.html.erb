@@ -4,21 +4,40 @@
       <%= f.hidden_field :field_type, value: 'layout' %>
     </div>
   </div>
+  <div class='field'>
+    <div class='field-value'>
+      <p>This is a layout</p>
+      <%= link_to_remove_association "Remove Me", f %>
+    </div>
+  </div>
 
   <div class='field_options'>
     <div class='field'>
-      <%= f.label :name, class: "form-label"  %>
-      <%= f.text_field :name, class: "form-control field_template-name" %>
+      <div class='info'>
+        <%= f.label :name, class: "form-label"  %>
+        <span class='help-text'>Will appear in all readable situations, on the form edit page, etc... </span>
+      </div>
+      <div class='field-value'>
+
+        <%= f.text_field :name, class: "form-control field_template-name" %>
+      </div>  
     </div>
     
     <div class='field'>
-      <%= f.label :label, class: "form-label"  %>
-      <%= f.text_field :label, class: "form-control field_template-name" %>
+      <div class='info'>
+        <%= f.label :label, class: "form-label"  %>
+        <span class='help-text'>No spaces.  Used for lookup etc.  Maybe I've flipped these....</span>
+      </div>
+      <div class='field-value'>
+        <%= f.text_field :label, class: "form-control field_template-label" %>
+      </div>
     </div>
-
     <div class='field'>
-      <%= f.label :instructions, class: "form-label" %>
-      <%= f.text_area :instructions, class: "form-control" %>
+      <div class='info'>
+        <%= f.label :instructions, class: "form-label" %>
+        <span class='help-text'>Add some instructions for the user.</span>
+      </div>
+      <div class='field-value'><%= f.text_area :instructions, class: "form-control" %></div>
     </div>
 
     <div class='field'>
@@ -31,6 +50,6 @@
         </div>
       </div>
     </div>
-    <%= link_to_remove_association remove_label, f %>
+
   </div>
 </div>

@@ -1,12 +1,5 @@
-.custom-fields{
-  display:none;
-}
-.additional-option{
-  display:none;
-}
-.additional-option.active{
-  display:block;
-}
+
+
 
 .bpcf-editor{
   border:1px solid lightgrey;
@@ -20,10 +13,145 @@
 
 /* children fields */
 
-.field_template_children-fields{
-  padding-left:20px;
+
+.nested-fields{
+  border:1px solid #BCBCBC;
 }
 
 .nested-fields.repeater{
   padding-left: 30px;
+}
+
+
+.bpcf-field-header{
+  width:100%;
+  box-sizing:border-box;
+  clear:both;
+  display:block;
+}
+
+.bpcf-field-header ul{
+  display:block;
+  list-style-type:none;
+  padding:0;
+  clear:both;
+  height:30px;
+  box-sizing:border-box;
+  padding:10px;
+  margin:0;
+}
+
+.bpcf-field-header ul.bpcf-header-list-top{
+  background-color:#9999B8;
+  color:white;
+  text-transform:uppercase;
+  font-family:sans-serif;
+  font-size:12px;
+  font-weight:900;
+
+}
+
+.bpcf-field-header ul.bpcf-header-list-bottom{
+  background-color:#DCDCDC;
+}
+.bpcf-field-header ul li{
+  display:inline-block;
+  width:20%;
+  font-size:13px;
+  min-width:50px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.field{
+  display:flex;
+  display:-webkit-flex;
+  width:100%;
+  border-bottom:1px solid #E6E6E6;
+
+}
+
+.field .info{
+  width:200px;
+  background:#E2E2E2;
+  margin:0;
+  padding:5px;
+  font-weight:700;
+  font-size:13px;
+}
+
+.field .info span.help-text{
+  font-size:11px;
+  margin-top:4px;
+  line-height:12px;
+  display:block;
+  font-weight:300;
+}
+
+.field .field-value{
+
+  width:500px;
+  padding:10px;
+}
+
+.form-control{
+  width:100%;
+  box-sizing:border-box;
+  min-height:24px;
+}
+
+textarea.form-control{
+  min-height:100px;
+}
+
+.custom-fields{
+  display:none;
+}
+.additional-option{
+  display:none;
+}
+.additional-option.active{
+  display:flex;
+}
+
+a.remove_fields, a.add_fields{
+  font-size: 12px;
+  background: black;
+  color: white;
+  padding: 8px;
+  display: inline-block;
+  text-decoration:none;
+  font-family:sans-serif;
+  text-transform:uppercase;
+}
+
+a.add_fields:before{
+  content: "+";
+  font-weight:700;
+  margin-right:4px;
+}
+
+
+a.remove_fields:before{
+  content: "-";
+  font-weight:700;
+  margin-right:4px;
+}
+
+.group_template_name{
+  width:100%;
+  border-bottom:0;
+  display:block;
+  box-sizing:border-box;
+
+}
+.group_template_name label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:5px;
+
+}
+.group_template_name input{
+  display:block;
+  width:300px;
 }
