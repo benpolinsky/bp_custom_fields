@@ -1,6 +1,9 @@
 module BpCustomFields
   class FieldTemplate < ActiveRecord::Base
-
+    
+    include RankedModel
+    ranks :row_order
+    
     # the field_type determines:
     # How the value is entered by the user,
     # Which values are allowed/validated (customvalidator),
@@ -31,7 +34,9 @@ module BpCustomFields
     # TODO: field_type is required
     # TODO: choices is required if type is chooseable
 
-
+    default_scope { order(row_order: :asc) }
+    
+    
     def all_blank_except(atts)
       atts.except(:required, :field_type, :_destroy).values.all?(&:blank?)
     end

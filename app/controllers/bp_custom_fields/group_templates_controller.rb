@@ -71,7 +71,7 @@ module BpCustomFields
         field_templates_attributes: [
           :_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, 
           :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, 
-          :date_format, :time_format, :choices, :multiple, children_attributes: bpcf_group_template_permitted_params(params[:group_template][:field_templates_attributes])
+          :date_format, :time_format, :choices, :multiple, :row_order, children_attributes: bpcf_group_template_permitted_params(params[:group_template][:field_templates_attributes])
         ], 
         appearances_attributes: [:_destroy, :id, :resource, :resource_id, :appears]
         )

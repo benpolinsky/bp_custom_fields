@@ -19,12 +19,15 @@
   
 <div class='field_template-fields'>
   <h3>Fields</h3>
-  <%= f.fields_for :field_templates do |ft| %>
-    <%= render :partial => 'field_template_fields', locals: {f: ft} %>
-
-  <% end %>
+  <div id="field-template-sort-container">
+    <% index = 1 %>
+    <%= f.fields_for :field_templates do |ft| %>
+      <%= render :partial => 'field_template_fields', locals: {f: ft} %>
+      <% index += 1 %>
+    <% end %>
+  </div>
   <div class='links'>
-    <%= link_to_add_association 'Add Field', f, :field_templates %>  
+    <%= link_to_add_association 'Add Field', f, :field_templates, {"data-association-insertion-node" => '#field-template-sort-container', "data-association-insertion-method" => 'append' } %>  
   </div>
 </div>
 

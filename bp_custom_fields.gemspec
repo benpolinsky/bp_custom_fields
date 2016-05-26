@@ -21,7 +21,8 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "cocoon"
   s.add_dependency "carrierwave"
-  s.add_dependency "mini_magick"  
+  s.add_dependency "mini_magick"
+  s.add_dependency "ranked-model"
     
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "capybara"

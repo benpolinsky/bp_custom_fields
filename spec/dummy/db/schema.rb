@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.integer  "parent_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "row_order"
   end
 
   add_index "bp_custom_fields_field_templates", ["group_template_id"], name: "index_bp_custom_fields_field_templates_on_group_template_id"
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160508024209) do
     t.string   "file"
     t.integer  "parent_id"
     t.boolean  "container"
+    t.integer  "row_order"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end

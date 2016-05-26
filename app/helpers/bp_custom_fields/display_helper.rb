@@ -11,7 +11,7 @@ module BpCustomFields
     def bpcf_group_template_permitted_params(params)
       node_attributes_base = [:_destroy, :field_type, :required, :min, :max, :prepend, :append, :required, :default_value, 
           :instructions, :label, :placeholder_text, :id, :name, :rows, :accepted_file_types, :toolbar, 
-          :date_format, :time_format, :choices, :multiple, :parent_id]
+          :date_format, :time_format, :choices, :multiple, :parent_id, :row_order]
       nodes = []
       if params.present?
         params.values.each do |inner_params|

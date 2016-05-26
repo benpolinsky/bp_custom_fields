@@ -1,5 +1,4 @@
 # !-- in development, not suitable for anything yet -- !
--- collapse (creation form)
 -- reordering (creation form)
 -- validations, both when a user makes a field required, and what should be required for different field types - custom validator time.
   - Repeaters, min and max
@@ -18,6 +17,8 @@
 5. How to handle default style... default theme, perhaps.
 6. toolbar full/complex/none - how to pass to js
 7. namespace all css classes etc
+8. Files, consider: http://mailru.github.io/FileAPI/ 
+9. Lots of the JS should be combined, probably all of it into a class
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 

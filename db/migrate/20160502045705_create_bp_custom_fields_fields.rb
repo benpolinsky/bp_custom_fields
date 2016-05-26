@@ -7,6 +7,7 @@ class CreateBpCustomFieldsFields < ActiveRecord::Migration
       t.string :file
       t.integer :parent_id
       t.boolean :container
+      t.integer :row_order
       t.timestamps null: false
     end
   end

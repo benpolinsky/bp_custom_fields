@@ -22,6 +22,7 @@ class CreateBpCustomFieldsFieldTemplates < ActiveRecord::Migration
       t.boolean :multiple
       t.integer :parent_id
       t.timestamps null: false
+      t.integer :row_order
     end
   end
 end

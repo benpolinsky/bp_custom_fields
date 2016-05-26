@@ -10,3 +10,5 @@
 //= require bp_custom_fields/tooltip.min
 //= require bp_custom_fields/field_options
 //= require bp_custom_fields/themes/base-theme
+//= require bp_custom_fields/rubaxa-sortable.min
+//= require bp_custom_fields/field_sorting

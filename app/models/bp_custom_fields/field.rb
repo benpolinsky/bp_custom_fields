@@ -1,5 +1,9 @@
 module BpCustomFields
   class Field < ActiveRecord::Base
+    
+    include RankedModel
+    ranks :row_order
+    
     belongs_to :field_template
     belongs_to :group
     # has_many :sub_groups, class_name: "BpCustomFields::Group", foreign_key: "parent_field_id"
