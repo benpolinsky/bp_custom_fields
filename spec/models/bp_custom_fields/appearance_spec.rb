@@ -226,20 +226,20 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
     context "abstract based" do
       
       it "(for now) an abstract appearance requires a resource_id" do
-        appearance = BpCustomFields::Appearance.new(resource: "Abstract", resource_id: nil)
+        appearance = BpCustomFields::Appearance.new(resource: "BpCustomFields::AbstractResource", resource_id: nil)
         expect(appearance).to_not be_valid
       end
       
       it "#abstract?" do
-        appearance = BpCustomFields::Appearance.create(resource: "Abstract", resource_id: "About")
+        appearance = BpCustomFields::Appearance.create(resource: "BpCustomFields::AbstractResource", resource_id: "About")
         expect(appearance.abstract?).to eq true
         post_appearance = BpCustomFields::Appearance.create(resource: "Post")
         expect(post_appearance.abstract?).to eq false
       end
       
       it "returns which page it appears on", focus: true do 
-        appearance = BpCustomFields::Appearance.create(resource: "Abstract", resource_id: "About")
-        expect(appearance.appears_on).to eq "Abstract: About"
+        appearance = BpCustomFields::Appearance.create(resource: "BpCustomFields::AbstractResource", resource_id: "About")
+        expect(appearance.appears_on).to eq "BpCustomFields::AbstractResource: About"
       end
       
       

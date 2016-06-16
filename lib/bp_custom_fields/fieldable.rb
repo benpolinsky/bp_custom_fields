@@ -75,7 +75,7 @@ module BpCustomFields
     end
     
     def id_or_name
-      name.present? ? name.downcase : id
+      self.try(:name) ? name.downcase : id
     end
     
     def find_fields(params)
