@@ -219,7 +219,16 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
       # end
     end
     
-    context "'floating' settings?"
+    
+    
+    
+    context "abstract based" do
+      
+      it "one appearance can return all of a resource as a collection" do 
+        appearance = BpCustomFields::Appearance.create(resource: "AbstractAppearance")
+        # expect(appearance.appears_on).to eq three_posts
+      end
+    end
     
     # other ideas for appearances
   end

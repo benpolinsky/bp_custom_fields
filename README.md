@@ -5,10 +5,11 @@
   - Flex content min and max?
 -- Tabs + Repeaters:  figure out what to include (more tabs, repeaters, flex... etc)
 -- Tabs: if you should make them more like repeatables or layouts... (so you're effectively declaring a tab group field.)
--- child_field_templates and _field_template_fields are nearly identical.... refactor  
+-- child_field_templates and _field_template_fields partials/views are nearly identical.... refactor  
 -- replace field partials with helpers - it takes too long to render all of them
 -- Flex content - More layout options (min + max, add row label override)
 - "No Fields - click add ____ to add " message if no fields in current level
+
 # BpCustomFields
 1. More Hierarchy field work - flex content
 2. Everything orderable (esp fields)
@@ -25,7 +26,9 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 1. Often my clients want to display content that isn't really tied to any resource.  For instance, a portfolio site:  Where do we stick a field for displaying contact information?  Or an about me paragraph?  Some like to create a Page model, but then you have different attributes for each page: one page requires several images, while another another might need several small snippets of text.  There are other solutions, but my Wordpress development experience wants to reach for custom fields.
 2. Settings/Options/Preferences pages.  It's a big question in Rails apps.  Some end up creating a Setting singletonish model or define settings in a .yml file.  I've always found these methods less than fitting solutions.  
 3. Content that only gets displayed on certin instances of resources.  Let's say you only want to display a certain field on Post id 10.  Or a post with the slug "breakfast."  You could write some conditional logic in the view, but then you've got a field in your model that's only used for one instance. 
-4. Gives a little more control to web admins who aren't rails developers.
+4. Content that's displayed on multiple resources.. Sure you could create polymorphic model, but what if you're adding
+5. Gives a little more control to web admins who aren't rails developers, and that's one of the main goals I'd like to reach toward in terms of my rails development: how can we make rails apps as dynamic as possible, even after transferred to the client.
+
 
 Much credit goes to ACF and its creator @elliotcondon for the inspiration.  Wordpress and Rails are different beasts, and so while ACF relies on serialization of attributes in wordpress' main table (posts?), we're able to mvc this a bit more.
 Nonetheless, his project has completely 100% guided my approach, especially the UX.
