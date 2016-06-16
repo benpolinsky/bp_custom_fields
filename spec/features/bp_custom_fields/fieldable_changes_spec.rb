@@ -22,7 +22,7 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
   end
   
   context "new groups, fields. and appearance changes", js: true do
-    it "adds new fields when they are added to one of its group's template" do
+    it "adds new fields when they are added to one of its group's template", focus: true do
       nav_bar_custom_fields_link = find(".admin-navbar a.custom_fields")
       nav_bar_posts_link = find('.admin-navbar a.posts')
 
@@ -39,11 +39,11 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
         last_text_input = all('.field_template-name').last  
         select "Text", from: last_field_type_select[:name]
         fill_in last_text_input[:name], with: "about"
+  
         click_button "Submit"
       end
       nav_bar_posts_link.click
       click_link "Edit"
-      
       expect(all('.custom-group').size).to eq 1
       expect(all('.custom-field').size).to eq 2
       expect(all('.custom-field input').size).to eq 1
@@ -129,7 +129,7 @@ RSpec.describe 'Fieldable Changes:', type: :feature do
       expect(all('.custom-field.new_field input').size).to eq 1
     end
     
-    it "removes fields when removed from its group's template", focus: true do
+    it "removes fields when removed from its group's template" do
       
       nav_bar_custom_fields_link = find(".admin-navbar a.custom_fields")
       nav_bar_posts_link = find('.admin-navbar a.posts')

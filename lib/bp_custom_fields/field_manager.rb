@@ -53,10 +53,10 @@ module BpCustomFields
     def self.update_groups_for_fieldable(resource)
       found_templates = if resource.new_record?
         BpCustomFields::GroupTemplate.includes(:appearances).
-        where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL)", resource.class).references(:bp_custom_fields_appearances)
+        where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL OR bp_custom_fields_appearances.resource_id IS '')", resource.class).references(:bp_custom_fields_appearances)
       else
         BpCustomFields::GroupTemplate.includes(:appearances).
-        where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL OR bp_custom_fields_appearances.resource_id = ? OR bp_custom_fields_appearances.resource_id = ?)", resource.class, resource.id, resource.id_or_name).references(:bp_custom_fields_appearances)
+        where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL OR bp_custom_fields_appearances.resource_id IS '' OR bp_custom_fields_appearances.resource_id = ? OR bp_custom_fields_appearances.resource_id = ?)", resource.class, resource.id, resource.id_or_name).references(:bp_custom_fields_appearances)
       end
       found_templates = found_templates.reject do |template|
         template.appearances.any?(&:excluded)
@@ -74,5 +74,6 @@ module BpCustomFields
         end
       end
     end
+    
   end
 end

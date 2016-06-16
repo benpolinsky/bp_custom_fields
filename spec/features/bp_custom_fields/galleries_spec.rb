@@ -23,6 +23,7 @@ RSpec.describe 'Galleries', type: :feature do
     within('.gallery') do
       page.attach_file('Upload Image', @image_path)
     end
+
     find('form input[type="submit"]').click
     click_link "Edit"
     within('.gallery') do
@@ -32,11 +33,12 @@ RSpec.describe 'Galleries', type: :feature do
     gallery_images = all('.gallery-image')
     expect(gallery_images.size).to eq 1
         
-    last_add_image = all('a', text: "Add Image").last
+    last_add_image = all('a', text: "ADD IMAGE").last
     last_upload_field = all('input[type="file"]').last
     
     within('.gallery') do
       last_add_image.click
+      
       page.attach_file(last_upload_field[:name], @second_image_path)
     end
     

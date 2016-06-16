@@ -55,8 +55,7 @@ RSpec.describe "Creating repeater field-templates", js: true do
         last_select = all('.field-template-select-field-type').last
         select 'Repeater', from: last_select[:name]
         fill_in (all('.field_template-name').last)[:name], with: '2nd Level Repeater'
-        
-        sub_link = all('a', text: "Add Subfield")[-2]
+        sub_link = all('a', text: "ADD SUBFIELD")[-2]
         sub_link.click
         last_select = all('.field-template-select-field-type').last
         select 'Repeater', from: last_select[:name]
