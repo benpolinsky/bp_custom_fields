@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Abstract Resource</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @abstract_resources.each do |resource| %>
+    <tr>
+      <td><%= resource.name %></td>
+      <td><%= link_to "Edit", bp_custom_fields.edit_abstract_resource_path(resource) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
