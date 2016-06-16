@@ -21,8 +21,9 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
       
       it "one appearance can return all of a resource as a collection" do 
         three_posts = Post.where(nil)
-        3.times { |i| three_posts << Post.create(title: "A Post ##{i}")}
         appearance = BpCustomFields::Appearance.create(resource: "Post")
+        3.times { |i| three_posts << Post.create(title: "A Post ##{i}")}
+        
         expect(appearance.appears_on).to eq three_posts
       end
       
@@ -224,10 +225,24 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
     
     context "abstract based" do
       
-      it "one appearance can return all of a resource as a collection" do 
-        appearance = BpCustomFields::Appearance.create(resource: "AbstractAppearance")
-        # expect(appearance.appears_on).to eq three_posts
+      it "(for now) an abstract appearance requires a resource_id" do
+        appearance = BpCustomFields::Appearance.new(resource: "Abstract", resource_id: nil)
+        expect(appearance).to_not be_valid
       end
+      
+      it "#abstract?" do
+        appearance = BpCustomFields::Appearance.create(resource: "Abstract", resource_id: "About")
+        expect(appearance.abstract?).to eq true
+        post_appearance = BpCustomFields::Appearance.create(resource: "Post")
+        expect(post_appearance.abstract?).to eq false
+      end
+      
+      it "returns which page it appears on", focus: true do 
+        appearance = BpCustomFields::Appearance.create(resource: "Abstract", resource_id: "About")
+        expect(appearance.appears_on).to eq "Abstract: About"
+      end
+      
+      
     end
     
     # other ideas for appearances

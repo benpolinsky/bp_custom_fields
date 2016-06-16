@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508024209) do
+ActiveRecord::Schema.define(version: 20160616193948) do
+
+  create_table "bp_custom_fields_abstract_resources", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bp_custom_fields_appearances", force: :cascade do |t|
     t.string   "resource"
-    t.integer  "resource_id"
+    t.string   "resource_id"
     t.boolean  "appears",           default: true
     t.integer  "row_order"
     t.integer  "group_template_id"

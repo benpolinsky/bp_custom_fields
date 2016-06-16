@@ -10,3 +10,9 @@ Thus:
 - Appearances need to take an "Abstract" resource that allows us to enter a custom name of a one off page that will be created.
 - We'll then need to dynamically create a view for the admin area, as well as routes, and allow an admin to enter these values.
 - Finally, we'll need to come up with a way to load and display the group in a view template. 
+
+
+Right now, because each custom group is 'floating' and not attached to any model.. we're only going to allow one to be created per appearance
+- we'll see how that goes, but it needs to be fixed:
+  - One option would be to create an AbstractResource model that would act a raw fieldable object... because we need to store instances somewhere
+  

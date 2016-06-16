@@ -15,6 +15,10 @@ module BpCustomFields
         end
       end
       
+      def bp_custom_abstract_fields
+        custom_group(self)
+      end
+      
       private
       
       def groups

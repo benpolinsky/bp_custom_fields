@@ -24,10 +24,7 @@ module BpCustomFields
         end
       end
     end
-    
-
-
-    
+        
     def update_custom_field_groups
       if groups.none?
         add_custom_field_groups
@@ -75,6 +72,10 @@ module BpCustomFields
       groups.map do |group|
         {group.name => group.fields}
       end
+    end
+    
+    def id_or_name
+      name.present? ? name.downcase : id
     end
     
     def find_fields(params)
