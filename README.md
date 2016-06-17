@@ -1,3 +1,11 @@
+This doc is getting crazy.  Clean it up and add specs for AbstractResources before you go on.
+
+Top priority (from el's site)
+- wysiwyg editor has a max height and does not scroll.
+
+
+
+
 # !-- in development, not suitable for anything yet -- !
 -- reordering (creation form)
 -- validations, both when a user makes a field required, and what should be required for different field types - custom validator time.
@@ -10,6 +18,8 @@
 -- Flex content - More layout options (min + max, add row label override)
 - "No Fields - click add ____ to add " message if no fields in current level
 - abstract_resource creationn - must use lowercase in appearance - change that
+- abstract resource slug
+- THE INTEGRATION WITH DROPS AND LIQUID IS KEY!
 
 # BpCustomFields
 1. More Hierarchy field work - flex content -> check?

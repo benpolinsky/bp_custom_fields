@@ -81,10 +81,10 @@ module BpCustomFields
     def find_fields(params)
       if params.respond_to?(:keys)
         BpCustomFields::Field.joins(:field_template, :group => [:group_template => :appearances]).
-        where(bp_custom_fields_group_templates: {name: params[:group]}, bp_custom_fields_field_templates: {name: params[:field]}, bp_custom_fields_appearances: {resource: self.class.name, resource_id: self.id})
+        where(bp_custom_fields_group_templates: {name: params[:group]}, bp_custom_fields_field_templates: {name: params[:field]}, bp_custom_fields_appearances: {resource: self.class.name, resource_id: self.id_or_name.to_s})
       else
         BpCustomFields::Field.joins(:field_template, :group => [:group_template => :appearances]).
-        where(bp_custom_fields_field_templates: {name: params}, bp_custom_fields_appearances: {resource: self.class.name, resource_id: self.id})
+        where(bp_custom_fields_field_templates: {name: params}, bp_custom_fields_appearances: {resource: self.class.name, resource_id: self.id_or_name.to_s})
       end
     end
     
