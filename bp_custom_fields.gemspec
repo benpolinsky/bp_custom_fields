@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Ben Polinsky"]
   s.email       = ["benjamin.polinsky@gmail.com"]
   s.homepage    = "https://github.com/benpolinsky/bp_custom_fields"
-  s.summary     = "TODO: Summary of BpCustomFields."
-  s.description = "TODO: Description of BpCustomFields."
+  s.summary     = "Summary of BpCustomFields."
+  s.description = "Description of BpCustomFields."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
