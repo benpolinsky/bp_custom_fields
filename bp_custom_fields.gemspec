@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = BpCustomFields::VERSION
   s.authors     = ["Ben Polinsky"]
   s.email       = ["benjamin.polinsky@gmail.com"]
-  s.homepage    = "TODO"
+  s.homepage    = "https://github.com/benpolinsky/bp_custom_fields"
   s.summary     = "TODO: Summary of BpCustomFields."
   s.description = "TODO: Description of BpCustomFields."
   s.license     = "MIT"
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 4.2.6"
+  s.add_dependency "rails", ">= 4.2.6"
   s.add_dependency "jquery-rails"
   s.add_dependency "cocoon"
   s.add_dependency "carrierwave"
