@@ -20,8 +20,7 @@ module BpCustomFields
     end
     
     def self.find_for_resource(resource)
-      # Appearance.where(resource: resource.class.name).map(&:group_template).compact.uniq
-      BpCustomFields::GroupTemplate.includes(:appearances).where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL OR bp_custom_fields_appearances.resource_id = '' OR bp_custom_fields_appearances.resource_id = ? OR bp_custom_fields_appearances.resource_id = ?)", resource.class, resource.id, resource.id_or_name).references(:bp_custom_fields_appearances)
+      BpCustomFields::GroupTemplate.includes(:appearances).where("bp_custom_fields_appearances.resource = ? AND (bp_custom_fields_appearances.resource_id IS NULL OR bp_custom_fields_appearances.resource_id = '' OR bp_custom_fields_appearances.resource_id = ? OR bp_custom_fields_appearances.resource_id = ?)", resource.class, resource.id.to_s, resource.id_or_name.to_s).references(:bp_custom_fields_appearances)
     end
     
     def reload_fields

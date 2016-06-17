@@ -9,10 +9,11 @@
 -- replace field partials with helpers - it takes too long to render all of them
 -- Flex content - More layout options (min + max, add row label override)
 - "No Fields - click add ____ to add " message if no fields in current level
+- abstract_resource creationn - must use lowercase in appearance - change that
 
 # BpCustomFields
-1. More Hierarchy field work - flex content
-2. Everything orderable (esp fields)
+1. More Hierarchy field work - flex content -> check?
+2. Everything orderable (esp fields) -> check?
 3. audio (how are you handling this? - soundmanger or just leave it up to user for now... (maybe eliminate type...)
 4. errors and notifications
 5. How to handle default style... default theme, perhaps.
