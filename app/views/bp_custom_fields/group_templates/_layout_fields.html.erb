@@ -1,10 +1,10 @@
 <div class='nested-fields'>  
   <div class='field_type'>
-    <div class='field'>
+    <div class='bpcf-field'>
       <%= f.hidden_field :field_type, value: 'layout' %>
     </div>
   </div>
-  <div class='field'>
+  <div class='bpcf-field'>
     <div class='field-value'>
       <p>This is a layout</p>
       <%= link_to_remove_association "Remove Me", f %>
@@ -12,7 +12,7 @@
   </div>
 
   <div class='field_options active'>
-    <div class='field'>
+    <div class='bpcf-field'>
       <div class='info'>
         <%= f.label :name, class: "form-label"  %>
         <span class='help-text'>Will appear in all readable situations, on the form edit page, etc... </span>
@@ -23,7 +23,7 @@
       </div>  
     </div>
     
-    <div class='field'>
+    <div class='bpcf-field'>
       <div class='info'>
         <%= f.label :label, class: "form-label"  %>
         <span class='help-text'>No spaces.  Used for lookup etc.  Maybe I've flipped these....</span>
@@ -32,7 +32,7 @@
         <%= f.text_field :label, class: "form-control field_template-label" %>
       </div>
     </div>
-    <div class='field'>
+    <div class='bpcf-field'>
       <div class='info'>
         <%= f.label :instructions, class: "form-label" %>
         <span class='help-text'>Add some instructions for the user.</span>
@@ -40,7 +40,7 @@
       <div class='field-value'><%= f.text_area :instructions, class: "form-control" %></div>
     </div>
 
-    <div class='field'>
+    <div class='bpcf-field'>
       <div class='layout-children-fields'>  
         <%= f.fields_for :children do |c| %>
           <%= render :partial => 'child_field_templates', locals: {f: c, remove_label: "Remove Field"} %>

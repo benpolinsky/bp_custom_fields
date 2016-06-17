@@ -76,7 +76,7 @@
   text-overflow:ellipsis;
 }
 
-.field{
+.bpcf-field{
   display:flex;
   display:-webkit-flex;
   width:100%;
@@ -84,7 +84,7 @@
 
 }
 
-.field .info{
+.bpcf-field .info{
   width:200px;
   background:#E2E2E2;
   margin:0;
@@ -93,7 +93,7 @@
   font-size:13px;
 }
 
-.field .info span.help-text{
+.bpcf-field .info span.help-text{
   font-size:11px;
   margin-top:4px;
   line-height:12px;
@@ -101,13 +101,13 @@
   font-weight:300;
 }
 
-.field .field-value{
+.bpcf-field .field-value{
 
   width:500px;
   padding:10px;
 }
 
-.field .field-value.field_template_children-fields{
+.bpcf-field .field-value.field_template_children-fields{
   width:calc(100% - 230px);
 }
 .layout-children-fields{
