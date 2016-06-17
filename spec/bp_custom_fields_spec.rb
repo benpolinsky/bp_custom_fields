@@ -3,7 +3,7 @@ RSpec.describe BpCustomFields do
   context "::configure" do
     before do
       BpCustomFields.configure do |config|
-        config.controller_layout = "admin"
+        config.controller_layout = "application"
       end
     end
     

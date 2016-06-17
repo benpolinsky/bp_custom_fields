@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160616193948) do
     t.datetime "updated_at",                       null: false
   end
 
-  add_index "bp_custom_fields_appearances", ["group_template_id"], name: "index_bp_custom_fields_appearances_on_group_template_id"
+  add_index "bp_custom_fields_appearances", ["group_template_id"], name: "bpf_a_gt"
 
   create_table "bp_custom_fields_field_templates", force: :cascade do |t|
     t.string   "name"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20160616193948) do
     t.integer  "row_order"
   end
 
-  add_index "bp_custom_fields_field_templates", ["group_template_id"], name: "index_bp_custom_fields_field_templates_on_group_template_id"
+  add_index "bp_custom_fields_field_templates", ["group_template_id"], name: "bpf_ft_gt"
 
   create_table "bp_custom_fields_fields", force: :cascade do |t|
     t.integer  "field_template_id"
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20160616193948) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "bp_custom_fields_fields", ["field_template_id"], name: "index_bp_custom_fields_fields_on_field_template_id"
-  add_index "bp_custom_fields_fields", ["group_id"], name: "index_bp_custom_fields_fields_on_group_id"
+  add_index "bp_custom_fields_fields", ["field_template_id"], name: "bpf_f_ft"
+  add_index "bp_custom_fields_fields", ["group_id"], name: "bpf_f_g"
 
   create_table "bp_custom_fields_group_templates", force: :cascade do |t|
     t.string   "name"
