@@ -4,9 +4,14 @@ require 'bp_custom_fields/railtie' if defined?(Rails)
 require 'bp_custom_fields/fieldable'
 require 'bp_custom_fields/field_manager'
 require 'bp_custom_fields/query_methods'
+require 'bp_custom_fields/configuration'
 require 'bp_custom_fields/video'
 
 module BpCustomFields
+  class << self
+    attr_writer :configuration
+  end
+  
   EXCLUDED_MODELS = [
     "ActiveRecord::SchemaMigration", 
     'BpCustomFields::GroupTemplate', 
@@ -15,4 +20,12 @@ module BpCustomFields
     'BpCustomFields::Field',
     'BpCustomFields::FieldTemplate'
   ]
+  
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+  
+  def self.configure
+    yield(configuration)
+  end
 end

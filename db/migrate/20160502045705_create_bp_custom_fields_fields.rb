@@ -1,8 +1,8 @@
 class CreateBpCustomFieldsFields < ActiveRecord::Migration
   def change
     create_table :bp_custom_fields_fields do |t|
-      t.references :field_template, index: true, foreign_key: true
-      t.references :group, index: true, foreign_key: true
+      t.references :bp_custom_fields_field_template, foreign_key: true, index: { name: 'bpf_f_ft' }
+      t.references :bp_custom_fields_group, foreign_key: true, index: { name: 'bpf_f_g' }
       t.text :value
       t.string :file
       t.integer :parent_id

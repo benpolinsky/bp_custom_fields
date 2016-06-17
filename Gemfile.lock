@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    bp_custom_fields (0.0.1)
+    bp_custom_fields (0.1.0)
       carrierwave
       cocoon
       jquery-rails
       mini_magick
-      rails (~> 4.2.6)
+      rails (>= 4.2.6)
       ranked-model
 
 GEM

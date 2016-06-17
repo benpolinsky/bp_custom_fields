@@ -1,5 +1,5 @@
 module BpCustomFields
   class ApplicationController < ::ApplicationController
-    layout 'application'
+    layout BpCustomFields.configuration.controller_layout
   end
 end
