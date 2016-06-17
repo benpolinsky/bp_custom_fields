@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20160616193948) do
     t.string   "groupable_type"
   end
 
+  add_index "bp_custom_fields_groups", ["group_template_id"], name: "bpf_fg_gt"
+
   create_table "people", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"

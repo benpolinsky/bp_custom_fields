@@ -3,7 +3,7 @@ class CreateBpCustomFieldsFieldTemplates < ActiveRecord::Migration
     create_table :bp_custom_fields_field_templates do |t|
       t.string :name
       t.string :label
-      t.references :group_template, foreign_key: true, index: { name: 'bpf_ft_gt' }
+      t.integer :group_template_id, foreign_key: true, index: { name: 'bpf_ft_gt' }
       t.integer :field_type, default: nil
       t.string :min
       t.string :max

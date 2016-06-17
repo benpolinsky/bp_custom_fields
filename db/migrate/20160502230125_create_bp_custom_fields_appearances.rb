@@ -5,7 +5,7 @@ class CreateBpCustomFieldsAppearances < ActiveRecord::Migration
       t.string :resource_id
       t.boolean :appears, default: true
       t.integer :row_order
-      t.references :group_template, foreign_key: true, index: { name: 'bpf_a_gt' }
+      t.integer :group_template_id, foreign_key: true, index: { name: 'bpf_a_gt' }
 
       t.timestamps null: false
     end

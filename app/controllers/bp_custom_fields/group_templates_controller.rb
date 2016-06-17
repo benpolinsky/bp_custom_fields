@@ -62,6 +62,7 @@ module BpCustomFields
 
     def set_all_application_models
       Rails.application.eager_load!
+      BpCustomFields::Engine.eager_load!
       @app_models = ActiveRecord::Base.descendants.reject {|d| BpCustomFields::EXCLUDED_MODELS.include?(d.name)}.map(&:name)
     end
 
