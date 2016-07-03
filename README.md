@@ -1,9 +1,14 @@
 This doc is getting crazy.  Clean it up and add specs for AbstractResources before you go on.
 
 Top priority (from el's site)
-- wysiwyg editor has a max height and does not scroll.
+
 - finder methods (add singular versions (first))
   -  I have to revisit naming/searching conventions as well and validate uniqueness or add prefix
+- allow fields to figure out their group if they are a child.
+
+
+- wysiwyg editor has a max height and does not scroll.
+
 - fill out crud for active resources
 - helper for displaying abstract pages in admin nav
 - still wondering about that carrierwave bug...

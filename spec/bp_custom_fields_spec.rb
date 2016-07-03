@@ -7,9 +7,11 @@ RSpec.describe BpCustomFields do
       end
     end
     
-    it "sets the layout for all controllers" do
-      # byebug
-      # expect(BpCustomFields::ApplicationController.new.layout).to eq "admin"
+    # TODO: Not sure how to test the default layout is set.
+    # Or if it's even a good idea.
+    pending "sets the layout for all controllers" do
+      expect(BpCustomFields::ApplicationController.new.active_layout.name).to eq "admin"
     end
   end
+
 end

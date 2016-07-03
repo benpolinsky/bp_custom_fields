@@ -11,7 +11,9 @@ module BpCustomFields
       # other attributes/methods
     end
     
-
+    context "validations" do
+     
+    end
     
     context "displaying" do
       before do
@@ -151,7 +153,7 @@ module BpCustomFields
         pending "editor"
       end
       
-      context "hierarchical displays", focus: true do
+      context "hierarchical displays" do
         context "galleries" do
           before do
             @image_path = BpCustomFields::Engine.root.join('spec', 'support', 'files', "image.jpg")
@@ -166,10 +168,11 @@ module BpCustomFields
               group_template: @group_template
               )
 
+            @group = @group_template.groups.create
           end
           
           it 'has many children fields' do
-            gallery_field = @gallery_field_template.fields.create
+            gallery_field = @gallery_field_template.fields.create(group: @group)
             image_template = @gallery_field_template.children.create(field_type: 'image', name: "gallery image")
             expect(gallery_field.field_type).to eq 'gallery'
             gallery_field.children.create(field_template: image_template)
@@ -178,11 +181,11 @@ module BpCustomFields
           end
           
           it "can display an array of its children's urls" do
-            gallery_field = @gallery_field_template.fields.create
+            gallery_field = @gallery_field_template.fields.create(group: @group)
             image_template = @gallery_field_template.children.create(field_type: 'image', name: "gallery image")
             expect(gallery_field.field_type).to eq 'gallery'
-            field_1 = gallery_field.children.create(field_template: image_template, file: @image)
-            field_2 = gallery_field.children.create(field_template: image_template, file: @second_image)
+            field_1 = gallery_field.children.create(field_template: image_template, file: @image, group: @group)
+            field_2 = gallery_field.children.create(field_template: image_template, file: @second_image, group: @group)
             expect(gallery_field.to_a).to eq ["http://localhost:3000/uploads/bp_custom_fields/field/file/#{field_1.id}/image.jpg", "http://localhost:3000/uploads/bp_custom_fields/field/file/#{field_2.id}/image_2.jpg"]
           end
         end
@@ -195,22 +198,23 @@ module BpCustomFields
               field_type: "repeater", 
               group_template: @group_template
               )
-            @repeater_field = @repeater_field_template.fields.create
+            @group = @group_template.groups.create
+            @repeater_field = @repeater_field_template.fields.create(group: @group)
           end
 
           
           it "has many container fields" do
             expect(@repeater_field.container_fields.size).to eq 0
-            @repeater_field.children.create(container: true)
-            @repeater_field.children.create(container: true)
+            @repeater_field.children.create(container: true, group: @group)
+            @repeater_field.children.create(container: true, group: @group)
             expect(@repeater_field.container_fields.size).to eq 2
           end
           
           it "each container field in turn has many fields" do
-            container_field = @repeater_field.children.create(container: true)
+            container_field = @repeater_field.children.create(container: true, group: @group)
             name_template = BpCustomFields::FieldTemplate.create(name: "Name", field_type: 'string', group_template: @group_template)
             bio_template = BpCustomFields::FieldTemplate.create(name: "Bio", field_type: 'text', group_template: @group_template)
-            container_field.children << [name_template.fields.create, bio_template.fields.create]
+            container_field.children << [name_template.fields.create(group: @group), bio_template.fields.create(group: @group)]
             expect(container_field.children.size).to eq 2 
           end
           

@@ -24,7 +24,7 @@ module BpCustomFields
     end
     
     def bpcf_fieldable_permitted_params(params)
-      node_attributes_base = [:id, :container, :value, :file, :field_template_id, :parent_id, :_destroy, value: []]
+      node_attributes_base = [:id, :container, :value, :file, :field_template_id, :group_id, :parent_id, :_destroy, value: []]
       nodes = []
       children_attributes = deep_find(params)
       
@@ -39,7 +39,7 @@ module BpCustomFields
       {
         groups_attributes: [
           :id, :group_template_id, :_destroy, fields_attributes: [
-            :id, :value, :file, :field_template_id, :_destroy, value: [], children_attributes: nodes
+            :id, :value, :file, :field_template_id, :group_id, :_destroy, value: [], children_attributes: nodes
           ]
         ]
       }

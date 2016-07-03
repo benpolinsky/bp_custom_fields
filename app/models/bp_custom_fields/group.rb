@@ -10,6 +10,7 @@ module BpCustomFields
     
     delegate :name, to: :group_template
     
+    
     def update_available?
       fields.size != group_template.field_templates.size
     end
