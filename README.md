@@ -2,6 +2,7 @@ Top priority (from el's site)
 
 
 - allow fields to figure out their group if they are a child.
+
 - wysiwyg editor has a max height and does not scroll.
 - fill out crud for active resources
 - helper for displaying abstract pages in admin nav

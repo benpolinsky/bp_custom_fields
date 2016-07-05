@@ -176,3 +176,63 @@ a.remove_fields:before{
   display:block;
   width:300px;
 }
+
+
+.field-menu {
+  display:block;
+  width:30px;
+  height:30px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:30px;
+  line-height:1;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.the-menu a{
+  color:#E5E5E5;
+  display:block;
+  text-decoration:none;
+  border-bottom:1px solid white;
+  padding:5px 0;
+}
+
+.the-menu a:last-of-type{
+  border-bottom:none;
+  
+}
+
+.the-menu a:hover{
+ color:white; 
+}
+
+.bpcf-link-hidden{
+  display:none;
+}
+
+
+.bpcf-base-theme p.toggle-group{
+  cursor:pointer;
+  padding-left:4px;
+}
+.bpcf-base-theme p.toggle-group:before{
+  content: "\25B9";
+  position:relative;
+  left:-4px;
+}
+
+.bpcf-base-theme p.toggle-group.active:before{
+  content: "\25BE";
+  position:relative;
+  left:-4px;
+}
+
+.bpcf-base-theme .custom-group-inner{
+  display:none;
+}
+
+.bpcf-base-theme .custom-group-inner.active{
+  display:block
+}
