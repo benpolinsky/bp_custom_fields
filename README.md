@@ -1,14 +1,8 @@
-This doc is getting crazy.  Clean it up and add specs for AbstractResources before you go on.
-
 Top priority (from el's site)
 
-- finder methods (add singular versions (first))
-  -  I have to revisit naming/searching conventions as well and validate uniqueness or add prefix
+
 - allow fields to figure out their group if they are a child.
-
-
 - wysiwyg editor has a max height and does not scroll.
-
 - fill out crud for active resources
 - helper for displaying abstract pages in admin nav
 - still wondering about that carrierwave bug...
@@ -16,7 +10,8 @@ Top priority (from el's site)
 
 # !-- in development, not suitable for anything yet -- !
 -- reordering (creation form)
--- validations, both when a user makes a field required, and what should be required for different field types - custom validator time.
+-- automatically create label as you type in name
+-- deeper validations, both when a user makes a field required, and what should be required for different field types - custom validator time.
   - Repeaters, min and max
   - Flex content min and max?
 -- Tabs + Repeaters:  figure out what to include (more tabs, repeaters, flex... etc)

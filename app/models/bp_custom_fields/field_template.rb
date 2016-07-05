@@ -25,7 +25,7 @@ module BpCustomFields
     accepts_nested_attributes_for :children, reject_if: :all_blank, allow_destroy: true
     
     
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
 
     # move these into a validation object
     validate :gallery_children

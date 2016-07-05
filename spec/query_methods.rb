@@ -18,10 +18,9 @@ RSpec.describe BpCustomFields do
       expect(BpCustomFields.find_field('Name', @post)).to eq @name_field
     end
     
-    # it "finds a group with a specific name and resource"
-    
-
-    
+    it "finds a group with a specific name and resource" do
+      expect(BpCustomFields.find_group('Worker Profile', @post)).to eq @name_field.group
+    end
 
   end
 

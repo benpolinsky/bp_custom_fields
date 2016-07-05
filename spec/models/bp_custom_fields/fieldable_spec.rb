@@ -120,13 +120,14 @@ module BpCustomFields
           
           @group_template_two = BpCustomFields::GroupTemplate.create(name: "Badge", appearances: [Appearance.new(resource: "Post")])
           @badge_template_one = @group_template_two.field_templates.create(name: 'picture one', field_type: 'string')
+          @badge_template_two = @group_template_two.field_templates.create(name: 'unique picture', field_type: 'string')
           BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
           
         end
         
         
-        it 'can ::find_fields(string) with the same name' do
-          expect(Post.find_fields('picture one')).to match [@picture_one_template.fields.first, @badge_template_one.fields.first]
+        it 'cannot ::find_fields(string) with the same name' do
+          expect(Post.find_fields('picture one')).to match [@picture_one_template.fields.first]
           expect(Post.find_fields('picture two')).to match [@picture_two_template.fields.first]
         end
         
@@ -146,7 +147,7 @@ module BpCustomFields
               @picture_three_template.fields.first
               ]},{
             "Badge" => [
-              @badge_template_one.fields.first
+              @badge_template_two.fields.first
             ]}
           ]
           
@@ -160,7 +161,7 @@ module BpCustomFields
         
         
         it "can return #custom_fields for a record" do
-          expect(@post.custom_fields).to eq [@picture_one_template.fields.first, @picture_two_template.fields.first, @picture_three_template.fields.first, @badge_template_one.fields.first]  
+          expect(@post.custom_fields).to eq [@picture_one_template.fields.first, @picture_two_template.fields.first, @picture_three_template.fields.first, @badge_template_two.fields.first]  
         end
         
         pending "can #find_fields for a specific record"

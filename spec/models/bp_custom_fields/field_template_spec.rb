@@ -1,6 +1,18 @@
 require 'rails_helper'
 module BpCustomFields
   RSpec.describe BpCustomFields::FieldTemplate, type: :model do
+    
+    context "validations" do
+      it "requires a name" do
+        choice_template = BpCustomFields::FieldTemplate.new(label: "theme-color", choices: "Red, Blue, Yellow", field_type: 'dropdown')        
+        expect{choice_template.update(name: 'Theme Color')}.to change {choice_template.valid?}.from(false).to(true)
+      end
+      it "must have a unique name" do
+        choice_template = BpCustomFields::FieldTemplate.create(name: "Theme Color", label: "theme-color", choices: "Red, Blue, Yellow", field_type: 'dropdown')        
+        expect(BpCustomFields::FieldTemplate.create(name: "Theme Color", label: "theme-color-two", choices: "Green, Purple, Silver", field_type: 'dropdown').valid?).to eq false
+      end
+    end
+    
     context "choices" do
       it "stores choices as comma delineated list" do
         choice_template = BpCustomFields::FieldTemplate.create(name: "Theme Color", label: "theme-color", choices: "Red, Blue, Yellow", field_type: 'dropdown')

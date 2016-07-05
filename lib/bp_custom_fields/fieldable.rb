@@ -89,8 +89,18 @@ module BpCustomFields
       end
     end
     
+    def find_groups(name)
+      BpCustomFields::Group.joins(:group_template => :appearances).where(bp_custom_fields_group_templates: {name: name}, 
+        bp_custom_fields_appearances: {resource: self.class.name, resource_id: self.id_or_name.to_s}) | BpCustomFields::Group.joins(:group_template => :appearances).where(bp_custom_fields_group_templates: {name: name}, 
+        bp_custom_fields_appearances: {resource: self.class.name})
+    end
+    
     def find_field(name)
       find_fields(name).first
+    end
+    
+    def find_group(name)
+      find_groups(name).first
     end
     
     private
