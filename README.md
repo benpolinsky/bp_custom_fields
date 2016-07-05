@@ -27,7 +27,6 @@ Top priority (from el's site)
 - "No Fields - click add ____ to add " message if no fields in current level
 - abstract_resource creationn - must use lowercase in appearance - change that
 - abstract resource slug
-- THE INTEGRATION WITH DROPS AND LIQUID IS KEY!
 
 # BpCustomFields
 1. More Hierarchy field work - flex content -> check?
@@ -126,7 +125,18 @@ Relational:
     
     @resource.groups_and_fields
     @resource.custom_fields
+    
+## Liquid?
 
+Because drops are lazily loaded, the idea is just to load this sucker up with drops
+till the cows come home.  Everything the designer/client might need gets a drop.
+
+
+I still need to be able to do something like this, somehow..
+
+{% for product in product %}
+  {{product.get_custom_field('field name')}}
+{% endfor %}
 
 
 

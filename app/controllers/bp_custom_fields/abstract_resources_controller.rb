@@ -3,7 +3,7 @@ require_dependency "bp_custom_fields/application_controller"
 module BpCustomFields
   class AbstractResourcesController < ApplicationController
     def index
-      @abstract_resources = BpCustomFields::AbstractResource.find_and_create_from_appearances
+      @abstract_resources = BpCustomFields::AbstractResource.find_or_create_from_appearances(Appearance.abstract)
     end
     
     def edit

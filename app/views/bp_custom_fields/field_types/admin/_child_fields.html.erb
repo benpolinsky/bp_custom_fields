@@ -1,11 +1,11 @@
 <div class='nested-fields'>  
-    <div class='bpcf-field gallery-image'>
+    <div class='bpcf-field gallery-image form-group'>
       <% if f.object.file.present? %>
         <%= f.object.file.url %>
       <% end %>
       <%= f.hidden_field :field_template_id, value: f.object.new_gallery_image_id %>
       <%= f.label :file, "Upload Image" %>
-      <%= f.file_field :file %>
+      <%= f.file_field :file, class: "form-control" %>
     </div>
     <%= link_to_remove_association "Remove Image", f %>
 </div>

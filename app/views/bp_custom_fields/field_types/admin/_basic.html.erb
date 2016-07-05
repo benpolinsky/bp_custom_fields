@@ -1,4 +1,4 @@
-<div class="custom-field <%= field_template.field_type %> <%= field_template.name.downcase.underscore %>">
+<div class="custom-field field-group <%= field_template.field_type %> <%= field_template.name.downcase.underscore %>">
   <%= f.hidden_field :field_template_id %>
   <%= f.label :value, field_template.label.upcase .titleize, class: "form-label" %>
   <%= content_tag(:div, field_template.instructions, class: "field-instructions") unless field_template.instructions.blank? %>

@@ -1,5 +1,5 @@
 <div class="nested-fields layout_fields">
-  <div class='bpcf-field'>
+  <div class='bpcf-field form-group'>
   <%= f.hidden_field :field_template_id %>
   <%= f.fields_for :children do |inside_field| %>
     <%= render partial: "bp_custom_fields/field_types/admin/basic", 

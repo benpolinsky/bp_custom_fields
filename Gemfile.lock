@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bp_custom_fields (0.1.1)
+    bp_custom_fields (0.1.2)
       carrierwave
       cocoon
       jquery-rails
