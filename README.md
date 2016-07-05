@@ -105,7 +105,7 @@ Relational:
 
 - more validations
 - custom classes
-
+- dropzone to files
 
 ## brainstorming on instructions...
 

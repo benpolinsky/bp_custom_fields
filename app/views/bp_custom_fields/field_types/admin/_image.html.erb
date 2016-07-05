@@ -1,2 +1,10 @@
-<p>Upload an image/dropzone... </p>
+<% if builder.object.file.present? %>
+  <p>Current Image: </p>
+  <%= image_tag builder.object.file %>
+  <p>Replace: </p>
+  
+<% else %>
+  <p>Upload an Image:</p>
+<% end %>
+
 <%= builder.file_field :file, bpcf_html_options(field_template, builder.object, {accept: field_template.accepted_file_types}) %>
