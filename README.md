@@ -1,8 +1,6 @@
 Top priority (from el's site)
 
-- helper for displaying abstract pages in admin nav
 - still wondering about that carrierwave bug...
-
 
 # !-- in development, not suitable for anything yet -- !
 -- reordering (creation form)

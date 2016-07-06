@@ -1,5 +1,3 @@
-require_dependency "bp_custom_fields/application_controller"
-
 module BpCustomFields
   class AbstractResourcesController < ApplicationController
     def index
