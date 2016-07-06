@@ -1,5 +1,8 @@
 
 
+.editor .bpcf-editor{
+  min-height:300px;  
+}
 
 .bpcf-editor{
   border:1px solid lightgrey;

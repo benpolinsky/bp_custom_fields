@@ -26,16 +26,25 @@ module BpCustomFields
     # accepts_nested_attributes_for :sub_groups, reject_if: :all_blank, allow_destroy: true
     # TODO: value or file needs to be present to be valid
     
+    def value
+      super || file
+    end
     
+    def initialize_with_repeater_fields(repeater)
+      repeater.field_template.children.each do |child_template|
+        if child_template.field_type == "gallery"
+          child_template.children.create(field_type: 'image', name: "gallery image")
+        end
+        children.build(field_template: child_template)
+      end
+      self
+    end
     
     def container_fields
       children.where(container: true)
     end
     
-    def self.only_parents
-      where("parent_id IS NULL")
-    end
-    
+   
     def set_value_for_multiple
       return if container?
       value = if field_type == 'checkboxes' && multiple && value.present?
@@ -94,20 +103,16 @@ module BpCustomFields
       Rails.application.routes.url_helpers.root_url[0..-2] + file.url
     end
 
+
     def new_gallery_image_id
       parent.field_template.children.first.id
     end
     
-    def initialize_with_repeater_fields(repeater)
-      repeater.field_template.children.each do |child_template|
-        if child_template.field_type == "gallery"
-          child_template.children.create(field_type: 'image', name: "gallery image")
-        end
-        children.build(field_template: child_template)
-      end
-      self
-    end
     
+    def self.only_parents
+      where("parent_id IS NULL")
+    end
+
     
     private
     # Thanks to @jaredonline: http://stackoverflow.com/a/8072164/791026    

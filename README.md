@@ -1,10 +1,5 @@
 Top priority (from el's site)
 
-
-- allow fields to figure out their group if they are a child.
-
-- wysiwyg editor has a max height and does not scroll.
-- fill out crud for active resources
 - helper for displaying abstract pages in admin nav
 - still wondering about that carrierwave bug...
 
@@ -25,15 +20,15 @@ Top priority (from el's site)
 - abstract resource slug
 
 # BpCustomFields
+
 1. More Hierarchy field work - flex content -> check?
 2. Everything orderable (esp fields) -> check?
 3. audio (how are you handling this? - soundmanger or just leave it up to user for now... (maybe eliminate type...)
 4. errors and notifications
-5. How to handle default style... default theme, perhaps.
-6. toolbar full/complex/none - how to pass to js
-7. namespace all css classes etc
-8. Files, consider: http://mailru.github.io/FileAPI/ 
-9. Lots of the JS should be combined, probably all of it into a class
+5. toolbar full/complex/none - how to pass to js
+6. namespace all css classes etc
+7. Files, consider: http://mailru.github.io/FileAPI/ 
+8. Lots of the JS should be combined, probably all of it into a class
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 
@@ -114,13 +109,29 @@ Relational:
 5. Add strong_parameters to controller
 6. Probably want to add javascripts (and css?) to your file
 
-## query methods
+## API
 
+    field = BpCustomFields.find_field('field_name', @resource) # BpCustomFields::Field
+    group = BpCustomFields.find_group('group', @resource)      # BpCustomFields::Group
+    
+    field.display # display via sensible default, ie, iterate through repeaters, show an image, display link to file
+    field.value # raw value, either file or text value.
+    
+    # fileables - images, other files are 'fileable'
+
+    field = BpCustomFields.find_field('file field', @resource) # BpCustomFields::Field
+    field.field_type == 'file' # true
+    field.fileable?            # true
+    field.file                 # access file 
+    field.absolute_url         # url with full host/domain
+    
+    
     Resource.find_fields('field name')
     Resource.find_groups
     
     @resource.groups_and_fields
     @resource.custom_fields
+    
     
 ## Liquid?
 

@@ -62,6 +62,10 @@ module BpCustomFields
         it "email" do
           expect(@email_field.display).to eq "benedict@gmail.dev" # any reason at all for this field?
         end
+        
+        it "has a raw value" do
+          expect(@name_field.value).to eq "Benedict Arnold"
+        end
   
 
       end
@@ -106,6 +110,10 @@ module BpCustomFields
           
           it "can display an absolute src" do
             expect(@image_field.absolute_url).to eq "http://localhost:3000/uploads/bp_custom_fields/field/file/#{@image_field.id}/image.jpg"
+          end
+          
+          it "can access the raw file by using its value attribute" do
+            expect(@image_field.value).to eq @image_field.file
           end
         end
 
