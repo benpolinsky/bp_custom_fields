@@ -7,6 +7,9 @@ module BpCustomFields
         include BpCustomFields::DisplayHelper
         include BpCustomFields::AbstractResourceHelper
       end
+      ActiveSupport.on_load(:action_controller) do
+        include BpCustomFields::DisplayHelper
+      end
       config.to_prepare do
         require 'bp_custom_fields/application_controller'
      end
