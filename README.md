@@ -1,32 +1,6 @@
-Top priority (from el's site)
-
-- still wondering about that carrierwave bug...
-
-# !-- in development, not suitable for anything yet -- !
--- reordering (creation form)
--- automatically create label as you type in name
--- deeper validations, both when a user makes a field required, and what should be required for different field types - custom validator time.
-  - Repeaters, min and max
-  - Flex content min and max?
--- Tabs + Repeaters:  figure out what to include (more tabs, repeaters, flex... etc)
--- Tabs: if you should make them more like repeatables or layouts... (so you're effectively declaring a tab group field.)
--- child_field_templates and _field_template_fields partials/views are nearly identical.... refactor  
--- replace field partials with helpers - it takes too long to render all of them
--- Flex content - More layout options (min + max, add row label override)
-- "No Fields - click add ____ to add " message if no fields in current level
-- abstract_resource creationn - must use lowercase in appearance - change that
-- abstract resource slug
+# !-- in development, but will be suitable for testing soon! -- 
 
 # BpCustomFields
-
-1. More Hierarchy field work - flex content -> check?
-2. Everything orderable (esp fields) -> check?
-3. audio (how are you handling this? - soundmanger or just leave it up to user for now... (maybe eliminate type...)
-4. errors and notifications
-5. toolbar full/complex/none - how to pass to js
-6. namespace all css classes etc
-7. Files, consider: http://mailru.github.io/FileAPI/ 
-8. Lots of the JS should be combined, probably all of it into a class
 
 There are a number of reasons why I've wanted to use some sort of custom fields in Rails applications:
 
@@ -35,6 +9,7 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 3. Content that only gets displayed on certin instances of resources.  Let's say you only want to display a certain field on Post id 10.  Or a post with the slug "breakfast."  You could write some conditional logic in the view, but then you've got a field in your model that's only used for one instance. 
 4. Content that's displayed on multiple resources.. Sure you could create polymorphic model, but what if you're adding
 5. Gives a little more control to web admins who aren't rails developers, and that's one of the main goals I'd like to reach toward in terms of my rails development: how can we make rails apps as dynamic as possible, even after transferred to the client.
+6. Most importantly, ACF's flex_content fields are absolutely awesome.  I'm working on a demo to show off this functionality.
 
 
 Much credit goes to ACF and its creator @elliotcondon for the inspiration.  Wordpress and Rails are different beasts, and so while ACF relies on serialization of attributes in wordpress' main table (posts?), we're able to mvc this a bit more.
@@ -45,8 +20,6 @@ Thanks to the fabulous Cocoon gem from @nathanvda which bp_custom_fields heavily
 ### 
 - hierarchy of fields for repeaters and nested
 - locations.
-- jSON?
-- for settings, pages, options, preferences maybe a different gem with custom pages is the way to go
 - there's also the option of allowing a route/location based custom field in addition as a quick way to create settings pages...
 
 ##### Fields to add

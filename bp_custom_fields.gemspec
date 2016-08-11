@@ -10,8 +10,13 @@ Gem::Specification.new do |s|
   s.authors     = ["Ben Polinsky"]
   s.email       = ["benjamin.polinsky@gmail.com"]
   s.homepage    = "https://github.com/benpolinsky/bp_custom_fields"
-  s.summary     = "Summary of BpCustomFields."
-  s.description = "Description of BpCustomFields."
+  s.summary     = "A gem for the creation of custom fields not added to a resource's database table."
+  s.description = "End-users need love in the Ruby on Rails community.  
+  There are a few promising CMSs around, but in general they feel heavy handed.
+  Many of these solutions include some sort of custom field functionality, 
+  but none touch the expansiveness and flexibility that Wordpress' Advanced Custom Fields plugin does.
+  Enter BpCustomFields.  More to come soon.
+  "
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

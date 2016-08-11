@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     @custom_field_groups = @post.groups_and_fields # sends back a group_by type hash of groups and fields nested
     @specific_field = Post.find_fields('field_name') # find specific field
     @specific_field_in_group = Post.find_fields(group: 'group_name', field: 'field_name') # find specific field in group
-    @specific_group = Post.find_group('group name') # find specific group
+    @specific_group = Post.find_groups('group name') # find specific group
     
   end
 end
