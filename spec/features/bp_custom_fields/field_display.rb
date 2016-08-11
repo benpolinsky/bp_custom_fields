@@ -54,6 +54,17 @@ RSpec.describe "Displaying Custom Fields" do
       visit main_app.home_path
       expect(page).to have_content "ben@ben.com"
     end
+    
+    it "displays a date field" do
+      date_field_template = BpCustomFields::FieldTemplate.create(name: "Date", label: "date", field_type: 'date', group_template: @group_template)
+      BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
+      
+      date_field = @post.find_field("Date")
+      date_field.update(value: "1-21-1")
+      
+      visit main_app.home_path
+      expect(page).to have_content "1-21-1"
+    end
   end
   
   context "fileable fields", focus: true do

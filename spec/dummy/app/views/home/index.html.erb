@@ -1,19 +1,10 @@
 <% @custom_fields.only_parents.each do |field| %>
-  <%# TODO: refactor to field.display or display_field(field) %>
-  <%= field.inspect %>
   <% case field.field_type %>
   <% when 'video' %>
     <%= bp_display_video field.value %>
-  <% when 'date' %>
-    <%= field.value %>
-  <% when 'email' %>
-    <%= field.value %>
-  <% when 'number' %>
-    <%= field.value %>
   <% when 'gallery' %>
     <%= field.to_a %>
   <% else %>
     <%= display_field(field) %>
   <% end %>
-
 <% end %> 
