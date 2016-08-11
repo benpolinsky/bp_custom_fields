@@ -4,12 +4,6 @@
   <% case field.field_type %>
   <% when 'video' %>
     <%= bp_display_video field.value %>
-  <% when 'image' %>
-    <%= image_tag field.file.url %>
-  <% when 'audio' %>
-    <%= field.value %>
-  <% when 'file' %>
-    <%= field.file %>
   <% when 'date' %>
     <%= field.value %>
   <% when 'email' %>
@@ -19,7 +13,7 @@
   <% when 'gallery' %>
     <%= field.to_a %>
   <% else %>
-    <%= field.value %>
+    <%= display_field(field) %>
   <% end %>
 
 <% end %> 

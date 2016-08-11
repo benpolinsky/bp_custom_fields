@@ -3,12 +3,24 @@
 
 module BpCustomFields
   module DisplayHelper
+
+    def display_field(field)
+      case field.field_type
+      when 'image'
+        display_image_field(field)
+      else
+        field.value
+      end
+    end
+    
+    def display_image_field(field)
+      image_tag field.file.url, class: "bpcf-image-#{field.label}", alt: field.label
+    end
+
     def bp_display_video(address)
       video = BpCustomFields::Video.new(address)
       video_embed_html(video)
     end
-    
-    
     
     def video_embed_html(video)
       content_tag :div, class: "bpcf-embed-container" do
@@ -25,5 +37,6 @@ module BpCustomFields
         return found
       end
     end
+    
   end
 end

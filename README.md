@@ -15,6 +15,15 @@ There are a number of reasons why I've wanted to use some sort of custom fields 
 Much credit goes to ACF and its creator @elliotcondon for the inspiration.  Wordpress and Rails are different beasts, and so while ACF relies on serialization of attributes in wordpress' main table (posts?), we're able to mvc this a bit more.
 Nonetheless, his project has completely 100% guided my approach, especially the UX.
 
+Existing Solutions That Don't Quite Cut It:
+
+- Anything using serialize to store custom fields as json/yml(please, no) on a record.
+  - 1. Query speed and versatility.
+  - 2. Inability to declare a field on specific records or all records.
+  - 3. Inability to declare a field on an abstract record, snippet, or page
+  - 4. Inability to nest fields without getting crazy.  
+
+
 Thanks to the fabulous Cocoon gem from @nathanvda which bp_custom_fields heavily relies upon.
 
 ### 
@@ -133,3 +142,16 @@ I still need to be able to do something like this, somehow..
 TODO: Examples!
 
 - Perhaps a walk-through using [shepherd](http://github.hubspot.com/shepherd/docs/welcome/)
+
+
+
+# Clever Names....
+  BpCustomFields isn't memorable.
+  CustomFields is taken
+  
+- WC (too short?, not memorable?)
+- UtilityFielder (not bad)
+- Cecil (eh...)
+- RaspberryFields (eh..)
+- StrawberryFields (eh..)
+

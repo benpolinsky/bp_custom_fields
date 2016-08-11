@@ -12,7 +12,7 @@ module BpCustomFields
     enum field_type: [
                       :string, :text, :number, :email, :editor, 
                       :date_and_time, :date, :time, :file, 
-                      :image, :video, :audio, :checkboxes, 
+                      :image, :video, :checkboxes, 
                       :dropdown, :truefalse, :gallery, :repeater,
                       :tab, :flexible_content, :layout
                       ]
@@ -96,7 +96,7 @@ module BpCustomFields
     end
     
     def self.fileable_types
-      ['image', 'video', 'file', 'audio']
+      ['image', 'video', 'file']
     end
 
     def self.dateable_types

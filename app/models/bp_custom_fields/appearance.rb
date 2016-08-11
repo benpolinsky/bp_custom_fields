@@ -34,7 +34,7 @@ module BpCustomFields
     
     
     # TODO: A good idea to write these as queries rather than reduce or uniq
-    # I'll performance test it...
+    # I'll performance test it... (you know the answer to that)
     # I'm also not completely confident in this logic...
     def self.appears_on
       location = all.map(&:appears_on)

@@ -75,9 +75,7 @@ module BpCustomFields
           @image_field_template = BpCustomFields::FieldTemplate.create(name: "Image", label: "Image", field_type: 'image', group_template: @group_template)
           @file_field_template = BpCustomFields::FieldTemplate.create(name: "File", label: "File", field_type: 'file', group_template: @group_template)
           @video_field_template = BpCustomFields::FieldTemplate.create(name: "Video", label: "Video", field_type: 'video', group_template: @group_template)
-          @audio_field_template = BpCustomFields::FieldTemplate.create(name: "Audio", label: "Audio", field_type: 'audio', group_template: @group_template)
-          
-          
+
           BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
           @post.save
         end
@@ -100,8 +98,7 @@ module BpCustomFields
             expect(@file_field.fileable?).to eq true
             @video_field = @video_field_template.fields.new
             expect(@video_field.fileable?).to eq true
-            @audio_field = @audio_field_template.fields.new
-            expect(@audio_field.fileable?).to eq true
+
           end
           
           it "can display the src" do

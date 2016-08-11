@@ -1,6 +1,6 @@
 BASE_FIELD_TYPES = [
   :string, :text, :number, :email, :date_and_time, 
-  :date, :time, :file, :image, :video, :audio, :editor
+  :date, :time, :file, :image, :video, :editor
 ]
 
 CHOICE_FIELD_TYPES = [

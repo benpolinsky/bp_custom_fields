@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Ben Polinsky"]
   s.email       = ["benjamin.polinsky@gmail.com"]
   s.homepage    = "https://github.com/benpolinsky/bp_custom_fields"
-  s.summary     = "A gem for the creation of custom fields not added to a resource's database table."
+  s.summary     = "Custom Fields for Rails"
   s.description = "End-users need love in the Ruby on Rails community.  
   There are a few promising CMSs around, but in general they feel heavy handed.
   Many of these solutions include some sort of custom field functionality, 
