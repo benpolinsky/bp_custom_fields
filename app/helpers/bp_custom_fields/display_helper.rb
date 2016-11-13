@@ -1,24 +1,30 @@
-# This will become a helper for displaying different types of custom fields
-# TODO: move the parameter stuff to a different helper.
+# methods to help display field values in views
 
 module BpCustomFields
   module DisplayHelper
 
     def display_field(field)
       case field.field_type
+      when 'gallery'
+        field.to_a
       when 'image'
         display_image_field(field)
+      when 'video'
+        display_video_field(field)
       else
         field.value
       end
     end
     
+
+    private 
+    
     def display_image_field(field)
       image_tag field.file.url, class: "bpcf-image-#{field.label}", alt: field.label
     end
 
-    def bp_display_video(address)
-      video = BpCustomFields::Video.new(address)
+    def display_video_field(field)
+      video = BpCustomFields::Video.new(field.address)
       video_embed_html(video)
     end
     

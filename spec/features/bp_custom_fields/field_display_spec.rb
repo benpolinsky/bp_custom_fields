@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "Displaying Custom Fields" do
+  
+  before do
+    @post = Post.create(title: "A Post", slug: "Post-slug", content: "Slow lorem")
+    @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appearances: [BpCustomFields::Appearance.new(resource: "Post")])
+  end
+  
   context "basic fields" do    
-    before do
-      @post = Post.create(title: "A Post", slug: "Post-slug", content: "Slow lorem")
-      @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appearances: [BpCustomFields::Appearance.new(resource: "Post")])
-    end
-    
     it "displays a string field" do
       string_field_template = BpCustomFields::FieldTemplate.create(name: "Name", label: "Name", field_type: 'string', group_template: @group_template)
       BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
@@ -67,11 +68,7 @@ RSpec.describe "Displaying Custom Fields" do
     end
   end
   
-  context "fileable fields", focus: true do
-    before do
-      @post = Post.create(title: "A Post", slug: "Post-slug", content: "Slow lorem")
-      @group_template = BpCustomFields::GroupTemplate.create(name: "Worker Profile", appearances: [BpCustomFields::Appearance.new(resource: "Post")])
-    end
+  context "fileable fields" do
     
     it "displays an image field" do
       image_field = BpCustomFields::FieldTemplate.create(name: "Selfie", label: "selfie", field_type: 'image', group_template: @group_template)
@@ -105,7 +102,9 @@ RSpec.describe "Displaying Custom Fields" do
   end
   
   context "flex content fields" do
-    
+    it "displays only the selected flexible content" do
+      # flex_content_field = 
+    end
   end
   
   context "gallery fields" do

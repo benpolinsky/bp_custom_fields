@@ -227,7 +227,8 @@ module BpCustomFields
         
         context "flexible content" do
           
-          it "is a field_template" do #field
+          it "is a field_template" do 
+            
           end
           
           it "has many layout groups (can't be manually selected)" do #group

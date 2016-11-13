@@ -1,5 +1,7 @@
 module BpCustomFields
   class AbstractResourcesController < ApplicationController
+    include BpCustomFields::ParameterHelper
+    
     def index
       @abstract_resources = BpCustomFields::AbstractResource.find_or_create_from_appearances(Appearance.abstract)
     end
@@ -26,11 +28,7 @@ module BpCustomFields
       else
         render :edit
       end
-    end
-    
-    
-    
-    
+    end    
     
     protected
     
