@@ -1,4 +1,5 @@
 # TODO: BETTER NAME THAN groups (collissions, etc)
+# TODO: Refactor / Clean up a bunch of these methods
 
 module BpCustomFields
   module Fieldable
@@ -22,6 +23,7 @@ module BpCustomFields
           BpCustomFields::Group.joins(:group_template => :appearances).
           where(bp_custom_fields_group_templates: {name: group_name}, bp_custom_fields_appearances: {resource: self.name})
         end
+        
       end
     end
         
@@ -78,6 +80,9 @@ module BpCustomFields
       self.try(:name) ? name.downcase : id
     end
     
+
+    # OOf this looks terrible
+    # TODO: Refactor
     def find_fields(params)
       if params.respond_to?(:keys)
         BpCustomFields::Field.joins(:field_template, :group => [:group_template => :appearances]).
@@ -89,6 +94,7 @@ module BpCustomFields
       end
     end
     
+    # TODO: Refactor
     def find_groups(name)
       BpCustomFields::Group.joins(:group_template => :appearances).where(bp_custom_fields_group_templates: {name: name}, 
         bp_custom_fields_appearances: {resource: self.class.name, resource_id: self.id_or_name.to_s}) | BpCustomFields::Group.joins(:group_template => :appearances).where(bp_custom_fields_group_templates: {name: name}, 

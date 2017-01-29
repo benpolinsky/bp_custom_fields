@@ -141,11 +141,11 @@ module BpCustomFields
             expect(dropdown_field.display).to eq "red,yellow"
           end
       
-          it "displays truefalse fields as 1/false 0/true" do
+          it "displays truefalse fields as 1/false 0/true", focus: true do
             @truefalse_field_template = BpCustomFields::FieldTemplate.create(
               name: "Favorite Color", 
               label: "favorite-color",
-              field_type: 14
+              field_type: 'truefalse'
             )
             true_field = @truefalse_field_template.fields.create(value: '0')
             expect(true_field.display).to eq 'true'

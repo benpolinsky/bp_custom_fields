@@ -16,4 +16,12 @@ RSpec.describe BpCustomFields::AbstractResource, type: :model do
     to change{ BpCustomFields::AbstractResource.all.count }.from(0).to(4)
   end
   
+  it "is case insensitive" do
+    ['about', 'contact', 'navigation', 'footer', 'About', 'Contact', 'Navigation', 'Footer'].each do |resource_id|
+      BpCustomFields::Appearance.create(resource: "BpCustomFields::AbstractResource", resource_id: resource_id)        
+    end
+    expect{ BpCustomFields::AbstractResource.find_or_create_from_appearances(BpCustomFields::Appearance.abstract) }.
+    to change{ BpCustomFields::AbstractResource.all.count }.from(0).to(4)
+  end
+  
 end
