@@ -43,7 +43,14 @@ module BpCustomFields
         expect(group_template.groups.size).to eq 2
       end
       
-      it "has many appearances (models it'll attach itself to)" do
+      it "has many appearances" do
+        group_template = BpCustomFields::GroupTemplate.create(name: "Badge", appearances: @valid_appearances)
+        expect(group_template.appearances.size).to eq 1
+      end
+      
+      it "destroys appearances when deleted" do
+        group_template = BpCustomFields::GroupTemplate.create(name: "Badge", appearances: @valid_appearances)
+        expect{group_template.destroy}.to change{group_template.appearances.size}.from(1).to(0)
       end
     end
   end

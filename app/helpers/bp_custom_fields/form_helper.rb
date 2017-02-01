@@ -1,3 +1,14 @@
+# Add a FormHelper to fetch and display our custom fields
+# There's the possibility there's too much going on in the fetch dept.
+# But then I'd have to ask the end user to setup something in controllers (probably)
+# 
+# usage:
+# 
+# form_for(@object) do |f|
+#   f.bp_custom_fields
+# end
+
+
 module BpCustomFields
   module FormHelper
     
@@ -14,23 +25,27 @@ module BpCustomFields
           end
         end
       end
-      
-      def bp_custom_abstract_fields
-        custom_group(self)
-      end
+
       
       private
       
-      def groups
-        @object.groups.map(&:fields)
-      end 
+      # hmm.. why isn't this fields?
+      # and I am not using this...
+      # FOR DELETION
+      # def groups
+      #   @object.groups.map(&:fields)
+      # end
       
+      # Setup each custom field's group
       def custom_groups
         fields_for :groups do |group_builder|
           custom_group(group_builder)
         end
       end
       
+      # Set up each groups display
+      # A Label, a hidden_field to keep track of the group_template_id
+      # and of course the custom fields themselves
       def custom_group(group_builder)
         content_tag :div, class: "custom-group" do
           concat content_tag(:p, "#{group_builder.object.name}", class: 'toggle-group active')
@@ -39,6 +54,7 @@ module BpCustomFields
         end
       end
       
+      # Iterate through the builder's fields
       def custom_fields(group_builder)
         group_builder.fields_for :fields do |fields_f|
           capture do
@@ -47,6 +63,7 @@ module BpCustomFields
         end
       end
        
+      # Build the form field from the object's field_template
       def custom_field(field_builder)
         field_template = field_builder.object.field_template
         @template.render partial: "bp_custom_fields/field_types/admin/basic", 

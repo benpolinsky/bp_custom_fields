@@ -2,7 +2,7 @@ module BpCustomFields
   class GroupTemplate < ActiveRecord::Base
     has_many :field_templates
     has_many :groups, dependent: :destroy
-    has_many :appearances
+    has_many :appearances, dependent: :destroy
     
     accepts_nested_attributes_for :field_templates, reject_if: :all_blank_except_required, allow_destroy: true
     accepts_nested_attributes_for :appearances, reject_if: :all_blank, allow_destroy: true

@@ -1,3 +1,8 @@
+# Sanitized Parameters for Various Nested Attributes
+
+# In each method, we ONLY need the params to count how many levels of params are needed to sanitize
+# Obviously, any manipulation of names/db lookups would defeat the purpose of sanitization
+
 module BpCustomFields
   module ParameterHelper
     def bpcf_group_template_permitted_params(params)
@@ -69,6 +74,16 @@ module BpCustomFields
         return max + 1
       else
         return 0
+      end
+    end
+    
+    def deep_find(hash, found=nil)
+      key = 'groups_attributes'
+      if hash.respond_to?(:key?) && hash.key?(key)
+        return hash[key]
+      elsif hash.is_a? Enumerable
+        hash.find { |*a| found = deep_find(a.last) }
+        return found
       end
     end
   end

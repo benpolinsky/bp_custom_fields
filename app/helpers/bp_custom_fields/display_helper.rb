@@ -33,16 +33,7 @@ module BpCustomFields
         content_tag :iframe, nil, src: video.embed_address, frameborder: 0, allowfullscreen: ''
       end
     end
-    
-    def deep_find(hash, found=nil)
-      key = 'groups_attributes'
-      if hash.respond_to?(:key?) && hash.key?(key)
-        return hash[key]
-      elsif hash.is_a? Enumerable
-        hash.find { |*a| found = deep_find(a.last) }
-        return found
-      end
-    end
+  
     
   end
 end

@@ -1,3 +1,4 @@
+
 module BpCustomFields
   module AbstractResourceHelper
 
@@ -12,7 +13,7 @@ module BpCustomFields
       @abstract_resources = BpCustomFields::AbstractResource.all
       
       # No reason to render if we have nothing...
-      return if @abstract_resources.none? || @abstract_resources.map(&:groups).flatten.none?
+      return if abstract_resources_unavailable
       
       # Loop through resources and display a link.
       capture do
@@ -22,6 +23,14 @@ module BpCustomFields
           end
         end
       end
+      
+    end
+    
+    private
+    
+    def abstract_resources_unavailable
+      @abstract_resources.none? || @abstract_resources.map(&:groups).flatten.none? 
+      # @abstract_resources.map{|r| r.groups.map(&:group_template)}.flatten.map(&:appearances).flatten.none?
       
     end
     

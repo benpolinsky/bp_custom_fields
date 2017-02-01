@@ -12,16 +12,22 @@ RSpec.describe BpCustomFields::AbstractResource, type: :model do
     ['about', 'contact', 'navigation', 'footer'].each do |resource_id|
       BpCustomFields::Appearance.create(resource: "BpCustomFields::AbstractResource", resource_id: resource_id)        
     end
-    expect{ BpCustomFields::AbstractResource.find_or_create_from_appearances(BpCustomFields::Appearance.abstract) }.
-    to change{ BpCustomFields::AbstractResource.all.count }.from(0).to(4)
+    
+    BpCustomFields::AbstractResource.find_or_create_from_appearances(BpCustomFields::Appearance.abstract)
+    resources = BpCustomFields::AbstractResource.all.map do |res|
+      BpCustomFields::FieldManager.update_groups_for_fieldable(res)      
+    end
+
+    expect(BpCustomFields::AbstractResource.all.count).to eq 4
+    # expect(BpCustomFields::AbstractResource.all.map(&:groups).flatten.size).to eq 4
   end
   
-  it "is case insensitive" do
-    ['about', 'contact', 'navigation', 'footer', 'About', 'Contact', 'Navigation', 'Footer'].each do |resource_id|
-      BpCustomFields::Appearance.create(resource: "BpCustomFields::AbstractResource", resource_id: resource_id)        
-    end
-    expect{ BpCustomFields::AbstractResource.find_or_create_from_appearances(BpCustomFields::Appearance.abstract) }.
-    to change{ BpCustomFields::AbstractResource.all.count }.from(0).to(4)
+  it 'must have a unique name' do
+    expect{
+      BpCustomFields::Appearance.create(resource: "BpCustomFields::AbstractResource", resource_id: 'About')
+      BpCustomFields::Appearance.create(resource: "BpCustomFields::AbstractResource", resource_id: 'About')          
+      BpCustomFields::AbstractResource.find_or_create_from_appearances(BpCustomFields::Appearance.abstract)
+    }.to change { BpCustomFields::AbstractResource.all.count }.from(0).to(1)
   end
   
 end

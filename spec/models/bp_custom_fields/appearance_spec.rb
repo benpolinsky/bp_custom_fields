@@ -245,6 +245,7 @@ RSpec.describe BpCustomFields::Appearance, type: :model do
       
     end
     
-    # other ideas for appearances
+    
   end
+
 end

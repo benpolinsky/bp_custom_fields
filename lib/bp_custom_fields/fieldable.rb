@@ -77,7 +77,7 @@ module BpCustomFields
     end
     
     def id_or_name
-      self.try(:name) ? name.downcase : id
+      self.try(:name) || id
     end
     
 
