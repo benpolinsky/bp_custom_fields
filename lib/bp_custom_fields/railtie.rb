@@ -4,6 +4,7 @@ module BpCustomFields
       ActiveSupport.on_load(:action_view) do
         include BpCustomFields::FormHelper
         include BpCustomFields::FieldsHelper
+        include BpCustomFields::FieldTypeHelper
         include BpCustomFields::DisplayHelper
         include BpCustomFields::ParameterHelper
         include BpCustomFields::AbstractResourceHelper

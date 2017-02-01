@@ -1,3 +1,3 @@
-  <%= builder.fields_for :children do |child| %>
-    <%= render :partial => 'bp_custom_fields/field_types/admin/basic', locals: {f: child, field_template: child.object.field_template} %>
-  <% end %>
+<%= builder.fields_for :children do |child| %>
+	  <%= basic_field(child, child.object.field_template) %>
+<% end %>

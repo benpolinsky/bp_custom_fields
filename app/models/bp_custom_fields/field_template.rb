@@ -49,6 +49,8 @@ module BpCustomFields
       errors.add(:field_type, "Children of flexible content must be set to layout") if parent.try(:field_type) == 'flexible_content' && field_type != 'layout'
     end
   
+    # choices are serialized with label:name
+    # so we're creating a hash with {label: name}
     def all_choices
       array_choices = choices.split(",").map(&:strip)
       if array_choices.all?{|c| c.include?(':')}

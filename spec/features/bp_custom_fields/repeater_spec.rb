@@ -23,8 +23,7 @@ RSpec.describe 'Repeaters', type: :feature do
   
   it "can have multiple fields added to it", js: true do
     visit new_post_path
-    
-    
+  
     expect(all('.custom-field.biography textarea').size).to eq 1
     expect(all('.custom-field.name input').size).to eq 1
     expect(all('.custom-field.email input').size).to eq 1

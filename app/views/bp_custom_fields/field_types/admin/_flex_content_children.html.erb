@@ -1,9 +1,9 @@
 <div class="nested-fields layout_fields">
   <div class='bpcf-field form-group'>
   <%= f.hidden_field :field_template_id %>
+
   <%= f.fields_for :children do |inside_field| %>
-    <%= render partial: "bp_custom_fields/field_types/admin/basic", 
-            locals: {f: inside_field, field_template: inside_field.object.field_template} %>
+	  <%= basic_field(inside_field, inside_field.object.field_template) %>
   <% end %>
 </div>
   <%= link_to_remove_association( "Remove #{f.object.name}", f)%>

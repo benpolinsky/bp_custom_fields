@@ -16,6 +16,7 @@ module BpCustomFields
       include ActionView::Context
       include ActionView::Helpers::TextHelper
       include ActionView::Helpers::TagHelper
+      include BpCustomFields::FieldTypeHelper
 
       def bp_custom_fields        
         @object.update_custom_field_groups
@@ -66,8 +67,7 @@ module BpCustomFields
       # Build the form field from the object's field_template
       def custom_field(field_builder)
         field_template = field_builder.object.field_template
-        @template.render partial: "bp_custom_fields/field_types/admin/basic", 
-        locals: {f: field_builder, field_template: field_template}
+        basic_field(field_builder, field_template)
       end
       
     end

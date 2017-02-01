@@ -24,7 +24,7 @@ module BpCustomFields
     end
 
     def display_video_field(field)
-      video = BpCustomFields::Video.new(field.address)
+      video = BpCustomFields::Video.new(field.value)
       video_embed_html(video)
     end
     

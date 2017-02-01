@@ -100,7 +100,7 @@ module BpCustomFields
     def absolute_url
       return unless fileable?
       Rails.application.routes.default_url_options[:host] ||= "http://localhost:3000"
-      Rails.application.routes.url_helpers.root_url[0..-2] + file.url
+      Rails.application.routes.url_helpers.root_url[0..-2] + file.try(:url).to_s
     end
 
 

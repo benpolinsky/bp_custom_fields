@@ -1,12 +1,12 @@
 <div class='nested-fields repeater'>  
-    <div class='bpcf-field'>
+    
+		<div class='bpcf-field'>
       <%= f.hidden_field :container %>
       <%= f.fields_for :children do |child_field| %>
-
-      <%= render partial: "bp_custom_fields/field_types/admin/basic", 
-              locals: {f: child_field, field_template: child_field.object.field_template} %>
+				<%= basic_field(child_field, child_field.object.field_template) %>
       <% end %>
     </div>
+		
     <%= link_to_remove_association "Remove Row", f %>
-
+		
 </div>

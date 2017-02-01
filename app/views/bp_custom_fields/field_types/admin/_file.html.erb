@@ -1,10 +1,1 @@
-<% if builder.object.file.present? %>
-  <p>Current File: </p>
-  <%= link_to builder.object.file.url, builder.object.file.url %>
-  <p>Replace: </p>
-  
-<% else %>
-  <p>Upload a File:</p>
-<% end %>
-
-<%= builder.file_field :file, bpcf_html_options(field_template, builder.object, {accept: field_template.accepted_file_types}) %>
+<%= bpcf_file_field(builder, field_template) %>

@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    @custom_fields = @post.custom_fields
   end
 
   # GET /posts/new

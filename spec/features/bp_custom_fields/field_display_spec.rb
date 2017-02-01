@@ -101,6 +101,19 @@ RSpec.describe "Displaying Custom Fields" do
     end
   end
   
+  context 'chooseables - select/checkbox/etc' do
+    it "displays checkboxes fields" do
+      checkboxes_field_template = BpCustomFields::FieldTemplate.create(name: "color", label: "Color",
+      choices: "Red:red, Blue:blue", field_type: 'checkboxes', group_template: @group_template)
+      BpCustomFields::FieldManager.update_groups_for_fieldable(@post)
+     
+      checkboxes_field = @post.find_field('color')
+      checkboxes_field.update(value: 'blue')
+      visit main_app.home_path
+      expect(page).to have_content "blue"
+    end
+  end
+  
   context "flex content fields" do
     it "displays only the selected flexible content" do
       # flex_content_field = 

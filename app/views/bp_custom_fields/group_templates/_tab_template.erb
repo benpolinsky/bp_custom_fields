@@ -1,11 +1,9 @@
-
 <div class='nested-fields'>  
   <%= render :partial => 'fields_header', locals: {f: f} %>
   
   <div class='field_options active'>
     <%= render partial: 'common_fields', locals: {f: f}  %>
     
-
     <%= link_to_remove_association remove_label, f %>
   </div>
 </div>

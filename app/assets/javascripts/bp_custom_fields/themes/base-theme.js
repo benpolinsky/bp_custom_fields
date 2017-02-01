@@ -58,7 +58,7 @@ function append_menu() {
        var dataId = $(this).attr('data-target');
        $('a#'+dataId+'').click();
        drop.position();
-        event.preventDefault();
+       event.preventDefault();
      });
    });
 }
